@@ -1,0 +1,10 @@
+.parent-element {
+    display: flex; /* sử dụng flexbox để canh giữa */
+    justify-content: center; /* căn giữa theo chiều ngang */
+    align-items: center; /* căn giữa theo chiều dọc */
+  }
+
+  label.required::after {
+    content: "*";
+    color: red;
+  }

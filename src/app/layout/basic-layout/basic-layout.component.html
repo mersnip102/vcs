@@ -1,0 +1,76 @@
+<div class="pace-done" [ngClass]="{'sidebar-hide': isCollapsed == true}">
+
+    <div [ngStyle]="{'margin-top': isCollapsed ? '4em' : ''}"
+        class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+        <div class="nano" class="nano" [ngClass]="{'has-scrollbar': isCollapsed === false}">
+            <div class="nano-content" [ngStyle]="{'right': '-16px'}">
+                <ul nz-menu [nzMode]="'vertical'" [nzInlineCollapsed]="isCollapsed">
+                    <li nzSelected nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
+
+                        <span nz-icon nzType="home"></span>
+                        <span>Trang chủ</span>
+                    </li>
+                    <ng-container *ngFor="let item of listMenu">
+
+                        <li nz-menu-item routerLink="{{item.routerLink}}" *ngIf="!item.children"
+                            routerLinkActive="style_item_menu">
+
+                            <span nz-icon [nzType]="item.icon"></span>
+                            <span>{{item.screenName}}</span>
+                        </li>
+
+
+                        <li *ngIf="item.children" nz-submenu nzTitle="{{item.screenName}}" [nzIcon]="item.icon">
+                            <ul>
+                                <ng-container *ngFor="let item2 of item.children">
+                                    <li routerLink="{{item2.routerLink}}" nz-menu-item *ngIf="!item2.children">
+                                        {{item2.screenName}}</li>
+                                    <li nz-submenu *ngIf="item2.children"
+                                        [nzTitle]="item2.screenName" nzMenuClassName="custom-submenu">
+                                        <ul>
+                                            <ng-container *ngFor="let item3 of item2.children">
+                                                <li routerLink="{{item3.routerLink}}" nz-menu-item>{{item3.screenName}}
+                                                </li>
+                                            </ng-container>
+
+                                        </ul>
+                                    </li>
+                                </ng-container>
+
+
+                            </ul>
+                        </li>
+                    </ng-container>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <app-header (statusEvent)="receiveStatus($event)"></app-header>
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                
+                <div id="main-content">
+                    <ng-content selector="router-outlet"></ng-content>
+                    <app-footer></app-footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="search">
+        <button type="button" class="close">×</button>
+        <form>
+            <input type="search" value="" placeholder="type keyword(s) here" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div> -->
+
+
+
+
+</div>

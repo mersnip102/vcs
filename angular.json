@@ -1,0 +1,153 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "VCS.PAKN": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vcs.pakn",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/theme.less",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.css",
+              "src/assets/css/lib/calendar2/semantic.ui.min.css",
+              "src/assets/css/lib/calendar2/pignose.calendar.min.css",
+              "src/assets/css/lib/chartist/chartist.min.css",
+              "src/assets/css/lib/font-awesome.min.css",
+              "src/assets/css/lib/themify-icons.css",
+              "src/assets/css/lib/owl.carousel.min.css",
+              "src/assets/css/lib/owl.theme.default.min.css",
+              "src/assets/css/lib/weather-icons.css",
+              "src/assets/css/lib/menubar/sidebar.css",
+              "src/assets/css/lib/bootstrap.min.css",
+              "src/assets/css/lib/unix.css",
+              "src/assets/css/style.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/lib/jquery.min.js",
+              "src/assets/js/lib/jquery.nanoscroller.min.js",
+              "src/assets/js/lib/menubar/sidebar.js",
+              "src/assets/js/lib/preloader/pace.min.js",
+              "src/assets/js/lib/bootstrap.min.js",
+              "src/assets/js/lib/weather/jquery.simpleWeather.min.js",
+              "src/assets/js/lib/weather/weather-init.js",
+              "src/assets/js/lib/circle-progress/circle-progress.min.js",
+              "src/assets/js/lib/circle-progress/circle-progress-init.js",
+              "src/assets/js/lib/chartist/chartist.min.js",
+              "src/assets/js/lib/chartist/chartist-init.js",
+              "src/assets/js/lib/sparklinechart/jquery.sparkline.min.js",
+              "src/assets/js/lib/sparklinechart/sparkline.init.js",
+              "src/assets/js/lib/owl-carousel/owl.carousel.min.js",
+              "src/assets/js/lib/owl-carousel/owl.carousel-init.js",
+              "src/assets/js/scripts.js",
+              "src/assets/js/lib/calendar-2/moment.latest.min.js",
+              "src/assets/js/lib/calendar-2/semantic.ui.min.js",
+              "src/assets/js/lib/calendar-2/prism.min.js",
+              "src/assets/js/lib/calendar-2/pignose.calendar.min.js",
+              "src/assets/js/lib/calendar-2/pignose.init.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "VCS.PAKN:build:production"
+            },
+            "development": {
+              "browserTarget": "VCS.PAKN:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "VCS.PAKN:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "3939ac96-2aba-4857-b1d8-6f6a9620daf1"
+  }
+}

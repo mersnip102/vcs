@@ -1,0 +1,42 @@
+<div [ngStyle]="{'margin-top': isCollapsed ? '4%' : ''}" class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano" class="nano" [ngClass]="{'has-scrollbar': isCollapsed === false}">
+        <div class="nano-content" [ngStyle]="{'right': '-16px'}">
+            <ul nz-menu [nzMode]="'vertical'" [nzInlineCollapsed]="isCollapsed">
+                <li  nzSelected nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
+                    
+                    <span nz-icon nzType="home"></span>
+                    <span>Trang chủ</span>
+                </li>
+                <ng-container *ngFor="let item of listMenu">
+                   
+                <li *ngIf="!item.children" nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
+                    
+                    <span nz-icon nzType="item.icon"></span>
+                    <span>{{item.screenName}}</span>
+                </li>
+            
+           
+                <li  *ngIf="item.children" nz-submenu
+                    nzTitle="{{item.screenName}}" [nzIcon]="item.icon">
+                    <ul>
+                        <ng-container *ngFor="let item2 of item.children">
+                        <li nz-menu-item *ngIf="!item2.children">{{item2.screenName}}</li>
+                        <li nz-submenu *ngIf="item2.children" [nzTitle]="item2.screenName" nzMenuClassName="custom-submenu">
+                            <ul>
+                                <ng-container *ngFor="let item3 of item2.children">
+                                <li nz-menu-item>{{item3.screenName}}</li>
+                            </ng-container>
+                                
+                            </ul>
+                        </li>
+                    </ng-container>
+                        
+
+                    </ul>
+                </li>
+            </ng-container>
+                
+            </ul>
+        </div>
+    </div>
+</div>
