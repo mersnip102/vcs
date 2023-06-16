@@ -2,7 +2,7 @@
     <div class="col-lg-12 p-r-0 title-margin-right">
         <div class="page-header">
             <div class="page-title">
-                <h1>Quản lý phân quyền</h1>
+                <h1>Cấu hình duyệt nhắc việc người dùng</h1>
             </div>
         </div>
     </div>
@@ -13,43 +13,15 @@
 
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         <div class="card alert">
             <div class="card-header">
-
-                <div class="card-header-right-icon">
-                    <!-- <ul>
-                        <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
-                        <li class="card-option drop-menu"><i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
-                            <ul class="card-option-dropdown dropdown-menu">
-                                <li><a href="#"><i class="ti-loop"></i> Update data</a></li>
-                                <li><a href="#"><i class="ti-menu-alt"></i> Detail log</a></li>
-                                <li><a href="#"><i class="ti-pulse"></i> Statistics</a></li>
-                                <li><a href="#"><i class="ti-power-off"></i> Clear ist</a></li>
-                            </ul>
-                        </li>
-                        <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
-                    </ul> -->
-                    <button (click)="showModal()" type="button"
-                        class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Tạo mới</button>
-                </div>
+                <h4>Danh sách người dùng duyệt</h4>
+                
             </div>
-            <div class="card-body">
+            <div class="card-body m-t-30">
                 <div class="user-profile">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-
-                                <div class="input-group input-group-flat">
-                                    <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i
-                                                class="ti-search"></i></button></span>
-                                    <input type="text" class="form-control" placeholder="Search Default">
-                                    <span class="input-group-btn"><button class="btn btn-primary input-group-close-icon"
-                                            type="submit"><i class="ti-close"></i></button></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -57,155 +29,69 @@
                                 <table class="table student-data-table table-hover table-striped table-bordered">
                                     <thead>
                                         <tr>
-
+                                            <th>STT</th>
                                             <th>Tên đăng nhập</th>
                                             <th>Tên đầy đủ</th>
-                                            <th>Địa chỉ email</th>
-                                            <th>Tổ chức</th>
-                                            <th>Nhóm</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Hoạt động</th>
-                                            <th>Thao tác</th>
+                                            <th>Điện thoại</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
 
                                             <td>
-                                                QuanTriHeThong
+                                                1
                                             </td>
                                             <td>
                                                 Quản Trị Hệ Thống
                                             </td>
                                             <td>
-                                                quantrihethong@gmail.com
+                                                0379172188
                                             </td>
                                             <td>
                                                 Tổ chức 04
                                             </td>
-                                            <td>
-                                                Admin
-                                            </td>
-                                            <td>
-                                                0349849874
-                                            </td>
-                                            <td class="text-center">
-
-                                                <input type="checkbox" value="" checked>
-
-                                            </td>
-
-                                            <td>
-
-                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
-                                                            class="ti-pencil-alt color-success"></i></a></span>
-                                                <span nz-tooltip nzTooltipTitle="Xóa"><a><i
-                                                            class="ti-trash color-danger"></i> </a></span>
-                                                <span nz-tooltip nzTooltipTitle="Thay đổi mật khẩu"><a
-                                                        (click)="showModal()"><i
-                                                            class="ti-lock color-warning"></i></a></span>
-                                            </td>
+                                            
+                                            
                                         </tr>
                                         <tr>
 
                                             <td>
-                                                QuanTriHeThong
+                                                1
                                             </td>
                                             <td>
                                                 Quản Trị Hệ Thống
                                             </td>
                                             <td>
-                                                quantrihethong@gmail.com
+                                                0379172188
                                             </td>
                                             <td>
                                                 Tổ chức 04
                                             </td>
-                                            <td>
-                                                Admin
-                                            </td>
-                                            <td>
-                                                0349849874
-                                            </td>
-                                            <td class="text-center">
-
-                                                <input type="checkbox" value="" checked>
-
-                                            </td>
-
-                                            <td>
-
-                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
-                                                            class="ti-pencil-alt color-success"></i></a></span>
-                                                <span nz-tooltip nzTooltipTitle="Xóa"><a><i
-                                                            class="ti-trash color-danger"></i> </a></span>
-                                                <span nz-tooltip nzTooltipTitle="Thay đổi mật khẩu"><a
-                                                        (click)="showModal()"><i
-                                                            class="ti-lock color-warning"></i></a></span>
-                                            </td>
+                                           
+                                            
                                         </tr>
                                         <tr>
 
                                             <td>
-                                                QuanTriHeThong
+                                                1
                                             </td>
                                             <td>
                                                 Quản Trị Hệ Thống
                                             </td>
                                             <td>
-                                                quantrihethong@gmail.com
+                                                0379172188
                                             </td>
                                             <td>
                                                 Tổ chức 04
                                             </td>
-                                            <td>
-                                                Admin
-                                            </td>
-                                            <td>
-                                                0349849874
-                                            </td>
-                                            <td class="text-center">
-                                                
-                                                    <input type="checkbox" checked>
-                                                
-                                                
-
-                                            </td>
-
-                                            <td>
-
-                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
-                                                            class="ti-pencil-alt color-success"></i></a></span>
-                                                <span nz-tooltip nzTooltipTitle="Xóa"><a><i
-                                                            class="ti-trash color-danger"></i> </a></span>
-                                                <span nz-tooltip nzTooltipTitle="Thay đổi mật khẩu"><a
-                                                        (click)="showModal()"><i
-                                                            class="ti-lock color-warning"></i></a></span>
-                                            </td>
+                                            
+                                            
                                         </tr>
 
                                     </tbody>
                                 </table>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="page-nation text-center">
-                                            <div class="m-t-30">Tổng số: 5</div>
-                                            <ul class="pagination pagination-large">
-                                                <li class="disabled"><span>«</span></li>
-                                                <li class="active"><span>1</span></li>
-                                                <li><a href="#">2</a></li>
-                                                <li class="hidden-xs"><a href="#">3</a></li>
-                                                <li class="hidden-xs"><a href="#">4</a></li>
-                                                <li class="hidden-xs"><a href="#">6</a></li>
-                                                <li class="hidden-xs"><a href="#">7</a></li>
-                                                <li class="hidden-xs"><a href="#">8</a></li>
-                                                <li class="hidden-xs"><a href="#">9</a></li>
-                                                <li class="disabled hidden-xs"><span>...</span></li>
-                                                <li>
-                                                <li><a rel="next" href="#">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
 
                             </div>
 
@@ -215,9 +101,84 @@
                 </div>
             </div>
         </div>
+        
+    </div>
+    <div class="col-lg-4">
+        <div class="card alert">
+            <div class="card-header">
+                <h4>Danh sách đối tượng</h4>
+                
+            </div>
+            <div class="card-body m-t-30">
+                <div class="user-profile">
+                    
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên đối tượng</th>
+                                            
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                <label><input type="checkbox" value="" checked></label> Project Manager
+                                            </td>
+                                            
+                                            
+                                        </tr>
+                                        
+
+                                    </tbody>
+                                </table>
+                                
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                
+                    
+                    <div class="card-header-right-icon">
+                        <!-- <ul>
+                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                            <li class="card-option drop-menu"><i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
+                                <ul class="card-option-dropdown dropdown-menu">
+                                    <li><a href="#"><i class="ti-loop"></i> Update data</a></li>
+                                    <li><a href="#"><i class="ti-menu-alt"></i> Detail log</a></li>
+                                    <li><a href="#"><i class="ti-pulse"></i> Statistics</a></li>
+                                    <li><a href="#"><i class="ti-power-off"></i> Clear ist</a></li>
+                                </ul>
+                            </li>
+                            <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
+                        </ul> -->
+                        <button (click)="showModal()" type="button"
+                            class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-save"></i>Lưu</button>
+                    </div>
+                
+            </div>
+        </div>
     </div>
     <!-- /# column -->
 </div>
+
+
 
 
 <nz-modal [nzWidth]="1200" [(nzVisible)]="isVisible" nzTitle="Tạo mới nhóm người dùng" (nzOnCancel)="handleCancel()"
@@ -350,47 +311,43 @@
                     </div>
                 </nz-tab>
                 <nz-tab nzTitle="Chọn nhóm chức năng">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div>
-                                <label><input type="checkbox" value=""></label> Bản đồ PAKN
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Báo cáo_tạo mới
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Danh mục chức danh
-                            </div>
-    
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Bản đồ PAKN
                         </div>
-                        <div class="col-lg-4">
-                            <div>
-                                <label><input type="checkbox" value=""></label> Danh mục sự kiện
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Loại đối tượng
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Nhắc việc_xem
-                            </div>
-    
+                        <div>
+                            <label><input type="checkbox" value=""></label> Báo cáo_tạo mới
                         </div>
-    
-                        <div class="col-lg-4">
-                            <div>
-                                <label><input type="checkbox" value=""></label> Quản lý nhắc việc
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Quản lý tổ chức
-                            </div>
-                            <div>
-                                <label><input type="checkbox" value=""></label> Tra cứu PAKN
-                            </div>
-    
+                        <div>
+                            <label><input type="checkbox" value=""></label> Danh mục chức danh
                         </div>
 
                     </div>
-                    
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Danh mục sự kiện
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Loại đối tượng
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Nhắc việc_xem
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Quản lý nhắc việc
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Quản lý tổ chức
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Tra cứu PAKN
+                        </div>
+
+                    </div>
 
 
 

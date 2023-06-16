@@ -1,0 +1,217 @@
+<div class="row">
+    <div class="col-lg-12 p-r-0 title-margin-right">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>Quản lý log</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+   
+    <!-- /# column -->
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card alert">
+            
+            <div class="card-body">
+                <div class="user-profile">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+
+                                <div class="input-group input-group-flat">
+                                    <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i
+                                                class="ti-search"></i></button></span>
+                                    <input type="text" class="form-control" placeholder="Search Default">
+                                    <span class="input-group-btn"><button class="btn btn-primary input-group-close-icon"
+                                            type="submit"><i class="ti-close"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            					
+        
+                                            <th>STT</th>
+                                            <th>Tên module</th>
+                                            <th>Client IpAddress</th>
+                                            <th>Trình duyệt</th>
+                                            <th>Người đăng nhập</th>
+                                            <th>Thời gian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                           
+        
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+        
+                                                CTeam.PhanAnhKienNghi.AuditLogs.AuditLogService
+                                            </td>
+                                            <td>
+                                                192.168.99.10
+                                            </td>
+                                            <td>
+                                                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+                                            </td>
+                                            
+                                            <td>
+                                                admin06
+                                            </td>
+                                            <td>
+                                                16/06/2023 17:48:27
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                           
+        
+                                            <td>
+                                                2
+                                            </td>
+                                            <td>
+        
+                                                CTeam.PhanAnhKienNghi.AuditLogs.AuditLogService
+                                            </td>
+                                            <td>
+                                                192.168.99.10
+                                            </td>
+                                            <td>
+                                                Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+                                            </td>
+                                            
+                                            <td>
+                                                admin06
+                                            </td>
+                                            <td>
+                                                16/06/2023 10:50:27
+                                            </td>
+                                        </tr>
+                                        
+        
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="page-nation text-center">
+                                            <div class="m-t-30">Tổng số: 5</div>
+                                            <ul class="pagination pagination-large">
+                                                <li class="disabled"><span>«</span></li>
+                                                <li class="active"><span>1</span></li>
+                                                <li><a href="#">2</a></li>
+                                                <li class="hidden-xs"><a href="#">3</a></li>
+                                                <li class="hidden-xs"><a href="#">4</a></li>
+                                                <li class="hidden-xs"><a href="#">6</a></li>
+                                                <li class="hidden-xs"><a href="#">7</a></li>
+                                                <li class="hidden-xs"><a href="#">8</a></li>
+                                                <li class="hidden-xs"><a href="#">9</a></li>
+                                                <li class="disabled hidden-xs"><span>...</span></li><li>
+                                                <li><a rel="next" href="#">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+</div>
+
+
+<nz-modal [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Tạo mới nhóm người dùng" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+
+
+        <div class="card-body">
+            <nz-tabset>
+                <nz-tab nzTitle="Thông tin chung">
+                    <div class="horizontal-form">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required">Tên nhóm người dùng</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Mô tả</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            
+        
+                        </form>
+                    </div>
+                </nz-tab>
+                <nz-tab nzTitle="Gán chức năng vào nhóm">
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Bản đồ PAKN
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Báo cáo_tạo mới
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Danh mục chức danh
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Danh mục sự kiện
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Loại đối tượng
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Nhắc việc_xem
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div>
+                            <label><input type="checkbox" value=""></label> Quản lý nhắc việc
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Quản lý tổ chức
+                        </div>
+                        <div>
+                            <label><input type="checkbox" value=""></label> Tra cứu PAKN
+                        </div>
+
+                    </div>
+                    
+                    
+
+                </nz-tab>
+                
+              </nz-tabset>
+           
+        </div>
+
+
+
+    </ng-container>
+</nz-modal>

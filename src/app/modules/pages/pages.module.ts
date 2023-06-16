@@ -47,6 +47,12 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NhomNguoiDungComponent } from './nhom-nguoi-dung/nhom-nguoi-dung.component';
 import { QuanLyPhanQuyenComponent } from './quan-ly-phan-quyen/quan-ly-phan-quyen.component';
+import { QuanLyDoiTuongComponent } from './quan-ly-doi-tuong/quan-ly-doi-tuong.component';
+import { QuanLyThongBaoComponent } from './quan-ly-thong-bao/quan-ly-thong-bao.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { GanNguoiDungDvhcComponent } from './gan-nguoi-dung-dvhc/gan-nguoi-dung-dvhc.component';
+import { ConfigsComponent } from './configs/configs.component';
+import { LogsComponent } from './logs/logs.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -60,7 +66,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     DonViSuDungComponent,
     ChangePasswordComponent,
     NhomNguoiDungComponent,
-    QuanLyPhanQuyenComponent
+    QuanLyPhanQuyenComponent,
+    QuanLyDoiTuongComponent,
+    QuanLyThongBaoComponent,
+    UserinfoComponent,
+    GanNguoiDungDvhcComponent,
+    ConfigsComponent,
+    LogsComponent
   ],
   imports: [
     LayoutModule,

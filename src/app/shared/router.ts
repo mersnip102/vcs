@@ -44,24 +44,24 @@ export const listMenu =
 
             {
               screenName: 'Cấu hình nhắc việc',
-              routerLink: '',
+              routerLink: 'nhac-viec/cau-hinh-nhac-viec',
               icon: '',
 
             },
             {
               screenName: 'Cấu hình duyệt nhắc việc',
-              routerLink: '',
+              routerLink: 'nhac-viec/duyet-nhac-viec',
               icon: '',
 
             },
             {
               screenName: 'Cấu hình xem nhắc việc',
-              routerLink: '',
+              routerLink: 'nhac-viec/xem-nhac-viec',
               icon: '',
             },
             {
               screenName: 'Thống kê nhắc việc',
-              routerLink: '',
+              routerLink: 'nhac-viec/thong-ke-nhac-viec',
               icon: '',
             },
           ]
@@ -222,6 +222,7 @@ export const listMenu =
     //   ]
 
     // },
+    
     {
       screenName: 'Báo cáo dự án',
       routerLink: '',
@@ -232,6 +233,54 @@ export const listMenu =
       screenName: 'Báo cáo tổng hợp',
       routerLink: '',
       icon: 'diff',
+      
+    },
+    {
+      screenName: 'Quản lý đối tượng',
+      routerLink: 'quan-ly-doi-tuong',
+      icon: 'user',
+      
+    },
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    {
+      screenName: 'Gán người dùng về ĐVHC',
+      routerLink: 'gan-nguoi-dung-dvhc',
+      icon: 'user-add',
+      
+    },
+    {
+      screenName: 'Quản lý log',
+      routerLink: 'logs',
+      icon: 'tool',
+      
+    },
+    {
+      screenName: 'Quản lý cấu hình',
+      routerLink: 'configs',
+      icon: 'setting',
       
     },
     {

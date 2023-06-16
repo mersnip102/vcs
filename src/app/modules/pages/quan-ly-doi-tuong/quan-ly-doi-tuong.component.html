@@ -1,0 +1,402 @@
+<div class="row">
+    <div class="col-lg-12 p-r-0 title-margin-right">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>Quản lý phân quyền</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+
+    <!-- /# column -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card alert">
+            <div class="card-header">
+
+                <div class="card-header-right-icon">
+                    <!-- <ul>
+                        <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                        <li class="card-option drop-menu"><i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
+                            <ul class="card-option-dropdown dropdown-menu">
+                                <li><a href="#"><i class="ti-loop"></i> Update data</a></li>
+                                <li><a href="#"><i class="ti-menu-alt"></i> Detail log</a></li>
+                                <li><a href="#"><i class="ti-pulse"></i> Statistics</a></li>
+                                <li><a href="#"><i class="ti-power-off"></i> Clear ist</a></li>
+                            </ul>
+                        </li>
+                        <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
+                    </ul> -->
+                    <button (click)="showModal()" type="button"
+                        class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Tạo mới</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="user-profile">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+
+                                <div class="input-group input-group-flat">
+                                    <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i
+                                                class="ti-search"></i></button></span>
+                                    <input type="text" class="form-control" placeholder="Search Default">
+                                    <span class="input-group-btn"><button class="btn btn-primary input-group-close-icon"
+                                            type="submit"><i class="ti-close"></i></button></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th>STT</th>
+                                            <th>Mã số</th>
+                                            <th>Tên đối tượng</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Người đại diện</th>
+                                            <th>Đơn vị quản lý</th>
+                                            <th>Trạng thái</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                13213
+                                            </td>
+                                            <td>
+                                                QuanTriHeThong,
+                                            </td>
+                                            <td>
+                                                Tổ chức 04
+
+
+                                            </td>
+                                            <td class="text-center">
+
+                                                <span class="text-success">Còn hạn</span>
+
+                                            </td>
+
+                                            <td>
+                                                <div class="text-center">
+                                                    <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
+                                                                class="ti-pencil-alt color-success"></i></a></span>
+                                                    <span nz-tooltip nzTooltipTitle="Xóa"><a><i
+                                                                class="ti-trash color-danger"></i> </a></span>
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                13213
+                                            </td>
+                                            <td>
+                                                QuanTriHeThong,
+                                            </td>
+                                            <td>
+                                                Tổ chức 04
+
+
+                                            </td>
+                                            <td class="text-center">
+
+                                                <span class="text-success">Còn hạn</span>
+
+                                            </td>
+
+                                            <td>
+
+                                                <div class="text-center">
+                                                    <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
+                                                                class="ti-pencil-alt color-success"></i></a></span>
+                                                    <span nz-tooltip nzTooltipTitle="Xóa"><a><i
+                                                                class="ti-trash color-danger"></i> </a></span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+
+                                            <td>
+                                                1
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                123
+                                            </td>
+                                            <td>
+                                                13213
+                                            </td>
+                                            <td>
+                                                QuanTriHeThong,
+                                            </td>
+                                            <td>
+                                                Tổ chức 04
+
+
+                                            </td>
+                                            <td class="text-center">
+
+                                                <span class="text-danger">Hết hạn</span>
+
+                                            </td>
+
+                                            <td>
+
+                                                <div class="text-center">
+                                                    <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal()"><i
+                                                                class="ti-pencil-alt color-success"></i></a></span>
+                                                    <span nz-tooltip nzTooltipTitle="Xóa"><a><i
+                                                                class="ti-trash color-danger"></i> </a></span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="page-nation text-center">
+                                            <div class="m-t-30">Tổng số: 5</div>
+                                            <ul class="pagination pagination-large">
+                                                <li class="disabled"><span>«</span></li>
+                                                <li class="active"><span>1</span></li>
+                                                <li><a href="#">2</a></li>
+                                                <li class="hidden-xs"><a href="#">3</a></li>
+                                                <li class="hidden-xs"><a href="#">4</a></li>
+                                                <li class="hidden-xs"><a href="#">6</a></li>
+                                                <li class="hidden-xs"><a href="#">7</a></li>
+                                                <li class="hidden-xs"><a href="#">8</a></li>
+                                                <li class="hidden-xs"><a href="#">9</a></li>
+                                                <li class="disabled hidden-xs"><span>...</span></li>
+                                                <li>
+                                                <li><a rel="next" href="#">Next</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+</div>
+
+
+<nz-modal [nzWidth]="800" [(nzVisible)]="isVisible" nzTitle="Thêm mới" (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+
+
+        <div class="card-body">
+
+            <!-- <div class="horizontal-form">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label required">Tên nhóm người dùng</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Mô tả</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            
+        
+                        </form>
+                    </div> -->
+            <div class="horizontal-form-elements">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card alert">
+                                <div class="card-body">
+                                    <div class="form-validation">
+                                        <form class="form-valide" action="#" method="post">
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-username">Mã số
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control" id="val-username"
+                                                        name="val-username" placeholder="Nhập mã số ...">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-email">Tên đối
+                                                    tượng </label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control" id="val-email"
+                                                        name="val-email">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-select2">Loại
+                                                    đối tượng </label>
+                                                <div class="col-lg-8">
+                                                    <select class="js-select2 form-control" id="val-select2"
+                                                        name="val-select2" style="width: 100%;"
+                                                        data-placeholder="Choose one..">
+
+                                                        <option value="html">HTML</option>
+                                                        <option value="css">CSS</option>
+                                                        <option value="javascript">JavaScript</option>
+                                                        <option value="angular">Angular</option>
+                                                        <option value="angular">React</option>
+                                                        <option value="vuejs">Vue.js</option>
+                                                        <option value="ruby">Ruby</option>
+                                                        <option value="php">PHP</option>
+                                                        <option value="asp">ASP.NET</option>
+                                                        <option value="python">Python</option>
+                                                        <option value="mysql">MySQL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-email">Địa chỉ
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control" id="val-email"
+                                                        name="val-email">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-select2">Tổ
+                                                    chức </label>
+                                                <div class="col-lg-8">
+                                                    <select class="js-select2 form-control" id="val-select2"
+                                                        name="val-select2" style="width: 100%;"
+                                                        data-placeholder="Choose one..">
+
+
+                                                        <option value="ruby">Ruby</option>
+                                                        <option value="php">PHP</option>
+                                                        <option value="asp">ASP.NET</option>
+                                                        <option value="python">Python</option>
+                                                        <option value="mysql">MySQL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-suggestions">Người đại
+                                                    diện
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <nz-select [nzSize]="'large'" [nzMaxTagCount]="3"
+                                                        [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+                                                        nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue">
+                                                        <nz-option *ngFor="let item of listOfOption" [nzLabel]="item"
+                                                            [nzValue]="item"></nz-option>
+                                                    </nz-select>
+                                                    <ng-template #tagPlaceHolder let-selectedList>and {{
+                                                        selectedList.length }} more selected</ng-template>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label required" for="val-select2">Nhiệm
+                                                    vụ </label>
+                                                <div class="col-lg-8">
+                                                    <select class="js-select2 form-control" id="val-select2"
+                                                        name="val-select2" style="width: 100%;"
+                                                        data-placeholder="Choose one..">
+
+
+
+                                                        <option value="php">PHP</option>
+                                                        <option value="asp">ASP.NET</option>
+                                                        <option value="python">Python</option>
+                                                        <option value="mysql">MySQL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <label class="col-lg-4 col-form-label">Ngày bắt đầu </label>
+                                                    <div class="col-lg-8">
+                                                        <input type="date" class="form-control">
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <label class="col-lg-4 col-form-label">Ngày kết thúc </label>
+                                                    <div class="col-lg-8">
+                                                        <input type="date" class="form-control">
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+    </ng-container>
+</nz-modal>

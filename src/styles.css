@@ -173,3 +173,7 @@ label.required::after {
     color: red;
   }
 
+  nz-select {
+    width: 100%;
+  }
+
