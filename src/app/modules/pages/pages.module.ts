@@ -72,7 +72,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     UserinfoComponent,
     GanNguoiDungDvhcComponent,
     ConfigsComponent,
-    LogsComponent
+    LogsComponent,
   ],
   imports: [
     LayoutModule,
@@ -120,7 +120,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
 
     GoogleMapsModule ,
 
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    
    
     
   ],
