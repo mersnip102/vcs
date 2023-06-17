@@ -236,76 +236,28 @@ export const listMenu =
       
     },
     {
-      screenName: 'Quản lý đối tượng',
-      routerLink: 'quan-ly-doi-tuong',
-      icon: 'user',
-      
-    },
-    {
-      screenName: 'Quản lý thông báo chung',
-      routerLink: 'quan-ly-thong-bao',
-      icon: 'bell',
-      
-    },
-    {
-      screenName: 'Quản lý thông báo chung',
-      routerLink: 'quan-ly-thong-bao',
-      icon: 'bell',
-      
-    },
-    {
-      screenName: 'Quản lý thông báo chung',
-      routerLink: 'quan-ly-thong-bao',
-      icon: 'bell',
-      
-    },
-    {
-      screenName: 'Quản lý thông báo chung',
-      routerLink: 'quan-ly-thong-bao',
-      icon: 'bell',
-      
-    },
-    {
-      screenName: 'Gán người dùng về ĐVHC',
-      routerLink: 'gan-nguoi-dung-dvhc',
-      icon: 'user-add',
-      
-    },
-    {
-      screenName: 'Quản lý log',
-      routerLink: 'logs',
-      icon: 'tool',
-      
-    },
-    {
-      screenName: 'Quản lý cấu hình',
-      routerLink: 'configs',
-      icon: 'setting',
-      
-    },
-    {
       screenName: 'Báo cáo hình ảnh',
-      routerLink: 'chat-students',
+      routerLink: '',
       icon: 'file-image',
       children: [
         {
           screenName: 'Báo cáo bằng hình ảnh',
-          routerLink: 'chat-students',
+          routerLink: '',
           icon: 'phone',
           children: [
             {
               screenName: 'Lập báo cáo',
-              routerLink: 'chat-students',
+              routerLink: 'bao-cao-hinh-anh/quan-ly-bao-cao',
               icon: '',
             },
             {
               screenName: 'Duyệt báo cáo',
-              routerLink: 'chat-students',
+              routerLink: 'bao-cao-hinh-anh/duyet-bao-cao',
               icon: '',
             },
             {
-              screenName: 'Xem báo cáo',
-              routerLink: 'chat-students',
+              screenName: 'Tra cứu báo cáo',
+              routerLink: 'bao-cao-hinh-anh/tra-cuu-bao-cao',
               icon: '',
             },
 
@@ -372,6 +324,37 @@ export const listMenu =
 
       ]
     },
+    {
+      screenName: 'Quản lý đối tượng',
+      routerLink: 'quan-ly-doi-tuong',
+      icon: 'user',
+      
+    },
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    {
+      screenName: 'Gán người dùng về ĐVHC',
+      routerLink: 'gan-nguoi-dung-dvhc',
+      icon: 'user-add',
+      
+    },
+    {
+      screenName: 'Quản lý log',
+      routerLink: 'logs',
+      icon: 'tool',
+      
+    },
+    {
+      screenName: 'Quản lý cấu hình',
+      routerLink: 'configs',
+      icon: 'setting',
+      
+    },
+    
 
   ],
   defaultScreen: '/pages/home',

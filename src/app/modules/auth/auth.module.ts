@@ -33,7 +33,6 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { TestComponent } from './test/test.component';
 
-
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };

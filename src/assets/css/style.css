@@ -1301,7 +1301,7 @@ div.dt-button:active:not(.disabled) {
 
 [contenteditable]:focus,
 [contenteditable]:hover {
-    background: #48c4fd
+    background: white;
 }
 
 .control-bar {

@@ -1,0 +1,316 @@
+<div class="row">
+    <div class="col-lg-12 p-r-0 title-margin-right">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>Thông tin báo cáo</h1>
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+
+    <!-- /# column -->
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card alert">
+
+            <div class="card-body">
+
+                <!-- <div class="horizontal-form">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label required">Tên nhóm người dùng</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Mô tả</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        
+    
+                    </form>
+                </div> -->
+                <div class="horizontal-form-elements">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label required">Tiêu đề</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Nội dung</label>
+                                    <div class="col-lg-10">
+                                        <quill-editor [style]="{ height: '20em' }"></quill-editor>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Kiến nghị</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" rows="4"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label required">Loại báo cáo</label>
+                                            <div class="col-lg-8">
+                                                <select class="js-select2 form-control" id="val-select2"
+                                                    name="val-select2" style="width: 100%;"
+                                                    data-placeholder="Choose one..">
+
+
+
+                                                    <option value="php">PHP</option>
+                                                    <option value="asp">ASP.NET</option>
+                                                    <option value="python">Python</option>
+                                                    <option value="mysql">MySQL</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label required">Đối tượng</label>
+                                            <div class="col-lg-8">
+                                                <select class="js-select2 form-control" id="val-select2"
+                                                    name="val-select2" style="width: 100%;"
+                                                    data-placeholder="Choose one..">
+
+
+
+                                                    <option value="php">PHP</option>
+                                                    <option value="asp">ASP.NET</option>
+                                                    <option value="python">Python</option>
+                                                    <option value="mysql">MySQL</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label required">Đơn vị chủ trì</label>
+                                    <div class="col-lg-10">
+                                        <select class="js-select2 form-control" id="val-select2" name="val-select2"
+                                            style="width: 100%;" data-placeholder="Choose one..">
+
+
+
+                                            <option value="php">PHP</option>
+                                            <option value="asp">ASP.NET</option>
+                                            <option value="python">Python</option>
+                                            <option value="mysql">MySQL</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label" for="val-suggestions">Đơn vị liên quan
+                                    </label>
+                                    <div class="col-lg-10">
+                                        <nz-select [nzSize]="'large'" [nzMaxTagCount]="3"
+                                            [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+                                            nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue">
+                                            <nz-option *ngFor="let item of listOfOption" [nzLabel]="item"
+                                                [nzValue]="item"></nz-option>
+                                        </nz-select>
+                                        <ng-template #tagPlaceHolder let-selectedList>and {{
+                                            selectedList.length }} more selected</ng-template>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Loại vụ việc</label>
+                                    <div class="col-lg-10">
+                                        <select class="js-select2 form-control" id="val-select2" name="val-select2"
+                                            style="width: 100%;" data-placeholder="Choose one..">
+
+
+
+                                            <option value="php">PHP</option>
+                                            <option value="asp">ASP.NET</option>
+                                            <option value="python">Python</option>
+                                            <option value="mysql">MySQL</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">File đính kèm</label>
+                                    <div class="col-lg-10">
+                                        <div class="clearfix">
+                                            <nz-upload [nzLimit]="10"
+                                                nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                                nzListType="picture" [nzMultiple]="true" [nzSize]="5000">
+                                                <button nz-button>
+                                                    <span nz-icon nzType="upload"></span>
+                                                    Upload
+                                                </button>
+                                            </nz-upload>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-lg-2 control-label">Địa điểm báo cáo</label>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+
+                                            <label class="col-lg-4 control-label required">Kinh độ</label>
+                                            <div class="col-lg-8">
+                                                <input disabled type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group">
+                                            <label class="col-lg-4 control-label required">Vĩ độ</label>
+                                            <div class="col-lg-8">
+                                                <input disabled type="text" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-4">
+                                        <div class="row">
+                                            <div class="form-group">
+
+                                                <label class="col-lg-4 control-label required">Tỉnh</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+
+                                                <label class="col-lg-4 control-label required">Huyện</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+
+                                                <label class="col-lg-4 control-label required">Xã</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+
+                                                <label class="col-lg-4 control-label required">Địa chỉ</label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="card-header-right-icon">
+                                                <button type="button"
+                                                class="btn btn-danger btn-flat m-l-5">Xóa tất cả các điểm</button>
+                                            <button type="button"
+                                                class="btn btn-primary btn-flat m-l-5">Xem trên bản đồ</button>
+                                            </div>
+                                            
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div id="map"></div>
+
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+                                            
+                                    <label class="col-lg-4 control-label required">Tỉnh</label>
+                                    <div class="col-lg-8">
+                                        <select class="js-select2 form-control" id="val-select2" name="val-select2"
+                                            style="width: 100%;" data-placeholder="Choose one..">
+
+
+
+                                            <option value="php">PHP</option>
+                                            <option value="asp">ASP.NET</option>
+                                            <option value="python">Python</option>
+                                            <option value="mysql">MySQL</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <!-- /# column -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                                    
+                                    <div class="card-header-right-icon">
+                                        <!-- <ul>
+                                            <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
+                                            <li class="card-option drop-menu"><i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
+                                                <ul class="card-option-dropdown dropdown-menu">
+                                                    <li><a href="#"><i class="ti-loop"></i> Update data</a></li>
+                                                    <li><a href="#"><i class="ti-menu-alt"></i> Detail log</a></li>
+                                                    <li><a href="#"><i class="ti-pulse"></i> Statistics</a></li>
+                                                    <li><a href="#"><i class="ti-power-off"></i> Clear ist</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
+                                        </ul> -->
+                                        <button type="button"
+                                            class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i class="ti-back-left"></i>Quay Lại</button>
+                                                <button type="button"
+                                            class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-save"></i>Lưu</button>
+                                           
+                                                
+                                           
+
+                                        
+                                        
+                                            
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /# column -->
+</div>

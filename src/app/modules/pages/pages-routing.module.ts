@@ -68,7 +68,9 @@ const routes: Routes = [
   },
   { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
   { path: 'nhac-viec', loadChildren: () => import('./nhac-viec/nhac-viec.module').then(m => m.NhacViecModule) }, 
+  { path: 'bao-cao-hinh-anh', loadChildren: () => import('./bao-cao-hinh-anh/bao-cao-hinh-anh.module').then(m => m.BaoCaoHinhAnhModule) },
 ] },
+  
   
 
 ];

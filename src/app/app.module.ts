@@ -103,7 +103,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     NzMenuModule,
     RouterModule,
 
-    GoogleMapsModule
+    GoogleMapsModule,
+
+    
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
