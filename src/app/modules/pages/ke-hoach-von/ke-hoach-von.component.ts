@@ -117,7 +117,33 @@ export class KeHoachVonComponent implements OnInit {
   // };
 
   // markerPosition = { lat: 48.8634286, lng: 12.3114617 };
-  
+  provinces = [
+    'Hà Nội',
+    'Hồ Chí Minh',
+    'Đà Nẵng',
+    'Hải Phòng',
+    'Cần Thơ',
+    // Thêm các tỉnh/thành phố khác ở Việt Nam vào đây
+  ];
+  center: any = { lat: 21.027763, lng: 105.834160 };
+  zoom = 12;
+  selectedProvince!: string;
 
+  onProvinceChange() {
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+      {
+        address: `${this.selectedProvince}, Vietnam`
+      },
+      (results: any, status) => {
+        if (status === 'OK') {
+          const latlng = results[0].geometry.location;
+          this.center = { lat: latlng.lat(), lng: latlng.lng() };
+        } else {
+          alert(`Geocode was not successful for the following reason: ${status}`);
+        }
+      }
+    );
+  }
 
 }

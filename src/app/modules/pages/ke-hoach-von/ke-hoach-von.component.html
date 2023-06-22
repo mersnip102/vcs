@@ -225,7 +225,7 @@
     
     <!-- /# column -->
 </div>
-<div>
+<!-- <div>
     <p *ngIf="latitude && longitude">Your current location is: {{ latitude }}, {{ longitude }}</p>
 </div>
 <p *ngIf="address">Your current location is: {{ address }}</p>
@@ -236,7 +236,7 @@
       <map-marker [position]="markerPosition"></map-marker>
       <map-info-window>Info Window content</map-info-window>
     </google-map>
-  </div>
+  </div> -->
 
   <!-- <div class="map">
     <google-map [options]="mapOptions"></google-map>
@@ -256,10 +256,25 @@
   <map-info-window>Info Window content</map-info-window>
 </google-map> -->
 
-<div #mapContainer id="map"></div>
+<!-- <div #mapContainer id="map"></div>
 
 
- 
+<form>
+    <label for="province">Tỉnh/Thành phố:</label>
+    <select id="province" name="province" [(ngModel)]="selectedProvince" (ngModelChange)="onProvinceChange()">
+      <option *ngFor="let province of provinces" [value]="province">{{ province }}</option>
+    </select>
+
+    <label for="province">Tỉnh/Thành phố:</label>
+    <select id="province" name="province" [(ngModel)]="selectedDistrict" (ngModelChange)="onDistrictChange()">
+      <option *ngFor="let province of provinces" [value]="province">{{ province }}</option>
+    </select>
+  
+    <button type="submit">Tìm kiếm</button>
+  </form>
+  
+  <google-map height="400px" width="100%" [center]="center" [zoom]="zoom"></google-map>
+   -->
   
 
 

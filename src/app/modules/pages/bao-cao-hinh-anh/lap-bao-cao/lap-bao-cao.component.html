@@ -193,7 +193,9 @@
 
                                                 <label class="col-lg-4 control-label required">Tỉnh</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" class="form-control">
+                                                    <select (change)="onChange()" class="form-select form-control" id="city">
+                                                        <option value="" ></option>
+                                                        </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +204,10 @@
 
                                                 <label class="col-lg-4 control-label required">Huyện</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" class="form-control">
+                                                    <select (change)="onChange()"  class="form-select form-control" id="district">
+                                                        <option value="" ></option>
+                                                        </select>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -211,7 +216,9 @@
 
                                                 <label class="col-lg-4 control-label required">Xã</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" class="form-control">
+                                                    <select (change)="onChange()"  class="form-select form-control" id="ward">
+                                                        <option value="" ></option>
+                                                        </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -226,20 +233,35 @@
                                         </div>
                                         <div class="row">
                                             <div class="card-header-right-icon">
-                                                <button type="button"
-                                                class="btn btn-danger btn-flat m-l-5">Xóa tất cả các điểm</button>
-                                            <button type="button"
-                                                class="btn btn-primary btn-flat m-l-5">Xem trên bản đồ</button>
+                                                <button type="button" class="btn btn-danger btn-flat m-l-5">Xóa tất cả
+                                                    các điểm</button>
+                                                <button type="button" class="btn btn-primary btn-flat m-l-5">Xem trên
+                                                    bản đồ</button>
                                             </div>
-                                            
+
                                         </div>
 
 
 
                                     </div>
-                                    <div class="col-lg-7">
-                                        <div id="map"></div>
-
+                                    <div class="col-lg-8">
+                                        <div class="form-group">
+                                        <!-- <div id="map"></div> -->
+                                        <!-- <div>
+                                            <p *ngIf="latitude && longitude">Your current location is: {{ latitude }},
+                                                {{ longitude }}</p>
+                                        </div>
+                                        <p *ngIf="address">Your current location is: {{ address }}</p> -->
+                                        <!-- <div class="map"> -->
+                                            <div>
+                                            <!-- <google-map height="40em" width="100%" [options]="mapOptions">
+                                                <map-marker [position]="markerPosition"></map-marker>
+                                                <map-info-window>Info Window content</map-info-window>
+                                            </google-map> -->
+                                            <google-map height="40em" width="100%" [center]="center" [zoom]="zoom"></google-map>
+                                        </div>
+                                        <!-- <div #mapContainer id="map"></div> -->
+                                    </div>
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">
@@ -274,10 +296,10 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                
-                                    
-                                    <div class="card-header-right-icon">
-                                        <!-- <ul>
+
+
+                                <div class="card-header-right-icon">
+                                    <!-- <ul>
                                             <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
                                             <li class="card-option drop-menu"><i class="ti-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" role="link"></i>
                                                 <ul class="card-option-dropdown dropdown-menu">
@@ -289,19 +311,19 @@
                                             </li>
                                             <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
                                         </ul> -->
-                                        <button type="button"
-                                            class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i class="ti-back-left"></i>Quay Lại</button>
-                                                <button type="button"
-                                            class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-save"></i>Lưu</button>
-                                           
-                                                
-                                           
+                                    <button type="button" class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i
+                                            class="ti-back-left"></i>Quay Lại</button>
+                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
+                                            class="ti-save"></i>Lưu</button>
 
-                                        
-                                        
-                                            
-                                    </div>
-                                
+
+
+
+
+
+
+                                </div>
+
                             </div>
                         </div>
                     </form>
