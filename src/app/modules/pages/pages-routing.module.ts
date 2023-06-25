@@ -13,6 +13,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { GanNguoiDungDvhcComponent } from './gan-nguoi-dung-dvhc/gan-nguoi-dung-dvhc.component';
 import { ConfigsComponent } from './configs/configs.component';
 import { LogsComponent } from './logs/logs.component';
+import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'configs',
     component: ConfigsComponent,
+  },
+  {
+    path: 'bao-cao-tong-hop',
+    component: BaoCaoTongHopComponent,
   },
   { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
   { path: 'nhac-viec', loadChildren: () => import('./nhac-viec/nhac-viec.module').then(m => m.NhacViecModule) }, 

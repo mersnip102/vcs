@@ -15,8 +15,11 @@ export enum TypeIcon {
 }
 export const TOKEN = 'TOKEN';
 export enum RoleNumber {
-  student,
-  accountant,
-  admissions,
-  admissionsManager
+  user1,
+  user2,
+  // admissions,
+  // admissionsManager
 }
+
+export const CURRENT_USER = 'currentUser';
+export const SECRET_KEY = 'PAKN_CAT@2023$';

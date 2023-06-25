@@ -29,6 +29,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
@@ -53,6 +54,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { GanNguoiDungDvhcComponent } from './gan-nguoi-dung-dvhc/gan-nguoi-dung-dvhc.component';
 import { ConfigsComponent } from './configs/configs.component';
 import { LogsComponent } from './logs/logs.component';
+import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -73,6 +75,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     GanNguoiDungDvhcComponent,
     ConfigsComponent,
     LogsComponent,
+    BaoCaoTongHopComponent,
   ],
   imports: [
     LayoutModule,
@@ -115,6 +118,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     NzAvatarModule,
     NzTreeModule,
     NzToolTipModule,
+    NzSpinModule,
 
     HighchartsChartModule,
 

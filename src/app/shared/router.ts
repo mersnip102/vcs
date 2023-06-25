@@ -1,8 +1,9 @@
 export const CURRENT_USER = 'currentUser';
 export const SECRET_KEY = 'Student_Management_CAT@2023$';
-export const listMenu =
+export const listMenu =[
 {
   permission: [
+    
     // {
     //   screenName: 'Trang chủ',
     //   routerLink: 'pages/home',
@@ -231,7 +232,7 @@ export const listMenu =
     },
     {
       screenName: 'Báo cáo tổng hợp',
-      routerLink: '',
+      routerLink: 'bao-cao-tong-hop',
       icon: 'diff',
       
     },
@@ -359,5 +360,6 @@ export const listMenu =
   ],
   defaultScreen: '/pages/home',
 }
+];
 
 

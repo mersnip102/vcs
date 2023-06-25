@@ -37,19 +37,20 @@
                     </form>
                 </div> -->
                 <div class="horizontal-form-elements">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" [formGroup]="uploadForm" enctype="multipart/form-data" novalidate>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label required">Tiêu đề</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control">
+                                        <input formControlName="TieuDe" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Nội dung</label>
                                     <div class="col-lg-10">
-                                        <quill-editor [style]="{ height: '20em' }"></quill-editor>
+                                        <quill-editor formControlName="NoiDung"
+                                            [style]="{ height: '20em' }"></quill-editor>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -63,8 +64,8 @@
                                         <div class="form-group">
                                             <label class="col-lg-4 control-label required">Loại báo cáo</label>
                                             <div class="col-lg-8">
-                                                <select class="js-select2 form-control" id="val-select2"
-                                                    name="val-select2" style="width: 100%;"
+                                                <select formControlName="LoaiBaoCao" class="js-select2 form-control"
+                                                    id="val-select2" name="val-select2" style="width: 100%;"
                                                     data-placeholder="Choose one..">
 
 
@@ -83,8 +84,8 @@
                                         <div class="form-group">
                                             <label class="col-lg-4 control-label required">Đối tượng</label>
                                             <div class="col-lg-8">
-                                                <select class="js-select2 form-control" id="val-select2"
-                                                    name="val-select2" style="width: 100%;"
+                                                <select formControlName="DoiTuong" class="js-select2 form-control"
+                                                    id="val-select2" name="val-select2" style="width: 100%;"
                                                     data-placeholder="Choose one..">
 
 
@@ -102,8 +103,9 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label required">Đơn vị chủ trì</label>
                                     <div class="col-lg-10">
-                                        <select class="js-select2 form-control" id="val-select2" name="val-select2"
-                                            style="width: 100%;" data-placeholder="Choose one..">
+                                        <select formControlName="DonViChuTri" class="js-select2 form-control"
+                                            id="val-select2" name="val-select2" style="width: 100%;"
+                                            data-placeholder="Choose one..">
 
 
 
@@ -118,8 +120,8 @@
                                     <label class="col-lg-2 control-label" for="val-suggestions">Đơn vị liên quan
                                     </label>
                                     <div class="col-lg-10">
-                                        <nz-select [nzSize]="'large'" [nzMaxTagCount]="3"
-                                            [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+                                        <nz-select formControlName="DonViLienQuan" [nzSize]="'large'"
+                                            [nzMaxTagCount]="3" [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
                                             nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedValue">
                                             <nz-option *ngFor="let item of listOfOption" [nzLabel]="item"
                                                 [nzValue]="item"></nz-option>
@@ -132,8 +134,9 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Loại vụ việc</label>
                                     <div class="col-lg-10">
-                                        <select class="js-select2 form-control" id="val-select2" name="val-select2"
-                                            style="width: 100%;" data-placeholder="Choose one..">
+                                        <select formControlName="LoaiVuViec" class="js-select2 form-control"
+                                            id="val-select2" name="val-select2" style="width: 100%;"
+                                            data-placeholder="Choose one..">
 
 
 
@@ -149,9 +152,9 @@
                                     <label class="col-lg-2 control-label">File đính kèm</label>
                                     <div class="col-lg-10">
                                         <div class="clearfix">
-                                            <nz-upload [nzLimit]="10"
-                                                nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                                nzListType="picture" [nzMultiple]="true" [nzSize]="5000">
+                                            <nz-upload (nzChange)="handleChange($event)" formControlName="File" [nzLimit]="10"
+                                                
+                                                [nzMultiple]="true" [nzSize]="5000">
                                                 <button nz-button>
                                                     <span nz-icon nzType="upload"></span>
                                                     Upload
@@ -169,7 +172,7 @@
 
                                             <label class="col-lg-4 control-label required">Kinh độ</label>
                                             <div class="col-lg-8">
-                                                <input disabled type="text" class="form-control">
+                                                <input formControlName="KinhDo" type="text" class="form-control">
                                             </div>
                                         </div>
 
@@ -179,7 +182,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-4 control-label required">Vĩ độ</label>
                                             <div class="col-lg-8">
-                                                <input disabled type="text" class="form-control">
+                                                <input formControlName="ViDo" type="text" class="form-control">
                                             </div>
                                         </div>
 
@@ -193,9 +196,10 @@
 
                                                 <label class="col-lg-4 control-label required">Tỉnh</label>
                                                 <div class="col-lg-8">
-                                                    <select (change)="onChange()" class="form-select form-control" id="city">
-                                                        <option value="" ></option>
-                                                        </select>
+                                                    <select formControlName="Tinh" (change)="onChange()" class="form-select form-control"
+                                                        id="city">
+                                                        <option value=""></option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -204,10 +208,11 @@
 
                                                 <label class="col-lg-4 control-label required">Huyện</label>
                                                 <div class="col-lg-8">
-                                                    <select (change)="onChange()"  class="form-select form-control" id="district">
-                                                        <option value="" ></option>
-                                                        </select>
-                                                    
+                                                    <select formControlName="Huyen" (change)="onChange()" class="form-select form-control"
+                                                        id="district">
+                                                        <option value=""></option>
+                                                    </select>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -216,9 +221,10 @@
 
                                                 <label class="col-lg-4 control-label required">Xã</label>
                                                 <div class="col-lg-8">
-                                                    <select (change)="onChange()"  class="form-select form-control" id="ward">
-                                                        <option value="" ></option>
-                                                        </select>
+                                                    <select formControlName="Xa" (change)="onChange()" class="form-select form-control"
+                                                        id="ward">
+                                                        <option value=""></option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,41 +233,63 @@
 
                                                 <label class="col-lg-4 control-label required">Địa chỉ</label>
                                                 <div class="col-lg-8">
-                                                    <input type="text" class="form-control">
+                                                    <input #autocomplete formControlName="DiaChi" type="text"
+                                                        id="autocomplete" type="text" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="card-header-right-icon">
-                                                <button type="button" class="btn btn-danger btn-flat m-l-5">Xóa tất cả
-                                                    các điểm</button>
+                                            <div>
+                                                <button (click)="getCurentLocation()" type="button" class="btn btn-success btn-flat m-l-5">Lấy vị trị
+                                                    hiện tại</button>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div>
+
+                                                <button (click)="clearMarker()" type="button" class="btn btn-danger btn-flat m-l-5">Xóa
+                                                    điểm</button>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- <div class="row">
+                                            <div>
+
                                                 <button type="button" class="btn btn-primary btn-flat m-l-5">Xem trên
                                                     bản đồ</button>
                                             </div>
 
-                                        </div>
+                                        </div> -->
 
 
 
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="form-group">
-                                        <!-- <div id="map"></div> -->
-                                        <!-- <div>
+                                            <!-- <div id="map"></div> -->
+                                            <!-- <div>
                                             <p *ngIf="latitude && longitude">Your current location is: {{ latitude }},
                                                 {{ longitude }}</p>
                                         </div>
                                         <p *ngIf="address">Your current location is: {{ address }}</p> -->
-                                        <!-- <div class="map"> -->
+                                            <!-- <div class="map"> -->
                                             <div>
-                                            <!-- <google-map height="40em" width="100%" [options]="mapOptions">
+                                                <!-- <google-map height="40em" width="100%" [options]="mapOptions">
                                                 <map-marker [position]="markerPosition"></map-marker>
                                                 <map-info-window>Info Window content</map-info-window>
                                             </google-map> -->
-                                            <google-map height="40em" width="100%" [center]="center" [zoom]="zoom"></google-map>
+                                                <google-map height="40em" (mapClick)="addMarker($event)" width="100%"
+                                                    [center]="center" [zoom]="zoom">
+                                                    <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker)"
+                                                        [position]="markerPosition"
+                                                        [options]="markerOptions"></map-marker>
+                                                </google-map>
+                                            </div>
+                                            <!-- <div #mapContainer id="map"></div> -->
                                         </div>
-                                        <!-- <div #mapContainer id="map"></div> -->
-                                    </div>
                                     </div>
                                 </div>
                                 <!-- <div class="form-group">
@@ -285,13 +313,6 @@
 
 
                             </div>
-
-
-
-
-
-
-
                             <!-- /# column -->
                         </div>
                         <div class="row">
@@ -313,7 +334,8 @@
                                         </ul> -->
                                     <button type="button" class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i
                                             class="ti-back-left"></i>Quay Lại</button>
-                                    <button type="button" class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
+                                    <button (click)="onSubmit()" type="button"
+                                        class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
                                             class="ti-save"></i>Lưu</button>
 
 
