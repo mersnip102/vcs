@@ -57,6 +57,7 @@ export class LapBaoCaoComponent implements OnInit {
         if (status === 'OK') {
           const latlng = results[0].geometry.location;
          this.getAddress(latlng.lat(), latlng.lng())
+         this.setLatLong(latlng.lat(), latlng.lng());
           this.center = { lat: latlng.lat(), lng: latlng.lng() };
           this.markerPosition = { lat: latlng.lat(), lng: latlng.lng() };
 
@@ -238,6 +239,28 @@ export class LapBaoCaoComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
+    this.uploadForm = this.formBuilder.group({
+      // Id: new FormControl(''),
+      TieuDe: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      NoiDung: new FormControl(''),
+      KienNghi: new FormControl(''),
+      LoaiBaoCao: new FormControl('',[Validators.required]),
+      DoiTuong: new FormControl('',[Validators.required]),
+      DonViChuTri: new FormControl('',[Validators.required]),
+      DonViLiQuan: new FormControl(''),
+      LoaiVuViec: new FormControl(''),
+      File:  [[]],
+      KinhDo: new FormControl(''),
+      ViDo: new FormControl(''),
+      DiaChi: new FormControl(''),
+      NgayTao: new FormControl(''),
+      Status: new FormControl(''),
+
+      Tinh: new FormControl(''),
+      Huyen: new FormControl(''),
+      Xa: new FormControl(''),
+    });
+
     this.citis = document.getElementById("city") as HTMLSelectElement;
     this.districts = document.getElementById("district") as HTMLSelectElement;
     this.wards = document.getElementById("ward") as HTMLSelectElement;
@@ -274,6 +297,8 @@ export class LapBaoCaoComponent implements OnInit {
       this.uploadForm.get('Tinh')?.setValue("");
       this.uploadForm.get('Huyen')?.setValue("");
       this.uploadForm.get('Xa')?.setValue("");
+
+      this.setLatLong(lat, lng);
     
     });
 
@@ -314,6 +339,17 @@ export class LapBaoCaoComponent implements OnInit {
       });
   }
 
+  lat: any = 0
+  lng: any = 0
+
+  setLatLong(lat: any, lng: any) {
+    this.uploadForm.get('KinhDo')?.setValue(lat);
+    this.uploadForm.get('ViDo')?.setValue(lng);
+    this.uploadForm.get('KinhDo')?.disable();
+    this.uploadForm.get('ViDo')?.disable();
+  }
+
+
   getCurentLocation() {
     
     
@@ -324,9 +360,10 @@ export class LapBaoCaoComponent implements OnInit {
         console.log(this.latitude, this.longitude);
         this.center = { lat: this.latitude, lng: this.longitude };
         this.markerPosition = { lat: this.latitude, lng: this.longitude };
-        this.uploadForm.get('Tinh')?.setValue("");
-        this.uploadForm.get('Huyen')?.setValue("");
-        this.uploadForm.get('Xa')?.setValue("");
+        this.setLatLong(this.latitude, this.longitude);
+        this.uploadForm.get('Tinh')?.setValue("")
+        this.uploadForm.get('Huyen')?.setValue("")
+        this.uploadForm.get('Xa')?.setValue("")
         this.getAddress(position.coords.latitude, position.coords.longitude)
 
         
@@ -495,7 +532,7 @@ export class LapBaoCaoComponent implements OnInit {
   //   }),
   // });
   roleUserCurrent!: number;
-  uploadForm: FormGroup;
+  uploadForm!: FormGroup;
   constructor(private fb: FormBuilder, private authService: AuthService,
     private localStorageSv: LocalStorageService,
     private renderer2: Renderer2,
@@ -513,27 +550,7 @@ export class LapBaoCaoComponent implements OnInit {
 
     });
 
-    this.uploadForm = this.formBuilder.group({
-      // Id: new FormControl(''),
-      TieuDe: new FormControl(''),
-      NoiDung: new FormControl(''),
-      KienNghi: new FormControl(''),
-      LoaiBaoCao: new FormControl(''),
-      DoiTuong: new FormControl(''),
-      DonViChuTri: new FormControl(''),
-      DonViLiQuan: new FormControl(''),
-      LoaiVuViec: new FormControl(''),
-      File:  [[]],
-      KinhDo: new FormControl(''),
-      ViDo: new FormControl(''),
-      DiaChi: new FormControl(''),
-      NgayTao: new FormControl(''),
-      Status: new FormControl(''),
-
-      Tinh: new FormControl(''),
-      Huyen: new FormControl(''),
-      Xa: new FormControl(''),
-    });
+    
 
 
   }
@@ -1285,26 +1302,20 @@ export class LapBaoCaoComponent implements OnInit {
         //add form group value to form data ignore file
         let formData: FormData = new FormData();
         
-        formData.append('TieuDe', this.uploadForm.get('TieuDe')?.value);
-        formData.append('NoiDung', this.uploadForm.get('NoiDung')?.value);
-        formData.append('KienNghi', this.uploadForm.get('KienNghi')?.value);
-        formData.append('LoaiBaoCao', this.uploadForm.get('LoaiBaoCao')?.value);
-        formData.append('DoiTuong', this.uploadForm.get('DoiTuong')?.value);
-        formData.append('DonViChuTri', this.uploadForm.get('DonViChuTri')?.value);
-        formData.append('DonViLienQuan', this.uploadForm.get('DonViLiQuan')?.value);
-        formData.append('LoaiVuViec', this.uploadForm.get('LoaiVuViec')?.value);
-        // this.formData.append('File', this.uploadForm.get('File')?.value);
+        for(let key in this.uploadForm.value){
+          if(key != 'File'){
+            
+            formData.append(key, this.uploadForm.get(key)?.value);
+            
+          }
+        }
+        console.log(formData.get('TieuDe'));
+        
         for (let i = 0; i < this.fileList.length; i++) {
           formData.append('File', this.fileList[i].originFileObj);
           
         }
-        formData.append('KinhDo', this.uploadForm.get('KinhDo')?.value);
-        formData.append('ViDo', this.uploadForm.get('ViDo')?.value);
-        formData.append('DiaChi', this.uploadForm.get('DiaChi')?.value);
-        formData.append('NgayTao', '2023-06-10');
-       formData.append('Status', '1');
-
-        
+       
 
         
         
@@ -1327,14 +1338,21 @@ export class LapBaoCaoComponent implements OnInit {
 
           
 
-          this.notifyService.successMessage("Chỉnh sửa thông tin thành công").then(() => {
+          this.notifyService.successMessage("Thêm phản ánh thành công").then(() => {
             
-            formData = new FormData();
-            // clear uploadform
-            this.uploadForm.reset();
+            
+            // reset uploadForm to ''
+            for(let key in this.uploadForm.value){
+              this.uploadForm.get(key)?.setValue('');
+            }
+            
+            console.log(this.uploadForm.value);
+            
 
-            return;
+            
           });
+
+          return
           // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
 
 
@@ -1347,11 +1365,12 @@ export class LapBaoCaoComponent implements OnInit {
           // })
         },
           error => {
+            console.log(error);
 
-            this.notifyService.errorMessage(error.message).then(() => {
+            this.notifyService.errorMessage(error.error.message).then(() => {
               // this.formData = new FormData();
 
-              console.log(error);
+              console.log(error.error);
             });
 
             // this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {

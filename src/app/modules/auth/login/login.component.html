@@ -76,11 +76,36 @@
                         <form>
                             <div class="form-group">
                                 <label>TÀI KHOẢN</label>
-                                <input type="email" class="form-control" placeholder="Username">
+                                
+                                <input type="text" [(ngModel)]="username" class="form-control" #usernameInput="ngModel" id="username" name="username" placeholder="Username" required autofocus minlength="6">
+                        <div class="text-danger text-center invalid-feedback d-block" *ngIf="usernameInput?.invalid && (usernameInput?.dirty || usernameInput?.touched)">
+
+
+                            <span [hidden]="!usernameInput.errors?.['required']">
+                                        Hãy nhập số tài khoản!
+                                    </span>
+
+                            <span [hidden]="!usernameInput.errors?.['minlength']">
+                                Tài khoản phải trên 6 ký tự!
+                                    </span>
+                        </div>
                             </div>
                             <div class="form-group">
                                 <label>MẬT KHẨU</label>
                                 <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" class="form-control" id="password" #passwordInput="ngModel" name="password" placeholder="Mật khẩu" [(ngModel)]="password" autofocus required minlength="6" maxlength="30">
+                        <div class="text-danger text-center invalid-feedback d-block" *ngIf="!passwordInput?.valid && (passwordInput?.dirty || passwordInput?.touched)">
+
+                            <span [hidden]="!passwordInput.errors?.['required']">
+                                        Hãy nhập mật khẩu!
+                                    </span>
+                            <span [hidden]="!passwordInput.errors?.['minlength']">
+                                        Mật khẩu bắt buộc ít nhất 6 kí tự!
+                                    </span>
+                                    <span [hidden]="!passwordInput.errors?.['maxlength']">
+                                        Mật khẩu tối đa 30 kí tự!
+                                    </span>
+                        </div>
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -91,7 +116,7 @@
                                 </label>
 
                             </div>
-                            <button type="submit" [routerLink]="['/pages/home']" class="btn btn-primary btn-flat m-b-30 m-t-30">Đăng nhập</button>
+                            <button (click)="login()" type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Đăng nhập</button>
                             <!-- <div class="social-login-content">
                                 <div class="social-button">
                                     <button type="button"

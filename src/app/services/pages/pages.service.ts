@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class PagesService {
 
   private api = 'http://192.168.1.10:3032/api/v1/reports/r1/BC_1_1/sample';
-  private api2 = 'http://localhost:3000/'
+  private api2 = 'http://localhost:3000'
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -29,9 +29,9 @@ export class PagesService {
 
   createBaoCaoHinhAnh(data: FormData): Observable<any> {
     // const body = JSON.stringify(data);
-
+    console.log(data.get('TieuDe'));
     
-    return this.http.post(`${this.api2}uploadBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.post(`${this.api2}/uploadBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
 
   }

@@ -20,16 +20,13 @@ export class AuthComponent {
         // this.router.navigateByUrl("/auth/login");
       } else {
         this.roleUserCurrent = res;
-        // this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
-        
+        this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
       }
       
       
-    }
-    
-    
-    );
+    });
     
   }
+  
 
 }

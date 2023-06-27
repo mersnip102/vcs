@@ -18,7 +18,7 @@ export class AuthService {
   private readonly refreshTokenKey = 'refreshToken';
   roleUser: Observable<number>;
   //role-number
-  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(4);
   // roleUserSubject!: BehaviorSubject<number>
 
   constructor( private router: Router, private http: HttpClient, private route: ActivatedRoute, private localStoreService: LocalStorageService) {
@@ -32,8 +32,9 @@ export class AuthService {
   }
 
 
-  login(phone: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, { phone, password }).pipe(
+  login(username: string, password: string): Observable<any> {
+    console.log(username, password);
+    return this.http.post(`${this.apiUrl}/login`, { username, password }).pipe(
       tap((tokens: any) => {
         
         this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.accessToken);
@@ -42,7 +43,7 @@ export class AuthService {
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(this.localStoreService.getLocalStorageItemAsJSON(this.accessTokenKey));
        
-        this.setValueRole(decodedToken.Role);
+        this.setValueRole(decodedToken.role);
         
         // this.setToken(tokens.access_token);
         // this.setRefreshToken(tokens.refreshToken);
