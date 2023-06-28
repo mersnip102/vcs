@@ -56,7 +56,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     CommonTableComponent
   ],
   imports: [
-    LayoutModule,
+    
     CommonModule,
     DanhMucRoutingModule,
 

@@ -360,9 +360,6 @@ export const listMenu =[
   ],
   defaultScreen: '/pages/home',
 },
-
-
-
 {
   permission: [
     
@@ -613,7 +610,6 @@ export const listMenu =[
               routerLink: 'bao-cao-hinh-anh/quan-ly-bao-cao',
               icon: '',
             },
-            
             
 
           ]
@@ -714,10 +710,6 @@ export const listMenu =[
   ],
   defaultScreen: '/pages/home',
 },
-
-
-
-
 {
   permission: [
     
@@ -901,7 +893,6 @@ export const listMenu =[
           routerLink: 'ke-hoach-von',
           icon: '',
         },
-       
 
       ]
 
@@ -963,11 +954,7 @@ export const listMenu =[
           routerLink: '',
           icon: 'phone',
           children: [
-            {
-              screenName: 'Lập báo cáo',
-              routerLink: 'bao-cao-hinh-anh/quan-ly-bao-cao',
-              icon: '',
-            },
+           
             {
               screenName: 'Duyệt báo cáo',
               routerLink: 'bao-cao-hinh-anh/duyet-bao-cao',
@@ -1077,7 +1064,6 @@ export const listMenu =[
   ],
   defaultScreen: '/pages/home',
 }
-
-];
+]
 
 

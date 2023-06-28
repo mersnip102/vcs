@@ -12,6 +12,7 @@ import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { QuillModules } from 'ngx-quill';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PagesService } from 'src/app/services/pages/pages.service';
+import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { NotifyService } from 'src/app/shared/utils/notify';
 declare var google: any;
@@ -237,8 +238,65 @@ export class LapBaoCaoComponent implements OnInit {
   }
 
 
-  async ngOnInit(): Promise<void> {
 
+  
+  idBaoCao: any  = 0
+  async getDataById() {
+    
+   
+    this.dataService.currentData.subscribe(data => this.idBaoCao = data);
+    if(this.idBaoCao != null && this.idBaoCao != undefined && this.idBaoCao != 0){
+      this.api.getBaoCaoHinhAnhById(this.idBaoCao).subscribe((res: any) => {
+        console.log(res.data[0]);
+        let data = { ...res.data[0]};
+     
+        this.uploadForm.get('TieuDe')?.setValue(data.tieu_de);
+        this.uploadForm.get('NoiDung')?.setValue(data.noi_dung);
+        this.uploadForm.get('KienNghi')?.setValue(data.kien_nghi);
+        this.uploadForm.get('LoaiBaoCao')?.setValue(data.loai_bao_cao);
+        this.uploadForm.get('DoiTuong')?.setValue(data.doi_tuong);
+        this.uploadForm.get('DiaChi')?.setValue(data.dia_chi);
+        this.uploadForm.get('DonViChuTri')?.setValue(data.don_vi_chu_tri);
+        this.uploadForm.get('DonViLienQuan')?.setValue(data.don_vi_lien_quan);
+        this.uploadForm.get('LoaiVuViec')?.setValue(data.loai_vu_viec);
+        this.uploadForm.get('KinhDo')?.setValue(data.geo.lat);
+        this.uploadForm.get('ViDo')?.setValue(data.geo.lmg);
+        
+        this.uploadForm.get('ToChuc')?.setValue(data.to_chuc);
+        this.uploadForm.get('NguoiBaoCao')?.setValue(data.nguoi_bao_cao);
+        const latLng = data.geo;
+        this.setLatLong(latLng.lat, latLng.lng);
+        this.center = { lat: latLng.lat, lng: latLng.lng };
+        this.markerPosition = { lat: latLng.lat, lng: latLng.lng}
+        
+        // let data2 = await { ...res.data };
+        // for (let key in res.data) {
+        //   if (data.hasOwnProperty(key)) {
+        //     this.uploadForm.get(key)?.setValue(data[key]);
+        //   }
+        // }
+        console.log(this.uploadForm.value);
+  
+        // }
+      }, (err: any) => {
+        console.log(err);
+        
+      });
+      return
+
+    }else{
+      this.idBaoCao = 0;
+      this.getCurentLocation()
+      return
+    }
+
+
+   
+  }
+  async ngOnInit(): Promise<void> {
+    
+   
+    
     this.uploadForm = this.formBuilder.group({
       // Id: new FormControl(''),
       TieuDe: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -247,7 +305,7 @@ export class LapBaoCaoComponent implements OnInit {
       LoaiBaoCao: new FormControl('',[Validators.required]),
       DoiTuong: new FormControl('',[Validators.required]),
       DonViChuTri: new FormControl('',[Validators.required]),
-      DonViLiQuan: new FormControl(''),
+      DonViLienQuan: new FormControl(''),
       LoaiVuViec: new FormControl(''),
       File:  [[]],
       KinhDo: new FormControl(''),
@@ -255,6 +313,7 @@ export class LapBaoCaoComponent implements OnInit {
       DiaChi: new FormControl(''),
       NgayTao: new FormControl(''),
       Status: new FormControl(''),
+      NguoiBaoCao: new FormControl(''),
 
       Tinh: new FormControl(''),
       Huyen: new FormControl(''),
@@ -278,8 +337,8 @@ export class LapBaoCaoComponent implements OnInit {
       });
 
     console.log(this.autocomplete);
-
-    this.getCurentLocation();
+    this.getDataById();
+    // this.getCurentLocation();
 
 
 
@@ -533,7 +592,9 @@ export class LapBaoCaoComponent implements OnInit {
   // });
   roleUserCurrent!: number;
   uploadForm!: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService,
+  constructor(
+    private dataService: DataService,
+    private fb: FormBuilder, private authService: AuthService,
     private localStorageSv: LocalStorageService,
     private renderer2: Renderer2,
     private cdr: ChangeDetectorRef,
@@ -1303,7 +1364,7 @@ export class LapBaoCaoComponent implements OnInit {
         let formData: FormData = new FormData();
         
         for(let key in this.uploadForm.value){
-          if(key != 'File'){
+          if(key != 'File'&& key != 'NguoiBaoCao'){
             
             formData.append(key, this.uploadForm.get(key)?.value);
             
@@ -1315,7 +1376,12 @@ export class LapBaoCaoComponent implements OnInit {
           formData.append('File', this.fileList[i].originFileObj);
           
         }
-       
+
+        const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+    console.log(decodedToken);
+
+       formData.append('NguoiBaoCao', decodedToken.id);
 
         
         

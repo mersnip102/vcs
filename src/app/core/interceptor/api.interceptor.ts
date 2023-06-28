@@ -18,10 +18,18 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Thêm header cố định vào request
-    const modifiedRequest = request.clone({
-      headers: request.headers.set('Content-Type', 'application/json')
+    // const modifiedRequest = request.clone({
+    //   headers: request.headers.set('Content-Type', 'application/json')
+    // });
+    // // Tiếp tục xử lý request
+     const modifiedRequest = request.clone({
+      // headers: request.headers.set('Content-Type', 'application/json')
     });
     // Tiếp tục xử lý request
     return next.handle(modifiedRequest);
+
+
+  
+  
   }
 }

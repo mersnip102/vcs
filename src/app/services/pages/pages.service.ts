@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PagesService {
 
   private api = 'http://192.168.1.10:3032/api/v1/reports/r1/BC_1_1/sample';
-  private api2 = 'http://localhost:3000'
+  private readonly api2 = environment.apiUrl;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -30,6 +31,13 @@ export class PagesService {
   createBaoCaoHinhAnh(data: FormData): Observable<any> {
     // const body = JSON.stringify(data);
     console.log(data.get('TieuDe'));
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'form-data'
+    //   })
+    // };
+
+    
     
     return this.http.post(`${this.api2}/uploadBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
@@ -42,7 +50,7 @@ export class PagesService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.get(`${this.api}/${id}`, {headers:httpOptions.headers, responseType: 'json'});
+    return this.http.get(`${this.api2}/getBaoCaoHinhAnhById/${id}`, {headers:httpOptions.headers, responseType: 'json'});
 
 
   }
@@ -66,16 +74,12 @@ export class PagesService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.delete(`${this.api}/${id}`, {headers:httpOptions.headers, responseType: 'json'});
+    return this.http.delete(`${this.api2}/deleteBaoCaoHinhAnh/${id}`, {headers:httpOptions.headers, responseType: 'json'});
   }
 
-  getBaoCaoHinhAnhList(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.get(this.api, {headers:httpOptions.headers, responseType: 'json'});
+  getBaoCaoHinhAnhList(query: any): Observable<any> {
+    
+    return this.http.get(`${this.api2}/getAllBaoCaoHinhAnh?id=${query.id}&&role=${query.role}`, {responseType: 'json'});
   }
 
 }

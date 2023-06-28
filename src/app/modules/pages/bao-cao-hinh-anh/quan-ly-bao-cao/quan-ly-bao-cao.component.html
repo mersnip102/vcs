@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
@@ -14,7 +14,7 @@
     <div class="col-lg-12">
         <div class="card alert">
             <div class="card-header">
-                
+
                 <div class="card-header-right-icon">
                     <!-- <ul>
                         <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
@@ -27,8 +27,10 @@
                             </ul>
                         </li>
                         <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
-                    </ul> -->
-                    <button routerLink="/pages/bao-cao-hinh-anh/lap-bao-cao" type="button"
+                    </ul>
+                    routerLink="/pages/bao-cao-hinh-anh/lap-bao-cao"
+                 -->
+                    <button (click)="navigateTaoBaoCao(0)" type="button"
                         class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Tạo mới</button>
                 </div>
             </div>
@@ -51,8 +53,68 @@
 
                     <div class="row">
                         <div class="col-lg-12">
+
                             <div class="table-responsive">
-                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                <nz-table nzBordered
+                                    class="table student-data-table table-hover table-striped table-bordered"
+                                    #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listBaoCaoHinhAnh">
+                                    <thead>
+                                        <tr>
+
+                                            <th>STT</th>
+                                            <th>Tiêu đề</th>
+                                            <th>Nội dung</th>
+                                            <th>Kiến nghị</th>
+                                            <th>Đối tượng</th>
+                                            <th>Đơn vị liên quan</th>
+                                            <th>Trạng thái</th>
+
+
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                                            <td  class="text-center">
+                                                {{i}}
+                                            </td>
+                                            <td  class="text-center">
+                                                {{data.tieu_de}}
+                                            </td>
+                                            <td>
+                                                {{data.noi_dung}}
+                                            </td>
+                                            <td>
+                                                {{data.kien_nghi}}
+                                            </td>
+                                            <td  class="text-center">
+                                                {{data.doi_tuong}}
+                                            </td>
+                                            <td  class="text-center">
+                                                {{data.don_vi_lien_quan}}
+                                            </td>
+                                            
+                                            <td class="text-center">
+
+                                                <span [ngClass]="{'text-danger': data.status === 'Không duyệt', 'text-success': data.status === 'Đã duyệt', 'text-warning': data.status === 'Chờ duyệt'}" class="text-danger">{{data.status}}</span>
+
+                                            </td>
+
+                                            <td>
+
+                                                <div class="text-center">
+                                                    <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="navigateTaoBaoCao(data.id)"><i
+                                                                class="ti-pencil-alt color-success"></i></a></span>
+                                                    <span nz-tooltip nzTooltipTitle="Xóa"><a (click)="deleteBaoCaoHinhAnh(data.id)"><i
+                                                                class="ti-trash color-danger"></i> </a></span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+
+                                <!-- <table class="table student-data-table table-hover table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             						
@@ -69,29 +131,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr  *ngFor="let data of listBaoCaoHinhAnh; let i = index">
                                             <td>
-                                                1
+                                                {{i}}
                                             </td>
                                             <td>
-                                                abcd
+                                                {{data.tieu_de}}
                                             </td>
                                             <td>
-                                                Nhóm phê duyệt báo cáo
+                                                {{data.noi_dung}}
                                             </td>
                                             <td>
-                                                Nhóm phê duyệt báo cáo
+                                                {{data.kien_nghi}}
                                             </td>
                                             <td>
-                                                admin
+                                                {{data.doi_tuong}}
                                             </td>
                                             <td>
-                                                Nhóm phê duyệt báo cáo
+                                                {{data.don_vi_lien_quan}}
                                             </td>
                                             
                                             <td class="text-center">
 
-                                                <span class="text-danger">Hết hạn</span>
+                                                <span class="text-danger">{{data.status}}</span>
 
                                             </td>
 
@@ -145,8 +207,8 @@
                                         </tr>
         
                                     </tbody>
-                                </table>
-                                <div class="row">
+                                </table> -->
+                                <!-- <div class="row">
                                     <div class="col-md-12">
                                         <div class="page-nation text-center">
                                             <div class="m-t-30">Tổng số: 5</div>
@@ -165,12 +227,12 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-        
+                                </div> -->
+
                             </div>
-                            
+
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -178,5 +240,3 @@
     </div>
     <!-- /# column -->
 </div>
-
-

@@ -16,9 +16,10 @@ import { LogsComponent } from './logs/logs.component';
 import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+ 
   { path: '', component: PagesComponent, children:
-[
+[ 
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home',
     component: HomeComponent,

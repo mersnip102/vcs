@@ -328,7 +328,9 @@
                                                 <map-marker [position]="markerPosition"></map-marker>
                                                 <map-info-window>Info Window content</map-info-window>
                                             </google-map> -->
-                                                <google-map height="40em" (mapClick)="addMarker($event)" width="100%"
+                                            
+                                            <!-- (mapClick)="addMarker($event)" -->
+                                                <google-map height="40em"  width="100%"
                                                     [center]="center" [zoom]="zoom">
                                                     <map-marker #marker="mapMarker" (mapClick)="openInfoWindow(marker)"
                                                         [position]="markerPosition"

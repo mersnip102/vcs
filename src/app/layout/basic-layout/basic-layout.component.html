@@ -10,7 +10,7 @@
                         <span nz-icon nzType="home"></span>
                         <span>Trang chủ</span>
                     </li>
-                    <ng-container *ngFor="let item of listMenu">
+                    <ng-container *ngFor="let item of listMenuByRole">
 
                         <li nz-menu-item routerLink="{{item.routerLink}}" *ngIf="!item.children"
                             routerLinkActive="style_item_menu">

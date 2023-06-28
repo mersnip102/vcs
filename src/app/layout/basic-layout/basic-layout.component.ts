@@ -7,16 +7,18 @@ import { listMenu } from 'src/app/shared/router';
   templateUrl: './basic-layout.component.html',
   styleUrls: ['./basic-layout.component.css']
 })
-export class BasicLayoutComponent implements OnInit {
-  listMenu: any;
+export class BasicLayoutComponent {
+  listMenuByRole?: any;
   
   roleUserCurrent!: number;
 
   constructor(private router: Router, private authService: AuthService) {
     this.authService.roleUser.subscribe(res => {
       this.roleUserCurrent = res;
+      
+      this.listMenuByRole = listMenu[this.roleUserCurrent].permission;
+      
     });
-    
   }
 
   isCollapsed = false;
@@ -72,15 +74,8 @@ export class BasicLayoutComponent implements OnInit {
   //   },
   // ];
   
-  listMenuByRole: any;
-  // arr = [];
-
   
-  ngOnInit(): void {
-    // console.log(this.roleUserCurrent);
-    this.listMenuByRole = [listMenu[this.roleUserCurrent]];
-    // this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
-  }
+  // arr = [];
 
   logout() {
     this.authService.logout();

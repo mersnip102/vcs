@@ -91,8 +91,9 @@ export class LoginComponent implements OnInit {
             this.username,
             this.password,
         ).subscribe(async res => {
+          // console.log(res);
           
-          await this.router.navigateByUrl('/pages').then(() => {
+          await this.router.navigate(['/pages']).then(() => {
             this.notifyService.successMessage("Đăng nhập thành công");
           });
           // confirm("Đăng nhập thành công");

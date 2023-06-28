@@ -44,6 +44,8 @@ export class AuthService {
         const decodedToken = helper.decodeToken(this.localStoreService.getLocalStorageItemAsJSON(this.accessTokenKey));
        
         this.setValueRole(decodedToken.role);
+        console.log(decodedToken.role);
+        
         
         // this.setToken(tokens.access_token);
         // this.setRefreshToken(tokens.refreshToken);
