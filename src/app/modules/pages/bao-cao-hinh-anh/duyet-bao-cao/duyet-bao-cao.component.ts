@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import axios from 'axios';
 import { NzImageService } from 'ng-zorro-antd/image';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -20,14 +21,50 @@ import { NotifyService } from 'src/app/shared/utils/notify';
   styleUrls: ['./duyet-bao-cao.component.css']
 })
 export class DuyetBaoCaoComponent implements OnInit {
-   
+
   isVisible = false;
   listBaoCaoHinhAnh: any;
-  
+
+  selectedReportId!: number;
+
+  showModal(id: any): void {
+
+    this.selectedReportId = id;
+    console.log(this.selectedReportId);
+    this.isVisible = true;
+  }
+
+  status: string = '';
 
   handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
+
+
+
+    if (this.status) {
+      const data = { status: this.status, idBaoCao: this.selectedReportId };
+      this.api.updateStatus(this.selectedReportId, data)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.isVisible = false;
+            this.status = '';
+            this.notifyService.successMessage("Cập nhật trạng thái báo cáo thành công").then(
+              () => {
+
+                this.getBaoCaoHinhAnhList();
+
+              }
+            );
+
+
+            // TODO: Update the list of users
+          },
+          error => {
+            console.error(error);
+          }
+        );
+    }
+
   }
 
   handleCancel(): void {
@@ -37,7 +74,7 @@ export class DuyetBaoCaoComponent implements OnInit {
 
 
 
-private citis?: HTMLSelectElement
+  private citis?: HTMLSelectElement
   private districts?: HTMLSelectElement
   private wards?: HTMLSelectElement
 
@@ -51,9 +88,9 @@ private citis?: HTMLSelectElement
   // lay api ra
   slecetData: any;
   value?: string;
-  
+
   async onChange() {
-    
+
     // const selectedOptionName = event.target.selectedOptions[0].innerText;
     // this.slecetData = selectedOptionName;
     // console.log(this.citis?.selectedOptions[0].innerText);
@@ -71,12 +108,12 @@ private citis?: HTMLSelectElement
       (results: any, status: any) => {
         if (status === 'OK') {
           const latlng = results[0].geometry.location;
-         this.getAddress(latlng.lat(), latlng.lng())
-         
+          this.getAddress(latlng.lat(), latlng.lng())
+
           this.center = { lat: latlng.lat(), lng: latlng.lng() };
           this.markerPosition = { lat: latlng.lat(), lng: latlng.lng() };
 
-          
+
         } else {
           alert(`Geocode was not successful for the following reason: ${status}`);
         }
@@ -202,7 +239,7 @@ private citis?: HTMLSelectElement
     console.log(event);
   }
 
-  
+
   autocomplete: any;
 
 
@@ -232,13 +269,13 @@ private citis?: HTMLSelectElement
   @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow | undefined;
 
   clearMarker() {
-      // Xóa đối tượng Marker bằng cách đặt map của nó là null
-      this.markerPosition = { lat: 0, lng: 0 };
-      this.uploadForm.get('DiaChi')?.setValue('');
-      this.uploadForm.get('Tinh')?.setValue('');
-      this.uploadForm.get('Huyen')?.setValue('');
-      this.uploadForm.get('Xa')?.setValue('');
-    }
+    // Xóa đối tượng Marker bằng cách đặt map của nó là null
+    this.markerPosition = { lat: 0, lng: 0 };
+    this.uploadForm.get('DiaChi')?.setValue('');
+    this.uploadForm.get('Tinh')?.setValue('');
+    this.uploadForm.get('Huyen')?.setValue('');
+    this.uploadForm.get('Xa')?.setValue('');
+  }
   openInfoWindow(marker: MapMarker) {
     const latLng = marker.getPosition();
     const lat = latLng!.lat();
@@ -247,12 +284,16 @@ private citis?: HTMLSelectElement
     this.getAddress(lat, lng);
     if (this.infoWindow != undefined) this.infoWindow.open(marker);
   }
-
+  statusForm!: FormGroup;
 
   async ngOnInit(): Promise<void> {
-       this.getBaoCaoHinhAnhList();
+    this.statusForm = this.fb.group({
+      status: ['', Validators.required],
+      idBaoCao: ['', [Validators.required]],
+    });
+    this.getBaoCaoHinhAnhList();
 
-    
+
   }
 
   getBaoCaoHinhAnhList() {
@@ -266,6 +307,7 @@ private citis?: HTMLSelectElement
     // this.idStudent = this.route.snapshot.params['Id'];
     this.api.getBaoCaoHinhAnhList(query).subscribe((res: any) => {
       this.listBaoCaoHinhAnh = res.data;
+
       console.log(this.listBaoCaoHinhAnh);
     }, error => {
       this.notifyService.errorMessage(error.error.message);
@@ -279,23 +321,24 @@ private citis?: HTMLSelectElement
   deleteBaoCaoHinhAnh(id: any) {
     this.notifyService.confirmDelete().then((result) => {
       if (result) {
-    this.api.deleteBaoCaoHinhAnh(id).subscribe((res: any) => {
-      this.notifyService.successMessage("Xóa thành công");
-      this.getBaoCaoHinhAnhList();
-    }, error => {
-      this.notifyService.errorMessage(error.error.message);
-      console.log(error);
-    }
-  )}
+        this.api.deleteBaoCaoHinhAnh(id).subscribe((res: any) => {
+          this.notifyService.successMessage("Xóa thành công");
+          this.getBaoCaoHinhAnhList();
+        }, error => {
+          this.notifyService.errorMessage(error.error.message);
+          console.log(error);
+        }
+        )
+      }
     })
   }
 
-  
+
 
 
   getCurentLocation() {
-    
-    
+
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
@@ -303,14 +346,14 @@ private citis?: HTMLSelectElement
         console.log(this.latitude, this.longitude);
         this.center = { lat: this.latitude, lng: this.longitude };
         this.markerPosition = { lat: this.latitude, lng: this.longitude };
-        
+
         this.uploadForm.get('Tinh')?.setValue("")
         this.uploadForm.get('Huyen')?.setValue("")
         this.uploadForm.get('Xa')?.setValue("")
         this.getAddress(position.coords.latitude, position.coords.longitude)
 
-        
-        
+
+
 
         this.mapOptions = {
           center: { lat: this.latitude, lng: this.longitude },
@@ -321,11 +364,11 @@ private citis?: HTMLSelectElement
         };
         // this.markerPosition = { lat: this.latitude, lng: this.longitude };
         // console.log(this.mapOptions);
-        
-        
 
 
-        
+
+
+
 
       });
 
@@ -356,9 +399,7 @@ private citis?: HTMLSelectElement
     }
   }
 
-  showModal(): void {
-    this.isVisible = true;
-  }
+
 
   async loadData() {
     this.citis = document.getElementById("city") as HTMLSelectElement;
@@ -463,7 +504,9 @@ private citis?: HTMLSelectElement
   // });
   roleUserCurrent!: number;
   uploadForm!: FormGroup;
-  constructor(private dataService: DataService, private fb: FormBuilder, private authService: AuthService, 
+  constructor(
+    private modal: NzModalService,
+    private dataService: DataService, private fb: FormBuilder, private authService: AuthService,
     private localStorageSv: LocalStorageService,
     private renderer2: Renderer2,
     private cdr: ChangeDetectorRef,
@@ -480,7 +523,7 @@ private citis?: HTMLSelectElement
 
     });
 
-    
+
 
 
   }
@@ -512,16 +555,16 @@ private citis?: HTMLSelectElement
 
   // }
 
- 
+
   fileList: any[] = [];
- 
-  
+
+
   handleChange(info: NzUploadChangeParam): void {
-    this.fileList= [];
+    this.fileList = [];
     this.fileList = [...info.fileList];
-    
+
     console.log(this.fileList.length)
-    
+
     // this.formData.append('File', this.fileList);
 
     // for (let i = 0; i < this.fileList.length; i++) {
@@ -534,8 +577,8 @@ private citis?: HTMLSelectElement
     //   File: this.fileList.map((file) => file.originFileObj),
     // });
 
-  
-  
+
+
   }
 
 
@@ -596,7 +639,7 @@ private citis?: HTMLSelectElement
   // scholarshipSelectedValue!: any
 
   // form!: FormGroup;
-  
+
 
   // editStatus!: number;
 
@@ -1208,7 +1251,7 @@ private citis?: HTMLSelectElement
 
   navigateTaoBaoCao(id: any): any {
 
-   
+
     this.dataService.sendDataId(id);
     this.router.navigate(['pages/bao-cao-hinh-anh/lap-bao-cao']);
 
@@ -1239,18 +1282,18 @@ private citis?: HTMLSelectElement
 
         //add form group value to form data ignore file
         let formData: FormData = new FormData();
-        
-        for(let key in this.uploadForm.value){
-          if(key != 'File'){
+
+        for (let key in this.uploadForm.value) {
+          if (key != 'File') {
             formData.append(key, this.uploadForm.get(key)?.value);
-            
+
           }
         }
         console.log(formData.get('TieuDe'));
-        
+
         for (let i = 0; i < this.fileList.length; i++) {
           formData.append('File', this.fileList[i].originFileObj);
-          
+
         }
 
         const Id = this.route.snapshot.params['Id'];
@@ -1262,14 +1305,14 @@ private citis?: HTMLSelectElement
 
           this.notifyService.successMessage("Thêm phản ánh thành công").then(() => {
             // reset uploadForm to ''
-            for(let key in this.uploadForm.value){
+            for (let key in this.uploadForm.value) {
               this.uploadForm.get(key)?.setValue('');
             }
-            
-            console.log(this.uploadForm.value);
-            
 
-            
+            console.log(this.uploadForm.value);
+
+
+
           });
 
           return
@@ -1305,10 +1348,10 @@ private citis?: HTMLSelectElement
 
 
 
-        }
+      }
 
 
-      });
+    });
 
   }
 

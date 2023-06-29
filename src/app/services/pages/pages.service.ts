@@ -55,15 +55,32 @@ export class PagesService {
 
   }
 
-  updateBaoCaoHinhAnh(id: any, data: any): Observable<any> {
-    const body = JSON.stringify(data);
-    console.log(body);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-    return this.http.put(`${this.api}/${id}`, body, {headers:httpOptions.headers, responseType: 'json'})//stringify de chuyen doi tu object sang json
+  updateBaoCaoHinhAnh(data: FormData): Observable<any> {
+    // const body = JSON.stringify(data);
+   
+    console.log(data.get('TieuDe'));
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'form-data'
+    //   })
+    // };
+   
+    return this.http.put(`${this.api2}/updateBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
+    // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
+
+  }
+
+  updateStatus(id: any, data: any): Observable<any> {
+    // const body = JSON.stringify(data);
+   
+   
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'form-data'
+    //   })
+    // };
+   
+    return this.http.put(`${this.api2}/updateStatus/${id}`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
 
   }

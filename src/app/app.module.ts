@@ -109,11 +109,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true,
-    }, { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ],
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ApiInterceptor,
+    //   multi: true,
+    // },
+    { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -199,7 +199,7 @@
                                     <label class="col-lg-2 control-label">File đính kèm</label>
                                     <div class="col-lg-10">
                                         <div class="clearfix">
-                                            <nz-upload (nzChange)="handleChange($event)" formControlName="File" [nzLimit]="10"
+                                            <nz-upload nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" [nzFileList]="nzFileList" (nzChange)="handleChange($event)" formControlName="File" [nzLimit]="10"
                                                 
                                                 [nzMultiple]="true" [nzSize]="5000">
                                                 <button nz-button>
@@ -207,6 +207,8 @@
                                                     Upload
                                                 </button>
                                             </nz-upload>
+
+                                           
                                         </div>
 
                                     </div>
@@ -381,9 +383,9 @@
                                             </li>
                                             <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
                                         </ul> -->
-                                    <button type="button" class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i
+                                    <button (click)="goBack()" type="button" class="btn btn-dark btn-flat btn-addon m-b-10 m-l-5"><i
                                             class="ti-back-left"></i>Quay Lại</button>
-                                    <button [disabled]="uploadForm.invalid" (click)="onSubmit()" type="button"
+                                    <button *ngIf="roleUser!=2" [disabled]="uploadForm.invalid" (click)="onSubmit()" type="button"
                                         class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
                                             class="ti-save"></i>Lưu</button>
 

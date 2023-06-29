@@ -74,8 +74,12 @@
                                             {{data.doi_tuong}}
                                         </td>
                                         <td  class="text-center">
-                                            {{data.don_vi_lien_quan}}
+                                            {{data.ten_to_chuc}}
                                         </td>
+                                        <td  class="text-center">
+                                            {{data.ho}} {{data.ten}}
+                                        </td>
+                                        
                                         
                                         <td class="text-center">
 
@@ -86,10 +90,10 @@
                                         <td>
 
                                             <div class="text-center">
-                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="navigateTaoBaoCao(data.id)"><i
-                                                            class="ti-pencil-alt color-success"></i></a></span>
-                                                <span nz-tooltip nzTooltipTitle="Xóa"><a (click)="deleteBaoCaoHinhAnh(data.id)"><i
-                                                            class="ti-trash color-danger"></i> </a></span>
+                                                <span nz-tooltip nzTooltipTitle="Xem"><a (click)="navigateTaoBaoCao(data.id)"><i
+                                                            class="ti-eye color-warning"></i></a></span>
+                                                <span nz-tooltip nzTooltipTitle="Phê duyệt"><a (click)="showModal(data.id)"><i
+                                                            class="ti-pencil-alt color-success"></i> </a></span>
                                             </div>
 
                                         </td>
@@ -221,3 +225,41 @@
     </div>
     <!-- /# column -->
 </div>
+
+
+<nz-modal [nzFooter]="modalFooter" [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Phê duyệt báo cáo hình ảnh" >
+    <ng-container *nzModalContent>
+        
+            
+                <div class="card-body">
+                    <div class="horizontal-form">
+                        
+                           
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label required">Chọn tình trạng phê duyệt</label>
+                                <div class="col-sm-8">
+                                    <nz-radio-group [(ngModel)]="status" class="form-control">
+                                        <label nz-radio nzValue="0"><span class="text-danger">Không duyệt</span></label>
+                                        <label nz-radio nzValue="2"><span class="text-warning">Chờ duyệt</span></label>
+                                        <label nz-radio nzValue="1"><span class="text-success">Phê duyệt</span></label>
+                                        
+                                      </nz-radio-group>
+                                </div>
+
+                            </div>
+                            
+                            
+
+                        
+                    </div>
+                </div>
+            
+
+        
+    </ng-container>
+    <ng-template #modalFooter>
+        
+        <button nz-button (click)="handleCancel()" nzType="default" class="btn btn-secondary" >Hủy</button>
+        <button nz-button nzType="primary" (click)="handleOk()" class="btn btn-primary m-l-8">Lưu</button>
+      </ng-template>
+</nz-modal>
