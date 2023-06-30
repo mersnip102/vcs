@@ -28,7 +28,7 @@ export class AccountService {
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
   }
 
-  createAccount(data: FormData): Observable<any> {
+  createAccount(data: any): Observable<any> {
 
     // const body = JSON.stringify(data);
     console.log(data.get('ten'));

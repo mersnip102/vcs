@@ -67,8 +67,8 @@ export class QuanLyPhanQuyenComponent implements OnInit {
 
           let formData = {
 
-            id: this.uploadForm.get('id')
-            ten: new FormControl(''),
+            id: this.uploadForm.get('id'),
+            ten: this.uploadForm.get('ten'),
             username: new FormControl(''),
             email: new FormControl(''),
             phone: new FormControl(''),
