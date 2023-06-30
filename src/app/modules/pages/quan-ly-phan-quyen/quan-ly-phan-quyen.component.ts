@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -25,10 +25,10 @@ export class QuanLyPhanQuyenComponent implements OnInit {
   isVisible = false;
   listAccount: any;
 
-  selectedReportId!: number;
+  selectedAccountId!: number;
   status: string = '';
   showModal(id: any): void {
-   
+
     // if(statusReport == 'Đã duyệt') {
     //   this.status = '1'
     // } else if (statusReport == 'Không duyệt') {
@@ -37,40 +37,113 @@ export class QuanLyPhanQuyenComponent implements OnInit {
     //   this.status = '2'
     // }
 
-    this.selectedReportId = id;
-    console.log(this.selectedReportId);
+    this.selectedAccountId = id;
+    console.log(this.selectedAccountId);
     this.isVisible = true;
   }
 
-  
+
 
   handleOk(): void {
 
 
 
-    if (this.status) {
-      const data = { status: this.status, idBaoCao: this.selectedReportId };
-      this.api.updateStatus(this.selectedReportId, data)
-        .subscribe(
-          response => {
-            console.log(response);
-            this.isVisible = false;
-            this.status = '';
-            this.notifyService.successMessage("Cập nhật trạng thái báo cáo thành công").then(
-              () => {
+    if (this.selectedAccountId == -1) {
+      console.log("okeee")
+      this.notifyService.confirmAdd('Bạn có chắc chắn muốn tạo mới một account?').then(async (result) => {
+        if (result) {
 
-                this.getAccountList();
 
+          // let formData: FormData = new FormData();
+
+          // for(let key in this.uploadForm.value){
+          //   // if(key != 'File'&& key != 'NguoiBaoCao'){
+
+          //     formData.append(key, this.uploadForm.get(key)?.value);
+
+
+          //   // }
+          // }
+
+          let formData = {
+
+            id: this.uploadForm.get('id')
+            ten: new FormControl(''),
+            username: new FormControl(''),
+            email: new FormControl(''),
+            phone: new FormControl(''),
+            chuc_danh: new FormControl(),
+            dia_chi: new FormControl(''),
+            role: new FormControl(''),
+            ho: new FormControl(''),
+            password: new FormControl(''),
+            ngay_tao: new FormControl(''),
+            cap_tren: new FormControl(''),
+            to_chuc: new FormControl(''),
+            status: new FormControl(''),
+            ngay_het_han: new FormControl(''),
+
+
+          }
+
+
+
+          const helper = new JwtHelperService();
+          const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+
+
+
+
+          // const Id = this.route.snapshot.params['Id'];
+
+          this.api.createAccount(formData)
+            .subscribe(
+              response => {
+                console.log(response);
+
+                this.isVisible = false;
+                this.notifyService.successMessage("Tạo mới nhóm người dùng thành công").then(
+                  () => {
+
+                    this.getAccountList();
+
+                  }
+                );
+
+
+                // TODO: Update the list of users
+              },
+              error => {
+                console.error(error);
               }
             );
+        }
+      })
+    } else {
+
+      // const data = {ten_nhom: this.tenNhom, mo_ta: this.moTa };
+      // this.api.updateNhomNguoiDung(this.selectedGroupId, data)
+      //   .subscribe(
+      //     response => {
+      //       console.log(response);
+      //       this.isVisible = false;
+
+      //       this.notifyService.successMessage("Chỉnh sửa nhóm người dùng thành công").then(
+      //         () => {
+
+      //           this.getNhomNguoiDungList();
+
+      //         }
+      //       );
 
 
-            // TODO: Update the list of users
-          },
-          error => {
-            console.error(error);
-          }
-        );
+      //       // TODO: Update the list of users
+      //     },
+      //     error => {
+      //       console.error(error);
+      //     }
+      //   );
+
     }
 
   }
@@ -295,12 +368,65 @@ export class QuanLyPhanQuyenComponent implements OnInit {
   statusForm!: FormGroup;
 
   async ngOnInit(): Promise<void> {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+    // this.roleUser = decodedToken.role;
+
+
+
+
+
+    this.uploadForm = this.formBuilder.group({
+      id: new FormControl(''),
+      ten: new FormControl(''),
+      username: new FormControl(''),
+      email: new FormControl(''),
+      phone: new FormControl(''),
+      chuc_danh: new FormControl(),
+      dia_chi: new FormControl(''),
+      role: new FormControl(''),
+      ho: new FormControl(''),
+      password: new FormControl(''),
+      ngay_tao: new FormControl(''),
+      cap_tren: new FormControl(''),
+      to_chuc: new FormControl(''),
+      status: new FormControl(''),
+      ngay_het_han: new FormControl(''),
+
+    });
     this.statusForm = this.fb.group({
       status: ['', Validators.required],
       idBaoCao: ['', [Validators.required]],
     });
     this.getAccountList();
+    this.getToChucList();
 
+
+  }
+
+  listToChuc: any;
+
+  getToChucList() {
+
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+    console.log(decodedToken);
+    const query = {
+      id: decodedToken.id,
+      role: decodedToken.role
+    };
+    // this.idStudent = this.route.snapshot.params['Id'];
+    this.api.getToCHucList().subscribe((res: any) => {
+      this.listToChuc = res.data;
+      console.log(this.listToChuc);
+
+      console.log(this.listAccount);
+    }, error => {
+      this.notifyService.errorMessage(error.error.message);
+      console.log(error);
+    }
+
+    );
 
   }
 
@@ -1266,102 +1392,102 @@ export class QuanLyPhanQuyenComponent implements OnInit {
   }
 
 
-  async onSubmit() {
-    this.notifyService.confirmAdd('Bạn có chắc chắn muốn lưu thông tin?').then(async (result) => {
-      if (result) {
+  // async onSubmit() {
+  //   this.notifyService.confirmAdd('Bạn có chắc chắn muốn lưu thông tin?').then(async (result) => {
+  //     if (result) {
 
-        // const helper = new JwtHelperService();
-        // const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+  //       // const helper = new JwtHelperService();
+  //       // const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
 
-        // await this.api.getAStudent(decodedToken.Phone
-        // ).subscribe(async res => {
-        //   console.log(res);
-
-
-
-        //   var d: any = res;
-        //   this.editStatus = d.student.AllowEditing
-
-        //   if (this.editStatus == 0 || this.editStatus == 2) {
-        //     this.notifyService.warningMessage("Bạn đang không có quyền chỉnh sửa thông tin này");
-        //     // this.toastService.warning({duration: 3000, summary: 'You are not authorized to edit this profile.'});
-        //     return;
-        //   } 
-
-        //add form group value to form data ignore file
-        let formData: FormData = new FormData();
-
-        for (let key in this.uploadForm.value) {
-          if (key != 'File') {
-            formData.append(key, this.uploadForm.get(key)?.value);
-
-          }
-        }
-        console.log(formData.get('TieuDe'));
-
-        for (let i = 0; i < this.fileList.length; i++) {
-          formData.append('File', this.fileList[i].originFileObj);
-
-        }
-
-        const Id = this.route.snapshot.params['Id'];
-
-        this.api.createBaoCaoHinhAnh(formData).subscribe(response => {
-
-          console.log(response);
-          // Swal.fire('Saved!', '', 'success')
-
-          this.notifyService.successMessage("Thêm phản ánh thành công").then(() => {
-            // reset uploadForm to ''
-            for (let key in this.uploadForm.value) {
-              this.uploadForm.get(key)?.setValue('');
-            }
-
-            console.log(this.uploadForm.value);
+  //       // await this.api.getAStudent(decodedToken.Phone
+  //       // ).subscribe(async res => {
+  //       //   console.log(res);
 
 
 
-          });
+  //       //   var d: any = res;
+  //       //   this.editStatus = d.student.AllowEditing
 
-          return
-          // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
+  //       //   if (this.editStatus == 0 || this.editStatus == 2) {
+  //       //     this.notifyService.warningMessage("Bạn đang không có quyền chỉnh sửa thông tin này");
+  //       //     // this.toastService.warning({duration: 3000, summary: 'You are not authorized to edit this profile.'});
+  //       //     return;
+  //       //   } 
+
+  //       //add form group value to form data ignore file
+  //       let formData: FormData = new FormData();
+
+  //       for (let key in this.uploadForm.value) {
+  //         if (key != 'File') {
+  //           formData.append(key, this.uploadForm.get(key)?.value);
+
+  //         }
+  //       }
+  //       console.log(formData.get('TieuDe'));
+
+  //       for (let i = 0; i < this.fileList.length; i++) {
+  //         formData.append('File', this.fileList[i].originFileObj);
+
+  //       }
+
+  //       const Id = this.route.snapshot.params['Id'];
+
+  //       this.api.createBaoCaoHinhAnh(formData).subscribe(response => {
+
+  //         console.log(response);
+  //         // Swal.fire('Saved!', '', 'success')
+
+  //         this.notifyService.successMessage("Thêm phản ánh thành công").then(() => {
+  //           // reset uploadForm to ''
+  //           for (let key in this.uploadForm.value) {
+  //             this.uploadForm.get(key)?.setValue('');
+  //           }
+
+  //           console.log(this.uploadForm.value);
 
 
 
-          // this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
-          //   this.router.navigate(['/pages/profile']).then(() => {
-          //     this.notifyService.successMessage("Chỉnh sửa thông tin thành công");
-          //     // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
-          //   });
-          // })
-        },
-          error => {
-            console.log(error);
+  //         });
 
-            this.notifyService.errorMessage(error.error.message).then(() => {
-              // this.formData = new FormData();
-
-              console.log(error.error);
-            });
-
-            // this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
-            //   this.router.navigate(['/pages/profile']).then(() => {
-            //     console.log(error);
-            //     this.notifyService.errorMessage("Chỉnh sửa thông tin thất bại");
-            //     // this.toastService.error({ detail: "Error", summary: error.statusText, duration: 3000 });
-            //   });
-            // })
-          }
-        );
+  //         return
+  //         // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
 
 
 
-      }
+  //         // this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
+  //         //   this.router.navigate(['/pages/profile']).then(() => {
+  //         //     this.notifyService.successMessage("Chỉnh sửa thông tin thành công");
+  //         //     // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
+  //         //   });
+  //         // })
+  //       },
+  //         error => {
+  //           console.log(error);
+
+  //           this.notifyService.errorMessage(error.error.message).then(() => {
+  //             // this.formData = new FormData();
+
+  //             console.log(error.error);
+  //           });
+
+  //           // this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
+  //           //   this.router.navigate(['/pages/profile']).then(() => {
+  //           //     console.log(error);
+  //           //     this.notifyService.errorMessage("Chỉnh sửa thông tin thất bại");
+  //           //     // this.toastService.error({ detail: "Error", summary: error.statusText, duration: 3000 });
+  //           //   });
+  //           // })
+  //         }
+  //       );
 
 
-    });
 
-  }
+  //     }
+
+
+  //   });
+
+  // }
 
 
 

@@ -99,7 +99,7 @@
 
                                             <td>
 
-                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal(-1)"><i
+                                                <span nz-tooltip nzTooltipTitle="Chỉnh Sửa"><a (click)="showModal(data.id)"><i
                                                             class="ti-pencil-alt color-success"></i></a></span>
                                                 <span nz-tooltip nzTooltipTitle="Xóa"><a><i
                                                             class="ti-trash color-danger"></i> </a></span>
@@ -303,44 +303,61 @@
                         </form>
                     </div> -->
                     <div class="horizontal-form-elements">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" [formGroup]="uploadForm" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label required">Họ</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                            <input formControlName="ho" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label required">Tổ chức</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control">
+                                        <div class="col-lg-9">
+                                            <select formControlName="to_chuc" class="js-select2 form-control" id="val-select2"
+                                                name="val-select2" style="width: 100%;"
+                                                data-placeholder="Choose one..">
+            
+            
+                                                
+                                                <option *ngFor="let data of listToChuc; let i = index" value="data.id">{{data.ten_to_chuc}}</option>
+                                                
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label required">Mật khẩu</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" type="password" value="password">
+                                            <input formControlName="password" class="form-control" type="password" value="password">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label required">Địa chỉ email</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" type="email">
+                                            <input formControlName="email" class="form-control" type="email">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Chức danh</label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control" type="text">
-                                        </div>
+                                        <label class="col-lg-3 control-label" for="val-select2">Chức danh</label>
+                                    <div class="col-lg-9">
+                                        <select formControlName="chuc_danh" class="js-select2 form-control" id="val-select2"
+                                            name="val-select2" style="width: 100%;"
+                                            data-placeholder="Choose one..">
+        
+        
+                                            
+                                            <option value="Giám đốc">Giám đốc</option>
+                                            <option value="Nhân viên">Nhân viên</option>
+                                            
+                                        </select>
+                                    </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label required">Ngày cấp tài khoản</label>
                                         <div class="col-sm-9">
                                             <!-- <nz-date-picker class="form-control"></nz-date-picker> -->
-                                            <input class="form-control" type="date">
+                                            <input formControlName="ngay_tao" class="form-control" type="date">
                                         </div>
                                     </div>
 
@@ -350,13 +367,13 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label required">Tên</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control">
+                                            <input formControlName="ten" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label required">Tên đăng nhập</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control">
+                                            <input formControlName="username" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -368,20 +385,20 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label required">Số điện thoại</label>
                                         <div class="col-sm-8">
-                                            <input class="form-control" type="phone">
+                                            <input formControlName="phone" class="form-control" type="phone">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label required">Hoạt động</label>
                                         <div class="col-sm-8">
-                                            <input type="checkbox" class="form-control" value="">
+                                            <input formControlName="status" type="checkbox" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label required">Ngày hết hiệu lực</label>
                                         <div class="col-sm-8">
                                             <!-- <nz-date-picker class="form-control"></nz-date-picker> -->
-                                            <input class="form-control" type="date">
+                                            <input formControlName="ngay_het_han" class="form-control" type="date">
                                         </div>
                                     </div>
 
@@ -403,7 +420,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-1 control-label required">Địa chỉ</label>
                                             <div class="col-sm-11">
-                                                <input type="text" class="form-control">
+                                                <input formControlName="dia_chi" type="text" class="form-control">
                                             </div>
                                     </div>
                                     

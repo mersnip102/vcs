@@ -28,18 +28,19 @@ export class AccountService {
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
   }
 
-  createBaoCaoHinhAnh(data: FormData): Observable<any> {
+  createAccount(data: FormData): Observable<any> {
+
     // const body = JSON.stringify(data);
-    console.log(data.get('TieuDe'));
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'form-data'
-    //   })
-    // };
+    console.log(data.get('ten'));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-type': 'multipart/form-data'
+      })
+    };
 
     
     
-    return this.http.post(`${this.api2}/uploadBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.post(`${this.api2}/createAccount`, data,{headers: httpOptions.headers ,responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
 
   }
@@ -97,6 +98,11 @@ export class AccountService {
   getAccountList(): Observable<any> {
     
     return this.http.get(`${this.api2}/getAllAccount`, {responseType: 'json'});
+  }
+
+  getToCHucList(): Observable<any> {
+    
+    return this.http.get(`${this.api2}/getAllToCHuc`, {responseType: 'json'});
   }
 
 }
