@@ -92,7 +92,7 @@
                                             <div class="text-center">
                                                 <span nz-tooltip nzTooltipTitle="Xem"><a (click)="navigateTaoBaoCao(data.id)"><i
                                                             class="ti-eye color-warning"></i></a></span>
-                                                <span nz-tooltip nzTooltipTitle="Phê duyệt"><a (click)="showModal(data.id)"><i
+                                                <span nz-tooltip nzTooltipTitle="Phê duyệt"><a (click)="showModal(data.id, data.status)"><i
                                                             class="ti-pencil-alt color-success"></i> </a></span>
                                             </div>
 
@@ -227,17 +227,17 @@
 </div>
 
 
-<nz-modal [nzFooter]="modalFooter" [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Phê duyệt báo cáo hình ảnh" >
+<nz-modal [nzFooter]="modalFooter" [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Phê duyệt báo cáo hình ảnh" (nzOnCancel)="handleCancel()">
     <ng-container *nzModalContent>
         
             
-                <div class="card-body">
+                <div class="card-body m-b-80">
                     <div class="horizontal-form">
                         
                            
                             <div class="form-group">
-                                <label class="col-sm-4 control-label required">Chọn tình trạng phê duyệt</label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-3 control-label required">Chọn tình trạng phê duyệt</label>
+                                <div class="col-sm-9">
                                     <nz-radio-group [(ngModel)]="status" class="form-control">
                                         <label nz-radio nzValue="0"><span class="text-danger">Không duyệt</span></label>
                                         <label nz-radio nzValue="2"><span class="text-warning">Chờ duyệt</span></label>

@@ -246,9 +246,10 @@ export class LapBaoCaoComponent implements OnInit {
     this.dataService.currentData.subscribe(data => this.idBaoCao = data);
     if(this.idBaoCao != null && this.idBaoCao != undefined && this.idBaoCao != 0){
       this.api.getBaoCaoHinhAnhById(this.idBaoCao).subscribe((res: any) => {
-        console.log(res.data[0]);
+       
         let data = { ...res.data[0]};
-     
+        this.status = data.status;
+        console.log(this.status);
         this.uploadForm.get('TieuDe')?.setValue(data.tieu_de);
         this.uploadForm.get('NoiDung')?.setValue(data.noi_dung);
         this.uploadForm.get('KienNghi')?.setValue(data.kien_nghi);
@@ -261,7 +262,7 @@ export class LapBaoCaoComponent implements OnInit {
         this.uploadForm.get('KinhDo')?.setValue(data.geo.lat);
         this.uploadForm.get('ViDo')?.setValue(data.geo.lmg);
         this.uploadForm.get('File')?.setValue(data.file);
-        console.log( data.file.split(', '));
+        
         if(data.file != null && data.file != undefined && data.file != ''){
 
         const files = data.file.split(', ');
@@ -277,7 +278,7 @@ export class LapBaoCaoComponent implements OnInit {
         this.nzFileList = temp
       }
 
-        console.log(this.nzFileList)
+        
         
         this.uploadForm.get('ToChuc')?.setValue(data.to_chuc);
         this.uploadForm.get('NguoiBaoCao')?.setValue(data.nguoi_bao_cao);
@@ -292,7 +293,7 @@ export class LapBaoCaoComponent implements OnInit {
         //     this.uploadForm.get(key)?.setValue(data[key]);
         //   }
         // }
-        console.log(this.uploadForm.value);
+        
         if(this.roleUser == 2){
           this.uploadForm.disable();
         }
@@ -403,8 +404,7 @@ export class LapBaoCaoComponent implements OnInit {
       const place = this.autocomplete.getPlace();
       const lat = place.geometry.location.lat();
       const lng = place.geometry.location.lng();
-      console.log('Latitude:', lat);
-      console.log('Longitude:', lng);
+      
       this.getAddress(lat, lng);
       this.markerPosition = { lat, lng };
       this.center = { lat, lng };
@@ -474,7 +474,7 @@ export class LapBaoCaoComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        console.log(this.latitude, this.longitude);
+        
         this.center = { lat: this.latitude, lng: this.longitude };
         this.markerPosition = { lat: this.latitude, lng: this.longitude };
         this.setLatLong(this.latitude, this.longitude);
@@ -530,17 +530,12 @@ export class LapBaoCaoComponent implements OnInit {
     }
   }
 
-  showModal(): void {
-    this.isVisible = true;
-  }
+  
 
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
+  
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
+    
     this.isVisible = false;
   }
 
@@ -637,10 +632,55 @@ export class LapBaoCaoComponent implements OnInit {
     this.fileList = [...info.fileList];
     
     console.log(this.fileList.length)
-    
+  
+  }
+  status: string = '';
+  selectedReportId!: any;
 
-  
-  
+  handleOk(): void {
+
+
+
+    if (this.status) {
+      const data = { status: this.status, idBaoCao: this.selectedReportId };
+      this.api.updateStatus(this.selectedReportId, data)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.isVisible = false;
+            this.status = '';
+            this.notifyService.successMessage("Cập nhật trạng thái báo cáo thành công").then(
+              () => {
+
+                this.ngOnInit();
+
+              }
+            );
+
+
+            // TODO: Update the list of users
+          },
+          error => {
+            console.error(error);
+          }
+        );
+    }
+
+  }
+
+  showModal(id: any, statusReport: string): void {
+    console.log(statusReport)
+    if(statusReport == 'Đã duyệt') {
+      this.status = '1'
+    } else if (statusReport == 'Không duyệt') {
+      this.status = '0'
+    } else {
+      this.status = '2'
+    }
+
+    this.selectedReportId = id;
+    console.log(this.selectedReportId);
+    this.isVisible = true;
   }
 
 
@@ -703,7 +743,7 @@ export class LapBaoCaoComponent implements OnInit {
             for(let key in this.uploadForm.value){
               this.uploadForm.get(key)?.setValue('');
             }
-            console.log(this.uploadForm.value);
+       
             
             this.router.navigate(['/pages/bao-cao-hinh-anh/quan-ly-bao-cao']);
           });
@@ -740,7 +780,7 @@ export class LapBaoCaoComponent implements OnInit {
         );
 
         }else{
-          console.log("okeee");
+         
           
           formData.append('idBaoCao', this.idBaoCao);
           
@@ -760,7 +800,7 @@ export class LapBaoCaoComponent implements OnInit {
                 this.uploadForm.get(key)?.setValue('');
               }
               
-              console.log(this.uploadForm.value);
+              
               
               this.router.navigate(['/pages/bao-cao-hinh-anh/quan-ly-bao-cao']);
               

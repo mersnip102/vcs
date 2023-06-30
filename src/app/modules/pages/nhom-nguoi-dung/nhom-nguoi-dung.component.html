@@ -7,7 +7,7 @@
         </div>
     </div>
     <!-- /# column -->
-   
+
     <!-- /# column -->
 </div>
 <!-- /# row -->
@@ -781,7 +781,7 @@
     <div class="col-lg-12">
         <div class="card alert">
             <div class="card-header">
-                
+
                 <div class="card-header-right-icon">
                     <!-- <ul>
                         <li class="card-close" data-dismiss="alert"><i class="ti-close"></i></li>
@@ -795,7 +795,7 @@
                         </li>
                         <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
                     </ul> -->
-                    <button (click)="showModal()" type="button"
+                    <button (click)="showModal(-1)" type="button"
                         class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Tạo mới</button>
                 </div>
             </div>
@@ -819,12 +819,54 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                <nz-table nzBordered
+                                    class="table student-data-table table-hover table-striped table-bordered"
+                                    #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listNhomNguoiDung">
+                                    <thead>
+                                        <tr>
+
+                                            <th>STT</th>
+                                            <th>Tên nhóm người dùng</th>
+                                            <th>Mô tả</th>
+
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                                            <td class="text-center">
+                                                {{i}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{data.ten_nhom}}
+                                            </td>
+                                            <td>
+                                                {{data.mo_ta}}
+                                            </td>
+
+
+                                            <td>
+
+                                                <div class="text-center">
+                                                    
+                                                    <span nz-tooltip nzTooltipTitle="Chỉnh sửa"><a
+                                                            (click)="showModal(data.id)"><i
+                                                                class="ti-pencil-alt color-success"></i> </a></span>
+                                                    <span nz-tooltip nzTooltipTitle="Xóa"><a
+                                                            (click)="deleteNhomNguoiDung(data.id)"><i
+                                                                class="ti-trash color-danger"></i> </a></span>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                                <!-- <table class="table student-data-table table-hover table-striped table-bordered">
                                     <thead>
                                         <tr>
         
                                             <th>Tên nhóm người dùng</th>
-                                            <th>Chức năng gán nhóm</th>
+                                            <th>Mô tả</th>
         
         
                                             <th>Thao tác</th>
@@ -845,24 +887,11 @@
                                                 <span><a ><i class="ti-trash color-danger"></i> </a></span>
                                             </td>
                                         </tr>
-                                        <tr>
-        
-                                            <td>
-                                                Nhóm phê duyệt báo cáo
-                                            </td>
-                                            <td>
-                                                Báo cáo_phê duyệt,Bản đồ PAKN,Thống kê nhắc việc,Tra cứu PAKN
-                                            </td>
-                                            <td>
-        
-                                                <span><a (click)="showModal()"><i class="ti-pencil-alt color-success"></i></a></span>
-                                                <span><a ><i class="ti-trash color-danger"></i> </a></span>
-                                            </td>
-                                        </tr>
+                                        
         
                                     </tbody>
-                                </table>
-                                <div class="row">
+                                </table> -->
+                                <!-- <div class="row">
                                     <div class="col-md-12">
                                         <div class="page-nation text-center">
                                             <div class="m-t-30">Tổng số: 5</div>
@@ -881,12 +910,12 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-        
+                                </div> -->
+
                             </div>
-                            
+
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -896,8 +925,8 @@
 </div>
 
 
-<nz-modal [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Tạo mới nhóm người dùng" (nzOnCancel)="handleCancel()"
-    (nzOnOk)="handleOk()">
+<nz-modal [nzFooter]="modalFooter" [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Tạo mới nhóm người dùng" (nzOnCancel)="handleCancel()"
+    >
     <ng-container *nzModalContent>
 
 
@@ -907,19 +936,19 @@
                     <div class="horizontal-form">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label required">Tên nhóm người dùng</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control">
+                                <label class="col-sm-3 control-label required">Tên nhóm người dùng</label>
+                                <div class="col-sm-9">
+                                    <input name="tenNhom" [(ngModel)]="tenNhom" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">Mô tả</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" rows="5"></textarea>
+                                <label class="col-sm-3 control-label">Mô tả</label>
+                                <div class="col-sm-9">
+                                    <textarea name="moTa" [(ngModel)]="moTa" class="form-control" rows="5"></textarea>
                                 </div>
                             </div>
-                            
-        
+
+
                         </form>
                     </div>
                 </nz-tab>
@@ -961,16 +990,22 @@
                         </div>
 
                     </div>
-                    
-                    
+
+
 
                 </nz-tab>
-                
-              </nz-tabset>
-           
+
+            </nz-tabset>
+
         </div>
 
 
 
     </ng-container>
+
+    <ng-template #modalFooter>
+        
+        <button nz-button (click)="handleCancel()" nzType="default" class="btn btn-secondary" >Hủy</button>
+        <button nz-button nzType="primary" (click)="handleOk()" class="btn btn-primary m-l-8">Lưu</button>
+      </ng-template>
 </nz-modal>

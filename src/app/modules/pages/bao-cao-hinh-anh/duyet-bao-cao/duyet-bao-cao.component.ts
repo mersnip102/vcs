@@ -26,15 +26,23 @@ export class DuyetBaoCaoComponent implements OnInit {
   listBaoCaoHinhAnh: any;
 
   selectedReportId!: number;
-
-  showModal(id: any): void {
+  status: string = '';
+  showModal(id: any, statusReport: string): void {
+    console.log(statusReport)
+    if(statusReport == 'Đã duyệt') {
+      this.status = '1'
+    } else if (statusReport == 'Không duyệt') {
+      this.status = '0'
+    } else {
+      this.status = '2'
+    }
 
     this.selectedReportId = id;
     console.log(this.selectedReportId);
     this.isVisible = true;
   }
 
-  status: string = '';
+  
 
   handleOk(): void {
 

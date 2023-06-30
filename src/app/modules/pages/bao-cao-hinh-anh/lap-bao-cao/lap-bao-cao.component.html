@@ -366,6 +366,30 @@
                             </div>
                             <!-- /# column -->
                         </div>
+                        <div *ngIf="roleUser == 2 && idBaoCao != 0" class="row">
+                            <div class="col-md-12">
+
+
+                                <div class="card-header-right-icon">
+                                    <div *ngIf="this.status == 'Không duyệt'" class="external-event bg-danger" data-class="bg-danger">
+                                        Trạng thái: <i class="fa fa-move"></i>Không duyệt
+                                    </div>
+
+                                    <div *ngIf="this.status == 'Đã duyệt'" class="external-event bg-success" data-class="bg-success">
+                                        Trạng thái: <i class="fa fa-move"></i>Đã duyệt
+                                    </div>
+
+                                    <div *ngIf="this.status == 'Chờ duyệt'" class="external-event bg-warning" data-class="bg-warning">
+                                        Trạng thái: <i class="fa fa-move"></i>Chờ duyệt
+                                    </div>
+
+
+                                </div>
+
+                                
+
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
 
@@ -388,6 +412,9 @@
                                     <button *ngIf="roleUser!=2" [disabled]="uploadForm.invalid" (click)="onSubmit()" type="button"
                                         class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
                                             class="ti-save"></i>Lưu</button>
+                                            <button *ngIf="roleUser == 2 && idBaoCao != 0" (click)="showModal(this.idBaoCao, this.status)" type="button"
+                                        class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i
+                                            class="ti-save"></i>Phê duyệt</button>
 
 
 
@@ -396,6 +423,8 @@
 
 
                                 </div>
+
+                                
 
                             </div>
                         </div>
@@ -409,3 +438,42 @@
     </div>
     <!-- /# column -->
 </div>
+
+
+
+<nz-modal [nzFooter]="modalFooter" [nzWidth]="1000" [(nzVisible)]="isVisible" nzTitle="Phê duyệt báo cáo hình ảnh" (nzOnCancel)="handleCancel()">
+    <ng-container *nzModalContent>
+        
+            
+                <div class="card-body m-b-80">
+                    <div class="horizontal-form">
+                        
+                           
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label required">Chọn tình trạng phê duyệt</label>
+                                <div class="col-sm-9">
+                                    <nz-radio-group [(ngModel)]="status" class="form-control">
+                                        <label nz-radio nzValue="0"><span class="text-danger">Không duyệt</span></label>
+                                        <label nz-radio nzValue="2"><span class="text-warning">Chờ duyệt</span></label>
+                                        <label nz-radio nzValue="1"><span class="text-success">Phê duyệt</span></label>
+                                        
+                                      </nz-radio-group>
+                                </div>
+
+                            </div>
+                            
+                            
+
+                        
+                    </div>
+                </div>
+            
+
+        
+    </ng-container>
+    <ng-template #modalFooter>
+        
+        <button nz-button (click)="handleCancel()" nzType="default" class="btn btn-secondary" >Hủy</button>
+        <button nz-button nzType="primary" (click)="handleOk()" class="btn btn-primary m-l-8">Lưu</button>
+      </ng-template>
+</nz-modal>

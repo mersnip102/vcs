@@ -30,7 +30,7 @@
                         </li>
                         <li class="doc-link"><a href="#"><i class="ti-link"></i></a></li>
                     </ul> -->
-                    <button (click)="showModal()" type="button"
+                    <button (click)="showModal(-1)" type="button"
                         class="btn btn-primary btn-flat btn-addon m-b-10 m-l-5"><i class="ti-plus"></i>Tạo mới</button>
                 </div>
             </div>
@@ -54,7 +54,63 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="table-responsive">
-                                <table class="table student-data-table table-hover table-striped table-bordered">
+                                <nz-table nzBordered
+                                    class="table student-data-table table-hover table-striped table-bordered"
+                                    #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listAccount">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Tên đăng nhập</th>
+                                            <th>Tên đầy đủ</th>
+                                            <th>Địa chỉ email</th>
+                                            <th>Tổ chức</th>
+                                            <th>Nhóm</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Hoạt động</th>
+                                            <th>Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                                            <td class="text-center">
+                                                {{data.username}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{data.ho}} {{data.ten}}
+                                            </td>
+                                            <td>
+                                                {{data.email}}
+                                            </td>
+                                            <td>
+                                                {{data.ten_to_chuc}}
+                                            </td>
+                                            <td>
+                                                {{data.ten_nhom}}
+                                            </td>
+                                            <td>
+                                                {{data.phone}}
+                                            </td>
+                                            <td class="text-center">
+                                                <input  *ngIf="data.status == 'Hoạt động'" type="checkbox" value="" checked disabled>
+                                                <input  *ngIf="data.status == 'Không Hoạt động'" type="checkbox" value="" disabled>
+                                                
+                                            </td>
+
+
+                                            <td>
+
+                                                <span nz-tooltip nzTooltipTitle="Sửa"><a (click)="showModal(-1)"><i
+                                                            class="ti-pencil-alt color-success"></i></a></span>
+                                                <span nz-tooltip nzTooltipTitle="Xóa"><a><i
+                                                            class="ti-trash color-danger"></i> </a></span>
+                                                <span nz-tooltip nzTooltipTitle="Thay đổi mật khẩu"><a
+                                                        (click)="showModal(-1)"><i
+                                                            class="ti-lock color-warning"></i></a></span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </nz-table>
+                                <!-- <table class="table student-data-table table-hover table-striped table-bordered">
                                     <thead>
                                         <tr>
 
@@ -184,8 +240,8 @@
                                         </tr>
 
                                     </tbody>
-                                </table>
-                                <div class="row">
+                                </table> -->
+                                <!-- <div class="row">
                                     <div class="col-md-12">
                                         <div class="page-nation text-center">
                                             <div class="m-t-30">Tổng số: 5</div>
@@ -205,7 +261,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -292,38 +348,38 @@
                                 <!-- /# column -->
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Tên</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Tên</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Tên đăng nhập</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Tên đăng nhập</label>
+                                        <div class="col-sm-8">
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Nhập lại mật khẩu</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Nhập lại mật khẩu</label>
+                                        <div class="col-sm-8">
                                             <input class="form-control" type="password" value="password">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Số điện thoại</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Số điện thoại</label>
+                                        <div class="col-sm-8">
                                             <input class="form-control" type="phone">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Hoạt động</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Hoạt động</label>
+                                        <div class="col-sm-8">
                                             <input type="checkbox" class="form-control" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label required">Ngày hết hiệu lực</label>
-                                        <div class="col-sm-9">
+                                        <label class="col-sm-4 control-label required">Ngày hết hiệu lực</label>
+                                        <div class="col-sm-8">
                                             <!-- <nz-date-picker class="form-control"></nz-date-picker> -->
                                             <input class="form-control" type="date">
                                         </div>
@@ -332,12 +388,7 @@
                                 </div>
                                 
                                     
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 control-label required">Địa chỉ</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
+                                        
 
                                     
 
@@ -345,6 +396,20 @@
 
 
                                 <!-- /# column -->
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label required">Địa chỉ</label>
+                                            <div class="col-sm-11">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                    </div>
+                                    
+
+                                </div>
+
                             </div>
                         </form>
                     </div>
