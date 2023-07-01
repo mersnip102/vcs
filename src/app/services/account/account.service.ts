@@ -31,16 +31,12 @@ export class AccountService {
   createAccount(data: any): Observable<any> {
 
     // const body = JSON.stringify(data);
-    console.log(data.get('ten'));
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-type': 'multipart/form-data'
-      })
-    };
+    console.log(data.ten);
+    
 
     
     
-    return this.http.post(`${this.api2}/createAccount`, data,{headers: httpOptions.headers ,responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.post(`${this.api2}/createAccount`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
 
   }
@@ -56,17 +52,17 @@ export class AccountService {
 
   }
 
-  updateBaoCaoHinhAnh(data: FormData): Observable<any> {
+  updateAccount(id: any, data: Object): Observable<any> {
     // const body = JSON.stringify(data);
    
-    console.log(data.get('TieuDe'));
+    
     // const httpOptions = {
     //   headers: new HttpHeaders({
     //     'Content-Type': 'form-data'
     //   })
     // };
    
-    return this.http.put(`${this.api2}/updateBaoCaoHinhAnh`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.put(`${this.api2}/updateAccount/${id}`, data,{responseType: 'json'})//stringify de chuyen doi tu object sang json
     // return this.http.post(this.api, {headers:httpOptions.headers, responseType: 'json'})
 
   }
@@ -86,13 +82,13 @@ export class AccountService {
 
   }
 
-  deleteBaoCaoHinhAnh(id: any): Observable<any> {
+  deleteAccount(id: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.delete(`${this.api2}/deleteBaoCaoHinhAnh/${id}`, {headers:httpOptions.headers, responseType: 'json'});
+    return this.http.delete(`${this.api2}/deleteAccount/${id}`, {headers:httpOptions.headers, responseType: 'json'});
   }
 
   getAccountList(): Observable<any> {
@@ -100,9 +96,15 @@ export class AccountService {
     return this.http.get(`${this.api2}/getAllAccount`, {responseType: 'json'});
   }
 
-  getToCHucList(): Observable<any> {
+  getToChucList(): Observable<any> {
     
-    return this.http.get(`${this.api2}/getAllToCHuc`, {responseType: 'json'});
+    return this.http.get(`${this.api2}/getAllToChuc`, {responseType: 'json'});
   }
+
+  getNhomNguoDungList(): Observable<any> {
+    return this.http.get(`${this.api2}/getAllNhomNguoiDung`, {responseType: 'json'});
+  }
+
+
 
 }

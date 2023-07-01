@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { PagesService } from 'src/app/services/pages/pages.service';
+import { NotifyService } from 'src/app/shared/utils/notify';
 
 @Component({
   selector: 'app-bao-cao-tong-hop',
@@ -14,7 +16,9 @@ export class BaoCaoTongHopComponent implements OnInit {
   ngOnInit(): void {
     this.getPdfData();
   }
-  constructor(private sanitizer: DomSanitizer, private api: PagesService) { }
+  constructor(private sanitizer: DomSanitizer,
+    private router: Router,
+    private api: PagesService, private notifyService: NotifyService) { }
 
   getPdfData() {
     this.isSpinning = true;
@@ -37,9 +41,12 @@ export class BaoCaoTongHopComponent implements OnInit {
 
     }, (err) => {
       console.log(err);
-      this.isSpinning = false;
-     
-    })
+      this.notifyService.errorMessage("Hiện tại đang lỗi! Hãy quay lại sau!").then(() => {
+        
+        this.router.navigate(['/pages/home']);
+      });
+    
   }
+    )}
 
 }
