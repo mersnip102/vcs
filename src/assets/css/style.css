@@ -33,7 +33,7 @@
 }
 
 .card-header p {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     margin-bottom: 12px
 }
 
@@ -884,7 +884,7 @@ div.dt-button:active:not(.disabled) {
 
 .notification-text {
     font-size: 12px;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -987,7 +987,7 @@ div.dt-button:active:not(.disabled) {
 .main .page-header .breadcrumb li.active,
 .main .page-header .breadcrumb li:focus,
 .main .page-header .breadcrumb li:hover {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-weight: 400;
     font-size: 12px
 }
@@ -1244,7 +1244,7 @@ div.dt-button:active:not(.disabled) {
 }
 
 .testimonial-widget-one .testimonial-author-position {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     margin-right: 75px;
     position: relative;
     top: -5px
@@ -2055,7 +2055,7 @@ footer p {
 .recent-comment .comment-date {
     float: left;
     color: #252525;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 12px
 }
 
@@ -2615,7 +2615,7 @@ ul.inbox-pagination li {
     background: #fff;
     border: 1px solid #e7e7e7;
     border-radius: 3px!important;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     color: #252525;
     display: inline-block;
     padding: 5px 10px;
@@ -2859,7 +2859,7 @@ ul {
 
 .tdl-holder li span {
     margin-left: 30px;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     vertical-align: middle;
     -webkit-transition: all .2s linear;
     -moz-transition: all .2s linear;
@@ -2943,7 +2943,7 @@ ul {
 
 .datamap-sales-hover-tooltip {
     background: #545454;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     padding: 5px 10px;
     color: #fff;
     font-weight: 400;
@@ -2963,12 +2963,12 @@ thead tr th:last-child {
 
 tbody tr th {
     color: #252525;
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-weight: 400
 }
 
 tbody tr td {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     color: #252525
 }
 
@@ -3283,7 +3283,7 @@ tbody tr td:last-child {
 .gender,
 .mail-address,
 .phone-number {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     color: #252525
 }
@@ -4122,7 +4122,7 @@ li {
 }
 
 p {
-    font-family: MontserratLight, sans-serif;
+    font-family: Montserrat, sans-serif;
     color: #252525
 }
 
