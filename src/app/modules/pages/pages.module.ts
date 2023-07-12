@@ -81,7 +81,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     LayoutModule,
     CommonModule,
     // AgmCoreModule.forRoot({
-    //   apiKey: 'AIzaSyBI0DTl9QdF8NjI1g7P3TDvG0wwbjBPfwU',
+    //   apiKey: 'AIzaSyAkzMp9vyXtwqh4o6pAMzGal7IXUmuRgGU',
     //   libraries: ["places", "geometry"]
     // }),
     PagesRoutingModule,
@@ -125,6 +125,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     GoogleMapsModule ,
 
     NgxExtendedPdfViewerModule,
+    
     
    
     
