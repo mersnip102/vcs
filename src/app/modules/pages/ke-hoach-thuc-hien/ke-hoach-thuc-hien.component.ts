@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Chart } from 'highcharts';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-ke-hoach-thuc-hien',
+  templateUrl: './ke-hoach-thuc-hien.component.html',
+  styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
-export class HomeComponent {
+export class KeHoachThucHienComponent implements OnInit {
   isCollapsed = false;
 
   toggleCollapsed(): void {

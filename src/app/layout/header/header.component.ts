@@ -9,9 +9,42 @@ import { listMenu } from 'src/app/shared/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  currentDate!: string;
+
+  
+
+  
+
+  getCurrentDate() {
+    const date = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    // this.currentDate = date.toLocaleDateString('vn-VN');
+  }
+
   listMenu: any;
+
+  updateTime() {
+    const date = new Date();
+    const options: any = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+      timeZoneName: 'short'
+    };
+    
+    this.currentDate = new Intl.DateTimeFormat('vn-VN', options).format(date);
+  }
+
   
   ngOnInit(): void {
+    this.updateTime();
+    setInterval(() => {
+      this.updateTime();
+    }, 1000);
     // this.listMenu = listMenu[];
   }
 

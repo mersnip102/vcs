@@ -14,6 +14,12 @@ import { GanNguoiDungDvhcComponent } from './gan-nguoi-dung-dvhc/gan-nguoi-dung-
 import { ConfigsComponent } from './configs/configs.component';
 import { LogsComponent } from './logs/logs.component';
 import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.component';
+import { KeHoachThucHienComponent } from './ke-hoach-thuc-hien/ke-hoach-thuc-hien.component';
+import { PhanBoVonComponent } from './phan-bo-von/phan-bo-von.component';
+import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
+import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.component';
+import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
+import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 
 const routes: Routes = [
  
@@ -72,6 +78,31 @@ const routes: Routes = [
     path: 'bao-cao-tong-hop',
     component: BaoCaoTongHopComponent,
   },
+  {
+    path: 'ke-hoach-thuc-hien',
+    component: KeHoachThucHienComponent,
+  },
+  {
+    path: 'phan-bo-von',
+    component: PhanBoVonComponent,
+  },
+  {
+    path: 'giai-ngan',
+    component: GiaiNganComponent,
+  },
+  {
+    path: 'bao-cao-ket-qua',
+    component: BaoCaoKetQuaComponent,
+  },
+  {
+    path: 'quyet-toan',
+    component: QuyetToanComponent,
+  },
+  {
+    path: 'thong-ke-so-lieu',
+    component: ThongKeSoLieuComponent,
+  },
+
   { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
   { path: 'nhac-viec', loadChildren: () => import('./nhac-viec/nhac-viec.module').then(m => m.NhacViecModule) }, 
   { path: 'bao-cao-hinh-anh', loadChildren: () => import('./bao-cao-hinh-anh/bao-cao-hinh-anh.module').then(m => m.BaoCaoHinhAnhModule) },

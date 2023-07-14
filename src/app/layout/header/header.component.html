@@ -1,17 +1,20 @@
 <div class="header">
     <div class="pull-left">
         <div class="logo"><a
-                ><!-- <img src="assets/images/logo.png" alt="" /> --><span style="color: rgb(0, 162, 255);">Tỉnh Thanh Hóa</span></a></div>
+                ><!-- <img src="assets/images/logo.png" alt="" /> --><span style="color: rgb(0, 162, 255);">Địa bàn: Tỉnh Thanh Hóa</span></a></div>
         <div nz-button nzType="primary" (click)="toggleCollapsed()" [ngClass]="{'is-active': isCollapsed === true}"
             class="hamburger sidebar-toggle">
             <span class="line"></span>
             <span class="line"></span>
             <span class="line"></span>
         </div>
+       
     </div>
     <div class="pull-right p-r-15">
         <ul>
+            
             <!-- <li class="header-icon dib"><a href="#search"><i class="ti-search"></i></a></li> -->
+            <li class="header-icon dib text-primary">{{ currentDate }}</li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="thongBao" class="header-icon dib"><i
                     class="ti-bell"><span> Thông báo</span></i>
 

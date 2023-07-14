@@ -55,6 +55,12 @@ import { GanNguoiDungDvhcComponent } from './gan-nguoi-dung-dvhc/gan-nguoi-dung-
 import { ConfigsComponent } from './configs/configs.component';
 import { LogsComponent } from './logs/logs.component';
 import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.component';
+import { KeHoachThucHienComponent } from './ke-hoach-thuc-hien/ke-hoach-thuc-hien.component';
+import { PhanBoVonComponent } from './phan-bo-von/phan-bo-von.component';
+import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
+import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.component';
+import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
+import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -76,6 +82,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     ConfigsComponent,
     LogsComponent,
     BaoCaoTongHopComponent,
+    KeHoachThucHienComponent,
+    PhanBoVonComponent,
+    GiaiNganComponent,
+    BaoCaoKetQuaComponent,
+    QuyetToanComponent,
+    ThongKeSoLieuComponent,
   ],
   imports: [
     LayoutModule,

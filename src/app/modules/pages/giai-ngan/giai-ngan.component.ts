@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Chart } from 'highcharts';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-giai-ngan',
+  templateUrl: './giai-ngan.component.html',
+  styleUrls: ['./giai-ngan.component.css']
 })
-export class HomeComponent {
+export class GiaiNganComponent implements OnInit {
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -143,7 +142,7 @@ export class HomeComponent {
       }
     },
     xAxis: {
-      categories: ['Dự án 1.1', 'Dự án 1.2', 'Dự án 1.3', 'Dự án 1.4', 'Dự án 1.5'],
+      categories: ['Dự án 1.1', 'Dự án 1.2'],
       labels: {
         style: {
           fontSize: "1.5em"
@@ -157,7 +156,7 @@ export class HomeComponent {
         }
       },
       title: {
-        text: 'Số lượng dự án',
+        text: 'Tỉ lệ phần trăm',
         style: {
           fontSize: "1.5em"
         },
@@ -188,7 +187,7 @@ export class HomeComponent {
         borderWidth: 0,
         borderRadius: 5,
         colorByPoint: true,
-        colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585', '#DB7093'],
+        colors: ['rgb(149, 158, 51)', 'rgb(133, 51, 158)'],
 
 
       }
@@ -203,12 +202,17 @@ export class HomeComponent {
         }
       },
       dataLabels: {
+        enabled: true,
+        formatter: function() {
+            return this.y + '%';
+        },
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
+          
         }
       },
 
-      data: [1000, 700, 1200, 550, 850],
+      data: [100, 70],
       type: 'column',
 
       // color: this.getRandomColor()
@@ -263,7 +267,7 @@ export class HomeComponent {
       }
     },
     xAxis: {
-      categories: ['Dự án 2.1', 'Dự án 2.2', 'Dự án 2.3', 'Dự án 2.4', 'Dự án 2.5'],
+      categories: ['Dự án 2.1', 'Dự án 2.2'],
       labels: {
         style: {
           fontSize: "1.5em"
@@ -277,7 +281,7 @@ export class HomeComponent {
         }
       },
       title: {
-        text: 'Số lượng dự án',
+        text: 'Tỉ lệ phần trăm',
         style: {
           fontSize: "1.5em"
         },
@@ -308,7 +312,7 @@ export class HomeComponent {
         borderWidth: 0,
         borderRadius: 5,
         colorByPoint: true,
-        colors: ['#80CEE1', '#5DADE2', '#3498DB', '#2E86C1', '#1F618D']
+        colors: ['rgb(158, 51, 63)', 'rgb(53, 51, 158)'],
 
 
       }
@@ -323,14 +327,22 @@ export class HomeComponent {
         }
       },
       dataLabels: {
+        enabled: true,
+        formatter: function() {
+            return this.y + '%';
+        },
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
+          
         }
       },
 
-      data: [1000, 700, 1200, 550, 850],
+      data: [100, 70],
       type: 'column',
-      color: this.getRandomColor()
+
+      // color: this.getRandomColor()
+
+
       // color: {
       //   //setups the color for each column
       //   linearGradient: {

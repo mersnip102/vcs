@@ -1,8 +1,8 @@
 <div [ngStyle]="{'margin-top': isCollapsed ? '4%' : ''}" class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
-    <div class="nano" class="nano" [ngClass]="{'has-scrollbar': isCollapsed === false}">
+    <div class="nano" [ngClass]="{'has-scrollbar': isCollapsed === false}">
         <div class="nano-content" [ngStyle]="{'right': '-16px'}">
             <ul nz-menu [nzMode]="'vertical'" [nzInlineCollapsed]="isCollapsed">
-                <li  nzSelected nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
+                <li nzSelected nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
                     
                     <span nz-icon nzType="home"></span>
                     <span>Trang chủ</span>

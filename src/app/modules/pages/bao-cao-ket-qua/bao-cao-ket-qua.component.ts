@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { Chart } from 'highcharts';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-bao-cao-ket-qua',
+  templateUrl: './bao-cao-ket-qua.component.html',
+  styleUrls: ['./bao-cao-ket-qua.component.css']
 })
-export class HomeComponent {
+export class BaoCaoKetQuaComponent implements OnInit {
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -157,7 +156,7 @@ export class HomeComponent {
         }
       },
       title: {
-        text: 'Số lượng dự án',
+        text: 'Phần trăm',
         style: {
           fontSize: "1.5em"
         },
@@ -188,7 +187,7 @@ export class HomeComponent {
         borderWidth: 0,
         borderRadius: 5,
         colorByPoint: true,
-        colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585', '#DB7093'],
+        colors: ['rgb(75, 139, 242)', 'rgb( 158, 163, 160)', 'rgb( 181, 137, 105)', 'rgb( 115, 70, 110)', 'rgb( 179, 48, 68)']
 
 
       }
@@ -203,12 +202,17 @@ export class HomeComponent {
         }
       },
       dataLabels: {
+        enabled: true,
+        formatter: function() {
+            return this.y + '%';
+        },
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
+          
         }
       },
 
-      data: [1000, 700, 1200, 550, 850],
+      data: [100, 70, 12, 55, 85],
       type: 'column',
 
       // color: this.getRandomColor()
@@ -277,7 +281,7 @@ export class HomeComponent {
         }
       },
       title: {
-        text: 'Số lượng dự án',
+        text: 'Phần trăm',
         style: {
           fontSize: "1.5em"
         },
@@ -308,7 +312,7 @@ export class HomeComponent {
         borderWidth: 0,
         borderRadius: 5,
         colorByPoint: true,
-        colors: ['#80CEE1', '#5DADE2', '#3498DB', '#2E86C1', '#1F618D']
+        colors: ['rgb(99, 77, 191)', 'rgb( 33, 217, 39)', 'rgb( 209, 209, 75)', 'rgb( 209, 100, 75)', 'rgb( 69, 175, 196)']
 
 
       }
@@ -323,12 +327,17 @@ export class HomeComponent {
         }
       },
       dataLabels: {
+        enabled: true,
+        formatter: function() {
+            return this.y + '%';
+        },
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
+          
         }
       },
 
-      data: [1000, 700, 1200, 550, 850],
+      data: [100, 70, 12, 55, 85],
       type: 'column',
       color: this.getRandomColor()
       // color: {
