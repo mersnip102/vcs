@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~quill/dist/quill.snow.css';
+.dashTitle {
+    color: #ffc107;
+    font-weight: bold;
+    
+}
+
 .select2-container .select2-selection--single {
     height: 36px !important;
 }
@@ -186,3 +192,6 @@ label.required::after {
     width: 100%;
   }
 
+
+
+ 

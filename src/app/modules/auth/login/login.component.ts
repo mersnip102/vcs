@@ -2,9 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import * as e from 'express';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { NotifyService } from 'src/app/shared/utils/notify';
+import { RoleNumber } from 'src/app/shared/utilities';
 
 @Component({
   selector: 'app-login',
@@ -92,10 +95,34 @@ export class LoginComponent implements OnInit {
             this.password,
         ).subscribe(async res => {
           // console.log(res);
+
+            
+        const helper = new JwtHelperService();
+        const userId = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON('accessToken')).sub;
+
+          console.log(userId);
+        this.authService.getRoleUser(userId).subscribe(async res => {
           
-          await this.router.navigate(['/pages']).then(() => {
-            this.notifyService.successMessage("Đăng nhập thành công");
-          });
+          if (Object.values(RoleNumber).indexOf(res.result[0].roleCode) !== -1) {
+            // Nếu chuỗi tồn tại trong enum RoleNumber, trả về giá trị đó
+           
+            await this.authService.setValueRole(RoleNumber[res.result[0].roleCode] as any);
+            await this.router.navigate(['/pages']).then(() => {
+              this.notifyService.successMessage("Đăng nhập thành công");
+            });
+           
+          }
+          
+          
+         
+        
+        }, error => {
+          console.log(error);
+        })
+
+          
+          
+          
           // confirm("Đăng nhập thành công");
 
             // var d = JSON.parse(res); //doi tu json sang object
@@ -123,11 +150,10 @@ export class LoginComponent implements OnInit {
         },
         
         error => {
-            // this.toastService.error({detail:"Login failed", duration: 3000})
-            // const currentUrl = this.router.url;
-            // this.router.navigate([currentUrl]);
-            this.notifyService.errorMessage(error.error.message);
-            console.log(error);
+           
+            console.log(error.error.error.details); 
+            this.notifyService.errorMessage(error.error.error.details);
+            
         }
         
         );

@@ -111,132 +111,131 @@ export class GiaiNganComponent implements OnInit {
 
 
 
-  // add this
-  chartOptions: Highcharts.Options = {
+  
+
+
+ 
+ 
+  
+  
+  chartOptions: Highcharts.Options ={
+     title: {
+    text: 'Chart Title',
+    style: {
+      fontSize: "2em"
+    }
+  },
     credits: {
-      enabled: false
+        enabled: false
+      },
+      
+      legend: {
+        itemStyle: {
+          fontSize: '1.5em'
+        },
+        title: {
+          style: {
+            fontSize: "1.5em"
+          }
+        }
+      },
+    chart: {
+      type: 'pie'
     },
-    tooltip: {
+     xAxis: {
+    categories: ['Dự án 2.1', 'Dự án 2.2'],
+    labels: {
+      style: {
+        fontSize: "1.5em"
+      }
+    }
+  },
+
+  yAxis: {
+    labels: {
       style: {
         fontSize: "1.5em"
       }
     },
-    legend: {
-      itemStyle: {
-        fontSize: '1.5em'
-      },
-      title: {
-        style: {
-          fontSize: "1.5em"
-        }
-      }
-    },
-
-    chart: {
-      type: 'column'
-    },
     title: {
-      text: 'Dự án 1',
+      text: 'Tỷ lệ phần trăm',
       style: {
-        fontSize: "2em"
-      }
-    },
-    xAxis: {
-      categories: ['Dự án 1.1', 'Dự án 1.2'],
-      labels: {
-        style: {
-          fontSize: "1.5em"
-        }
-      }
-    },
-    yAxis: {
-      labels: {
-        style: {
-          fontSize: "1.5em"
-        }
+        fontSize: "1.5em"
       },
-      title: {
-        text: 'Tỉ lệ phần trăm',
-        style: {
-          fontSize: "1.5em"
-        },
 
 
-      }
-    },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true,
-          style: {
-            fontSize: "1.5em",
+    }
+  },
 
-            fontWeight: 'bold',
-            maxFontSize: "1.5em"
-          }
-        },
-        label: {
-          style: {
-            fontSize: "1.5em",
-            maxFontSize: "1.5em"
-          }
-        },
-
-        grouping: false,
-        shadow: false,
-        borderWidth: 0,
-        borderRadius: 5,
-        colorByPoint: true,
-        colors: ['rgb(149, 158, 51)', 'rgb(133, 51, 158)'],
-
-
-      }
-    },
-    // colors: ['#ff0000', '#00ff00', '#0000ff'], // Đặt màu sắc cho từng cột dữ liệu
-    series: [{
-      name: 'Dự án',
-
-      label: {
-        style: {
-          fontSize: "1em"
-        }
-      },
+  plotOptions: {
+    pie: {
+      slicedOffset: 20,
       dataLabels: {
         enabled: true,
-        formatter: function() {
-            return this.y + '%';
-        },
         style: {
-          fontSize: "1em",
-          
-        }
-      },
+          fontSize: "1.2em"
+        },
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+      }
+    }
+    // column: {
+    //   dataLabels: {
+    //     enabled: true,
+    //     style: {
+    //       fontSize: "1.5em",
 
-      data: [100, 70],
-      type: 'column',
+    //       fontWeight: 'bold',
+    //       maxFontSize: "1.5em"
+    //     }
+    //   },
+    //   label: {
+    //     style: {
+    //       fontSize: "1.5em",
+    //       maxFontSize: "1.5em"
+    //     }
+    //   },
 
-      // color: this.getRandomColor()
-
-
-      // color: {
-      //   //setups the color for each column
-      //   linearGradient: {
-      //     x1: 0,
-      //     x2: 0,
-      //     y1: 0,
-      //     y2: 1
-      //   },
-      //   stops: [
-      //     [0, '#003399'],
-      //     [1, '#3366AA']
-      //   ]
-      // }
+    //   grouping: false,
+    //   shadow: false,
+    //   borderWidth: 0,
+    //   borderRadius: 5,
+    //   colorByPoint: true,
+    //   colors: ['rgb(158, 51, 63)', 'rgb(53, 51, 158)'],
 
 
+    // }
+  },
+
+  tooltip: {
+    headerFormat: '<span style="font-size:15px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} Hộ</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true,
+
+    style: {
+      fontSize: "1em"
+    }
+  },
+   
+    
+    series: [{
+      
+      type:'pie',
+      name: 'Series Name',
+      data: [
+        { name: 'Slice 1', y: 30},
+        { name: 'Slice 2', y: 20 },
+        { name: 'Slice 3', y: 50, selected: true }
+        //sliced: true, selected: true 
+      ]
     }]
-
-
   };
+
+
+
+
   chartOptions2: Highcharts.Options = {
     credits: {
       enabled: false
@@ -281,7 +280,7 @@ export class GiaiNganComponent implements OnInit {
         }
       },
       title: {
-        text: 'Tỉ lệ phần trăm',
+        text: 'Tỷ lệ phần trăm',
         style: {
           fontSize: "1.5em"
         },

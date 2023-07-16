@@ -241,263 +241,7 @@ export const listMenu =[
     ],
     defaultScreen: '/pages/home',
   },
-{
-  permission: [
-    
-    // {
-    //   screenName: 'Trang chủ',
-    //   routerLink: 'pages/home',
-    //   icon: 'home',
-    // },
-    {
-      screenName: 'Kế hoạch thực hiện',
-      routerLink: 'ke-hoach-thuc-hien',
-      icon: 'profile',
-    },
-    {
-      screenName: 'Phân bổ vốn',
-      routerLink: 'phan-bo-von',
-      icon: 'dollar',
-    },
-    {
-      screenName: 'Giải ngân',
-      routerLink: 'giai-ngan',
-      icon: 'trademark',
-    },
-    {
-      screenName: 'Báo cáo kết quả',
-      routerLink: 'bao-cao-ket-qua',
-      icon: 'bar-chart',
-    },
-    {
-      screenName: 'Quyết toán',
-      routerLink: 'quyet-toan',
-      icon: 'safety-certificate',
-    },
-    {
-      screenName: 'Báo cáo hình ảnh',
-      routerLink: '',
-      icon: 'file-image',
-      children: [
-        {
-          screenName: 'Báo cáo bằng hình ảnh',
-          routerLink: '',
-          icon: 'phone',
-          children: [
-            {
-              screenName: 'Lập báo cáo',
-              routerLink: 'bao-cao-hinh-anh/quan-ly-bao-cao',
-              icon: '',
-            },
-          
 
-          ]
-        },
-        // {
-        //   screenName: 'Báo cáo số liệu',
-        //   routerLink: 'chat-students',
-        //   icon: 'phone',
-        //   children: [
-        //     {
-        //       screenName: 'Lập báo cáo',
-        //       routerLink: 'chat-students',
-        //       icon: '',
-        //     },
-        //     {
-        //       screenName: 'Tổng hợp báo cáo',
-        //       routerLink: 'chat-students',
-        //       icon: '',
-        //     },
-        //     {
-        //       screenName: 'In các báo cáo',
-        //       routerLink: 'chat-students',
-        //       icon: '',
-        //     },
-
-        //   ]
-        // },
-        // {
-        //   screenName: 'Báo cáo chỉ số',
-        //   routerLink: 'chat-students',
-        //   icon: 'phone',
-        //   children: [
-        //     {
-        //       screenName: 'Báo cáo chi tiết',
-        //       routerLink: 'chat-students',
-        //       icon: '',
-        //     },
-        //     {
-        //       screenName: 'Thống kê chỉ số',
-        //       routerLink: 'chat-students',
-        //       icon: '',
-        //     }
-
-        //   ]
-        // },
-        {
-          screenName: 'Thống kê báo cáo',
-          routerLink: 'chat-students',
-          icon: 'phone',
-          children: [
-            {
-              screenName: 'Thống kê số liệu',
-              routerLink: 'thong-ke-so-lieu',
-              icon: '',
-            },
-            {
-              screenName: 'Dashboard',
-              routerLink: 'chat-students',
-              icon: '',
-            },
-          ]
-        },
-
-      ]
-    },
-    
-    {
-      screenName: 'Dự án đầu tư',
-      routerLink: '',
-      icon: 'bank',
-      children: [
-        {
-          screenName: 'Kế hoạch vốn',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Dự án đầu tư',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Giải ngân vốn đầu tư',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Quyết toán dự án đầu tư',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-       
-
-      ]
-
-    },
-    {
-      screenName: 'Kinh phí sự nghiệp',
-      routerLink: '',
-      icon: 'dollar',
-      children: [
-        {
-          screenName: 'Kế hoạch vốn',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Nhiệm vụ',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Giải ngân kin phí sự nghiệp',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-        {
-          screenName: 'Quyết toán kinh phí sự nghiệp',
-          routerLink: 'ke-hoach-von',
-          icon: '',
-        },
-       
-
-      ]
-
-    },
-    // {
-    //   screenName: 'Báo cáo dự án',
-    //   routerLink: '',
-    //   icon: 'form',
-    //   children: [
-    //     {
-    //       screenName: 'Báo cáo dự án',
-    //       routerLink: '',
-    //       icon: '',
-    //     },
-    //     {
-    //       screenName: 'Báo cáo dự án theo đơn vị',
-    //       routerLink: '',
-    //       icon: '',
-    //     },
-    //     {
-    //       screenName: 'Báo cáo dự án theo đối tượng',
-    //       routerLink: '',
-    //       icon: '',
-    //     },
-    //     {
-    //       screenName: 'Báo cáo dự án theo đơn vị và đối tượng',
-    //       routerLink: '',
-    //       icon: '',
-    //     },
-    //     {
-    //       screenName: 'Báo cáo dự án theo đơn vị và đối tượng',
-    //       routerLink: '',
-    //       icon: '',
-    //     },
-
-    //   ]
-
-    // },
-    
-    {
-      screenName: 'Báo cáo dự án',
-      routerLink: '',
-      icon: 'form',
-      
-    },
-    {
-      screenName: 'Báo cáo tổng hợp',
-      routerLink: 'bao-cao-tong-hop',
-      icon: 'diff',
-      
-    },
-    
-    {
-      screenName: 'Quản lý đối tượng',
-      routerLink: 'quan-ly-doi-tuong',
-      icon: 'user',
-      
-    },
-    {
-      screenName: 'Quản lý thông báo chung',
-      routerLink: 'quan-ly-thong-bao',
-      icon: 'bell',
-      
-    },
-    {
-      screenName: 'Gán người dùng về ĐVHC',
-      routerLink: 'gan-nguoi-dung-dvhc',
-      icon: 'user-add',
-      
-    },
-    {
-      screenName: 'Quản lý log',
-      routerLink: 'logs',
-      icon: 'tool',
-      
-    },
-    {
-      screenName: 'Quản lý cấu hình',
-      routerLink: 'configs',
-      icon: 'setting',
-      
-    },
-    
-
-  ],
-  defaultScreen: '/pages/home',
-},
 {
   permission: [
     
@@ -718,6 +462,147 @@ export const listMenu =[
       icon: 'user-add',
       
     },
+    {
+      screenName: 'Quản lý log',
+      routerLink: 'logs',
+      icon: 'tool',
+      
+    },
+    {
+      screenName: 'Quản lý cấu hình',
+      routerLink: 'configs',
+      icon: 'setting',
+      
+    },
+    
+
+  ],
+  defaultScreen: '/pages/home',
+},
+{
+  permission: [
+    
+    // {
+    //   screenName: 'Trang chủ',
+    //   routerLink: 'pages/home',
+    //   icon: 'home',
+    // },
+    {
+      screenName: 'Kế hoạch thực hiện',
+      routerLink: 'ke-hoach-thuc-hien',
+      icon: 'profile',
+    },
+    {
+      screenName: 'Phân bổ vốn',
+      routerLink: 'phan-bo-von',
+      icon: 'dollar',
+    },
+    {
+      screenName: 'Giải ngân',
+      routerLink: 'giai-ngan',
+      icon: 'trademark',
+    },
+    {
+      screenName: 'Báo cáo kết quả',
+      routerLink: 'bao-cao-ket-qua',
+      icon: 'bar-chart',
+    },
+    {
+      screenName: 'Quyết toán',
+      routerLink: 'quyet-toan',
+      icon: 'safety-certificate',
+    },
+    {
+      screenName: 'Báo cáo hình ảnh',
+      routerLink: '',
+      icon: 'file-image',
+      children: [
+        {
+          screenName: 'Báo cáo bằng hình ảnh',
+          routerLink: '',
+          icon: 'phone',
+          children: [
+            {
+              screenName: 'Lập báo cáo',
+              routerLink: 'bao-cao-hinh-anh/quan-ly-bao-cao',
+              icon: '',
+            },
+          
+
+          ]
+        },
+        // {
+        //   screenName: 'Báo cáo số liệu',
+        //   routerLink: 'chat-students',
+        //   icon: 'phone',
+        //   children: [
+        //     {
+        //       screenName: 'Lập báo cáo',
+        //       routerLink: 'chat-students',
+        //       icon: '',
+        //     },
+        //     {
+        //       screenName: 'Tổng hợp báo cáo',
+        //       routerLink: 'chat-students',
+        //       icon: '',
+        //     },
+        //     {
+        //       screenName: 'In các báo cáo',
+        //       routerLink: 'chat-students',
+        //       icon: '',
+        //     },
+
+        //   ]
+        // },
+        // {
+        //   screenName: 'Báo cáo chỉ số',
+        //   routerLink: 'chat-students',
+        //   icon: 'phone',
+        //   children: [
+        //     {
+        //       screenName: 'Báo cáo chi tiết',
+        //       routerLink: 'chat-students',
+        //       icon: '',
+        //     },
+        //     {
+        //       screenName: 'Thống kê chỉ số',
+        //       routerLink: 'chat-students',
+        //       icon: '',
+        //     }
+
+        //   ]
+        // },
+        {
+          screenName: 'Thống kê báo cáo',
+          routerLink: 'chat-students',
+          icon: 'phone',
+          children: [
+            {
+              screenName: 'Thống kê số liệu',
+              routerLink: 'thong-ke-so-lieu',
+              icon: '',
+            },
+            {
+              screenName: 'Dashboard',
+              routerLink: 'chat-students',
+              icon: '',
+            },
+          ]
+        },
+
+      ]
+    },
+    
+
+    
+   
+    {
+      screenName: 'Quản lý thông báo chung',
+      routerLink: 'quan-ly-thong-bao',
+      icon: 'bell',
+      
+    },
+    
     {
       screenName: 'Quản lý log',
       routerLink: 'logs',

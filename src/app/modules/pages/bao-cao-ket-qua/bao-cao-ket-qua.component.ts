@@ -116,9 +116,37 @@ export class BaoCaoKetQuaComponent implements OnInit {
     credits: {
       enabled: false
     },
-    tooltip: {
+    yAxis: {
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      },
+      title: {
+        text: 'Đơn vị tính: Hộ',
+        style: {
+          fontSize: "1.5em"
+        },
+
+
+      }
+    },
+    title: {
+      text: 'Dự án 1: Hỗ trợ đất ở',
       style: {
-        fontSize: "1.5em"
+        fontSize: "2em"
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} Hộ</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true,
+
+      style: {
+        fontSize: "1em"
       }
     },
     legend: {
@@ -131,109 +159,26 @@ export class BaoCaoKetQuaComponent implements OnInit {
         }
       }
     },
-
     chart: {
       type: 'column'
     },
-    title: {
-      text: 'Dự án 1',
-      style: {
-        fontSize: "2em"
-      }
-    },
+
     xAxis: {
-      categories: ['Dự án 1.1', 'Dự án 1.2', 'Dự án 1.3', 'Dự án 1.4', 'Dự án 1.5'],
+      categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo','Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
       labels: {
         style: {
           fontSize: "1.5em"
         }
       }
     },
-    yAxis: {
-      labels: {
-        style: {
-          fontSize: "1.5em"
-        }
-      },
-      title: {
-        text: 'Phần trăm',
-        style: {
-          fontSize: "1.5em"
-        },
-
-
-      }
-    },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true,
-          style: {
-            fontSize: "1.5em",
-
-            fontWeight: 'bold',
-            maxFontSize: "1.5em"
-          }
-        },
-        label: {
-          style: {
-            fontSize: "1.5em",
-            maxFontSize: "1.5em"
-          }
-        },
-
-        grouping: false,
-        shadow: false,
-        borderWidth: 0,
-        borderRadius: 5,
-        colorByPoint: true,
-        colors: ['rgb(75, 139, 242)', 'rgb( 158, 163, 160)', 'rgb( 181, 137, 105)', 'rgb( 115, 70, 110)', 'rgb( 179, 48, 68)']
-
-
-      }
-    },
-    // colors: ['#ff0000', '#00ff00', '#0000ff'], // Đặt màu sắc cho từng cột dữ liệu
+    // colors: ['red'],
     series: [{
-      name: 'Dự án',
-
-      label: {
-        style: {
-          fontSize: "1em"
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function() {
-            return this.y + '%';
-        },
-        style: {
-          fontSize: "1em",
-          
-        }
-      },
-
-      data: [100, 70, 12, 55, 85],
       type: 'column',
-
-      // color: this.getRandomColor()
-
-
-      // color: {
-      //   //setups the color for each column
-      //   linearGradient: {
-      //     x1: 0,
-      //     x2: 0,
-      //     y1: 0,
-      //     y2: 1
-      //   },
-      //   stops: [
-      //     [0, '#003399'],
-      //     [1, '#3366AA']
-      //   ]
-      // }
+      name: 'Số hộ nghèo dân tộc thiểu số',
+      data: [400, 600, 800]
+    },]
 
 
-    }]
 
 
   };
@@ -241,9 +186,37 @@ export class BaoCaoKetQuaComponent implements OnInit {
     credits: {
       enabled: false
     },
-    tooltip: {
+    yAxis: {
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      },
+      title: {
+        text: 'Đơn vị tính: %',
+        style: {
+          fontSize: "1.5em"
+        },
+
+
+      }
+    },
+    title: {
+      text: 'Dự án 1: Hỗ trợ đất ở',
       style: {
-        fontSize: "1.5em"
+        fontSize: "2em"
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true,
+
+      style: {
+        fontSize: "1em"
       }
     },
     legend: {
@@ -256,23 +229,33 @@ export class BaoCaoKetQuaComponent implements OnInit {
         }
       }
     },
-
     chart: {
       type: 'column'
     },
-    title: {
-      text: 'Dự án 2',
-      style: {
-        fontSize: "2em"
-      }
-    },
+
     xAxis: {
-      categories: ['Dự án 2.1', 'Dự án 2.2', 'Dự án 2.3', 'Dự án 2.4', 'Dự án 2.5'],
+      categories: ['Tỷ lệ (%) thực hiện KH năm', 'Tỷ lệ (%) thực hiện KH cả giai đoạn'],
       labels: {
         style: {
           fontSize: "1.5em"
         }
       }
+    },
+    colors: ['#198754'],
+    series: [{
+      type: 'column',
+      name: 'Số hộ nghèo dân tộc thiểu số',
+      data: [300, 54]
+    },]
+
+
+
+
+  };
+
+  chartOptions3: Highcharts.Options = {
+    credits: {
+      enabled: false
     },
     yAxis: {
       labels: {
@@ -281,7 +264,7 @@ export class BaoCaoKetQuaComponent implements OnInit {
         }
       },
       title: {
-        text: 'Phần trăm',
+        text: 'Đơn vị tính: Hộ',
         style: {
           fontSize: "1.5em"
         },
@@ -289,73 +272,124 @@ export class BaoCaoKetQuaComponent implements OnInit {
 
       }
     },
-    plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true,
-          style: {
-            fontSize: "1.5em",
+    title: {
+      text: 'Dự án 1: Hỗ trợ đất ở',
+      style: {
+        fontSize: "2em"
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} Hộ</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true,
 
-            fontWeight: 'bold',
-            maxFontSize: "1.5em"
-          }
-        },
-        label: {
-          style: {
-            fontSize: "1.5em",
-            maxFontSize: "1.5em"
-          }
-        },
+      style: {
+        fontSize: "1em"
+      }
+    },
+    legend: {
+      itemStyle: {
+        fontSize: '1.5em'
+      },
+      title: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    chart: {
+      type: 'column'
+    },
 
-        grouping: false,
-        shadow: false,
-        borderWidth: 0,
-        borderRadius: 5,
-        colorByPoint: true,
-        colors: ['rgb(99, 77, 191)', 'rgb( 33, 217, 39)', 'rgb( 209, 209, 75)', 'rgb( 209, 100, 75)', 'rgb( 69, 175, 196)']
+    xAxis: {
+      categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo','Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    colors: ['#bf5a43'],
+    series: [{
+      type: 'column',
+      name: 'Số hộ nghèo dân tộc Kinh',
+      data: [450, 680, 820]
+    },]
+
+
+
+
+  };
+  chartOptions4: Highcharts.Options = {
+    credits: {
+      enabled: false
+    },
+    yAxis: {
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      },
+      title: {
+        text: 'Đơn vị tính: %',
+        style: {
+          fontSize: "1.5em"
+        },
 
 
       }
     },
-    // colors: ['#ff0000', '#00ff00', '#0000ff'], // Đặt màu sắc cho từng cột dữ liệu
+    title: {
+      text: 'Dự án 1: Hỗ trợ đất ở',
+      style: {
+        fontSize: "2em"
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true,
+
+      style: {
+        fontSize: "1em"
+      }
+    },
+    legend: {
+      itemStyle: {
+        fontSize: '1.5em'
+      },
+      title: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    chart: {
+      type: 'column'
+    },
+
+    xAxis: {
+      categories: ['Tỷ lệ (%) thực hiện KH năm', 'Tỷ lệ (%) thực hiện KH cả giai đoạn'],
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    colors: ['#43bfb5'],
     series: [{
-      name: 'Dự án',
-
-      label: {
-        style: {
-          fontSize: "1em"
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function() {
-            return this.y + '%';
-        },
-        style: {
-          fontSize: "1em",
-          
-        }
-      },
-
-      data: [100, 70, 12, 55, 85],
       type: 'column',
-      color: this.getRandomColor()
-      // color: {
-      //   //setups the color for each column
-      //   linearGradient: {
-      //     x1: 0,
-      //     x2: 0,
-      //     y1: 0,
-      //     y2: 1
-      //   },
-      //   stops: [
-      //     [0, '#003399'],
-      //     [1, '#3366AA']
-      //   ]
-      // }
+      name: 'Số hộ nghèo dân tộc Kinh',
+      data: [215, 98.4]
+    },]
 
 
-    }]
 
 
   };

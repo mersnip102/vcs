@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { listMenu } from 'src/app/shared/router';
-
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

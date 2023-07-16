@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 //Ng-Zorro
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -61,6 +61,7 @@ import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
 import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.component';
 import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
+import { ApiInterceptor } from 'src/app/core/interceptor/api.interceptor';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -142,6 +143,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
    
     
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }]
+  providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons },
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }]
 })
 export class PagesModule { }

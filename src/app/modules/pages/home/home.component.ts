@@ -128,7 +128,7 @@ export class HomeComponent {
       },
       title: {
         style: {
-          fontSize: "1.5em"
+          fontSize: "1.5em",
         }
       }
     },
@@ -146,7 +146,7 @@ export class HomeComponent {
       categories: ['Dự án 1.1', 'Dự án 1.2', 'Dự án 1.3', 'Dự án 1.4', 'Dự án 1.5'],
       labels: {
         style: {
-          fontSize: "1.5em"
+          fontSize: "1.5em",
         }
       }
     },
@@ -173,13 +173,13 @@ export class HomeComponent {
             fontSize: "1.5em",
 
             fontWeight: 'bold',
-            maxFontSize: "1.5em"
+            maxFontSize: "1.5em",
           }
         },
         label: {
           style: {
             fontSize: "1.5em",
-            maxFontSize: "1.5em"
+            maxFontSize: "1.5em",
           }
         },
 
@@ -199,12 +199,13 @@ export class HomeComponent {
 
       label: {
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
+          color: 'red'
         }
       },
       dataLabels: {
         style: {
-          fontSize: "1em"
+          fontSize: "1em",
         }
       },
 

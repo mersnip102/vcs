@@ -14,12 +14,27 @@ export enum TypeIcon {
   Success = 'success',
 }
 export const TOKEN = 'TOKEN';
-export enum RoleNumber {
-  user1,
-  user2,
-  // admissions,
-  // admissionsManager
-}
+// export enum RoleNumber {
+//   user1,
+//   user2,
+//   // admissions,
+//   // admissionsManager
+// }
+
+// export enum RoleNumber {
+//   BC,
+//   XEMBC,
+//   DUYETBC,
+//   ADMIN
+//   // admissionsManager
+// }
+
+export const RoleNumber: any = [ {name: 'Nhóm xem báo cáo', value: 0},
+{name: 'XEMBC', value: 1},
+{name: 'DUYETBC', value: 2},
+{name: 'Admin', value: 3}]
+
+
 
 export const CURRENT_USER = 'currentUser';
 export const SECRET_KEY = 'PAKN_CAT@2023$';

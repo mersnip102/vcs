@@ -2,23 +2,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, concatMap, switchMap, tap } from 'rxjs';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment, environment2 } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly apiUrl = environment.apiUrl; // URL API được lấy từ environment
+  private readonly apiUrl = environment2.apiUrl; // URL API được lấy từ environment
 
   // private readonly apiUrl = 'http://localhost:3000';
   private readonly accessTokenKey = 'accessToken'; 
-  private readonly refreshTokenKey = 'refreshToken';
+  private readonly refreshTokenKey = 'encryptedAccessToken';
   roleUser: Observable<number>;
   //role-number
-  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(4);
+  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(2);
   // roleUserSubject!: BehaviorSubject<number>
 
   constructor( private router: Router, private http: HttpClient, private route: ActivatedRoute, private localStoreService: LocalStorageService) {
@@ -28,29 +28,46 @@ export class AuthService {
   }
 
   setValueRole(value: number) {
+    console.log(value)
     this.roleUserSubject.next(value);
   }
 
 
   login(username: string, password: string): Observable<any> {
     console.log(username, password);
-    return this.http.post(`${this.apiUrl}/login`, { username, password }).pipe(
+    return this.http.post(`${this.apiUrl}/TokenAuth/Authenticate`, {userNameOrEmailAddress: username, password: password }, {responseType: 'json'}).pipe(
+      
       tap((tokens: any) => {
         
-        this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.accessToken);
-        this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.refreshToken);
+        
+        this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.result.accessToken);
+        this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.result.encryptedAccessToken);
+        this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.result.userId);
         
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(this.localStoreService.getLocalStorageItemAsJSON(this.accessTokenKey));
        
-        this.setValueRole(decodedToken.role);
-        console.log(decodedToken.role);
+        // this.setValueRole(decodedToken.role);
+
+        console.log(decodedToken)
+
+        
+        // this.roleUserSubject.next(decodedToken.role);
+        // this.roleUserSubject.next(1);
+        // this.roleUserSubject.next(2);
+        
+        
         
         
         // this.setToken(tokens.access_token);
         // this.setRefreshToken(tokens.refreshToken);
       })
     );
+  }
+
+  getRoleUser(userId: any): Observable<any> {
+   
+    return this.http.get(`${this.apiUrl}/services/app/Role/GetRoleByUserId?userId=${userId}`, {responseType: 'json'});
   }
 
   getToken(): any {

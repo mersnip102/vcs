@@ -32,3 +32,10 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000' // URL API của ứng dụng
 };
+
+
+export const environment2 = {
+  production: false,
+  apiUrl: 'http://localhost:8081/api' // URL API của ứng dụng
+};
+

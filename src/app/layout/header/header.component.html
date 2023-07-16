@@ -14,9 +14,9 @@
         <ul>
             
             <!-- <li class="header-icon dib"><a href="#search"><i class="ti-search"></i></a></li> -->
-            <li class="header-icon dib text-primary">{{ currentDate }}</li>
+            <li class="header-icon dib"><span class="text-primary">{{ currentDate }}</span></li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="thongBao" class="header-icon dib"><i
-                    class="ti-bell"><span> Thông báo</span></i>
+                    class="ti-bell"><span class="badge badge-danger pull-right m-l-3">9+</span></i>
 
                 <div class="drop-down">
                     <nz-dropdown-menu #thongBao="nzDropdownMenu">
@@ -83,7 +83,7 @@
 
             </li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="nhacViec" class="header-icon dib"><i
-                    class="ti-bag"><span> Nhắc việc</span></i>
+                    class="ti-bag"><span class="badge badge-danger pull-right m-l-3">5</span></i>
                 
                 <div class="drop-down">
                     <nz-dropdown-menu #nhacViec="nzDropdownMenu">

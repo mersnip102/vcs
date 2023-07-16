@@ -113,33 +113,8 @@ export class PhanBoVonComponent implements OnInit {
 
   // add this
   chartOptions: Highcharts.Options = {
-    chart: {
-      type: 'column'
-    },
-    title: {
-      text: 'Dự án 1',
-    style: {
-      fontSize: "2em",
-      textAlign: 'center'
-    }
-    },
-    xAxis: {
-      labels: {
-        style: {
-          fontSize: "1.5em"
-        }
-      },
-      categories: ['Dự án 1.1', 'Dự án 1.2'],
-      crosshair: true,
-      plotLines: [{
-           
-            value: 0.5,
-            width: 3,
-            label: {
-                text: '',
-                rotation: 90
-            }
-        }],
+    credits: {
+      enabled: false
     },
     yAxis: {
       labels: {
@@ -148,267 +123,72 @@ export class PhanBoVonComponent implements OnInit {
         }
       },
       title: {
-        text: 'ĐVT: Tỷ đồng',
+        text: 'Đơn vị tính: Dự án',
         style: {
           fontSize: "1.5em"
         },
-  
-  
-      },
-      min: 0,
-     
-     
-      // crosshair: {
-      //   width: 2,
-      //   color: 'blue',
-  
-      // },
 
 
-      // crosshair: true,
-      //   plotLines: [{
-             
-      //         value: 1.5,
-      //         width: 3,
-      //         label: {
-      //             text: '',
-      //             // rotation: 90
-      //         }
-      //     }],
+      }
+    },
+    title: {
+      text: 'SỐ LƯỢNG DỰ ÁN MỚI VÀ DỰ ÁN CHUYỂN TIẾP THUỘC CHƯƠNG TRÌNH',
+      style: {
+        fontSize: "2em"
+      }
     },
     tooltip: {
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
       pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        '<td style="padding:0"><b>{point.y:.1f} Dự án</b></td></tr>',
       footerFormat: '</table>',
       shared: true,
       useHTML: true,
-      
-    style: {
-      fontSize: "1em"
-    }
-    },
-    plotOptions: {
-     
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0,
-        dataLabels: {
-          enabled: true,
-          style: {
-            fontSize: "1.5em",
-  
-            fontWeight: 'bold',
-            maxFontSize: "1.5em"
-          }
-        },
-        label: {
-          style: {
-            fontSize: "1.5em",
-            maxFontSize: "1.5em"
-          }
-        },
-  
-       
-       
-        
-        
-  
-  
-      }
-      
-    },
-    series: [{
-      type: 'column',
-      name: 'Dữ liệu 1',
-      data: [1000,550],
-      
-      color: 'rgba(165,170,217,1)'
-    }, {
-      type: 'column',
-      name: 'Dữ liệu 2',
-      data: [580,400],
-      color: 'rgba(126,86,134,.9)'
-    }],
 
-    credits: {
-    enabled: false
-  },
-  
-  legend: {
-    itemStyle: {
-      fontSize: '1.5em'
-    },
-    title: {
       style: {
-        fontSize: "1.5em"
+        fontSize: "1em"
       }
-    }
-  },
+    },
+    legend: {
+      itemStyle: {
+        fontSize: '1.5em'
+      },
+      title: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    chart: {
+      type: 'column'
+    },
 
+    xAxis: {
+      categories: ['Toàn quốc', 'Trung ương quản lý','Tỉnh quản lý', 'Huyện quản lý', 'Xã quản lý'],
+      labels: {
+        style: {
+          fontSize: "1.5em"
+        }
+      }
+    },
+    // colors: ['red'],
+    series: [
+      {
+        type: 'column',
+        name: 'Tổng số dự án',
+        data: [300, 600, 800, 300,155]
+      },{
+      type: 'column',
+      name: 'Dự án mới',
+      data: [400, 653, 200,234, 675]
+    },
+    {
+      type: 'column',
+      name: 'Dự án chuyển tiếp',
+      data: [500, 400, 800, 525, 986]
+    },
+    ]
 
- 
-  
-  
-  
-
-
-  // credits: {
-  //   enabled: false
-  // },
-  
-  // legend: {
-  //   itemStyle: {
-  //     fontSize: '1.5em'
-  //   },
-  //   title: {
-  //     style: {
-  //       fontSize: "1.5em"
-  //     }
-  //   }
-  // },
-
-  // chart: {
-  //   type: 'column'
-  // },
-  // title: {
-  //   text: 'Dự án 1',
-  //   style: {
-  //     fontSize: "2em"
-  //   }
-  // },
-  // xAxis: {
-   
-  //   labels: {
-  //     style: {
-  //       fontSize: "1.5em"
-  //     }
-  //   },
-  //   // crosshair: {
-  //   //   width: 2,
-  //   //   color: 'blue',
-
-  //   // },
-  //   crosshair: true,
-  //     plotLines: [{
-           
-  //           value: 1.5,
-  //           width: 3,
-  //           label: {
-  //               text: '',
-  //               // rotation: 90
-  //           }
-  //       }],
-  // },
-  // yAxis: {
-  //   labels: {
-  //     style: {
-  //       fontSize: "1.5em"
-  //     }
-  //   },
-  //   title: {
-  //     text: 'Số lượng dự án',
-  //     style: {
-  //       fontSize: "1.5em"
-  //     },
-
-
-  //   }
-  // },
-  // plotOptions: {
-    
-  //   column: {
-  //     pointPadding: 0.2,
-  //     borderWidth: 0,
-  //     dataLabels: {
-  //       enabled: true,
-  //       style: {
-  //         fontSize: "1.5em",
-
-  //         fontWeight: 'bold',
-  //         maxFontSize: "1.5em"
-  //       }
-  //     },
-  //     label: {
-  //       style: {
-  //         fontSize: "1.5em",
-  //         maxFontSize: "1.5em"
-  //       }
-  //     },
-
-  //     grouping: false,
-  //     shadow: false,
-     
-  //     borderRadius: 5,
-  //     colorByPoint: true,
-     
-      
-      
-
-
-  //   }
-  // },
-  // tooltip: {
-  //   headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-  //   pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-  //     '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-  //   footerFormat: '</table>',
-  //   shared: true,
-  //   useHTML: true,
-  //   style: {
-  //     fontSize: "1.5em"
-  //   }
-  // },
-  // // colors: ['#ff0000', '#00ff00', '#0000ff'], // Đặt màu sắc cho từng cột dữ liệu
-  // // series: [{
-  // //   name: 'Dự án',
-
-  // //   label: {
-  // //     style: {
-  // //       fontSize: "1em"
-  // //     }
-  // //   },
-  // //   dataLabels: {
-  // //     style: {
-  // //       fontSize: "1em"
-  // //     }
-  // //   },
-
-
-  // //   data: [1000, 700, 1200, 550],
-  // //   type: 'column',
-
-  // //   // color: this.getRandomColor()
-
-
-  // //   // color: {
-  // //   //   //setups the color for each column
-  // //   //   linearGradient: {
-  // //   //     x1: 0,
-  // //   //     x2: 0,
-  // //   //     y1: 0,
-  // //   //     y2: 1
-  // //   //   },
-  // //   //   stops: [
-  // //   //     [0, '#003399'],
-  // //   //     [1, '#3366AA']
-  // //   //   ]
-  // //   // }
-
-
-  // // }]
-
-  // series: [{
-  //   type: 'column',
-  //   name: 'Dữ liệu 1',
-  //   data: [49.9, 71.5],
-  //   color: 'rgba(165,170,217,1)'
-  // }, {
-  //   type: 'column',
-  //   name: 'Dữ liệu 2',
-  //   data: [83.6, 78.8],
-  //   color: 'rgba(126,86,134,.9)'
-  // }]
 
 
 
