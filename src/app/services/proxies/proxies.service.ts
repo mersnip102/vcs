@@ -1,17 +1,17 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable, concatMap, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { TT01DataDTO } from 'src/app/models/tt01DataDto.model';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
-import { environment, environment2 } from 'src/environments/environment.prod';
+import { reportAPI } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class ProxiesService {
 
-  private readonly apiUrl = environment2.apiUrl; // URL API được lấy từ environment
+  private readonly apiUrl = reportAPI.apiUrl; // URL API được lấy từ environment
 
   // private readonly apiUrl = 'http://localhost:3000';
   private readonly accessTokenKey = 'accessToken'; 
@@ -33,44 +33,26 @@ export class AuthService {
   }
 
 
-  login(username: string, password: string): Observable<any> {
-    console.log(username, password);
-    // const check = JSON.stringify(JSON.stringify({"PrintObjectID":"01_DA1","PeriodOfTime2":{"TuNgay":"01/15/2022","DenNgay":"01/15/2023"}}))
-    // return this.http.post('http://192.168.1.10:3032/api/v1/reports/r1/01_DA1/data/unauthorized', check,{
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
+  DA1_01(PrintObjectID: string, TuNgay?: string, DenNgay?: string): Observable<any> {
+    const query = JSON.stringify(JSON.stringify({
+      "PrintObjectID" : PrintObjectID, // giống reportCode
+      "PeriodOfTime2": TuNgay && DenNgay ? {
+        "TuNgay": TuNgay,
+        "DenNgay": DenNgay,
+        "PeriodType": "DD"
+      } : {}
+    }))
+    
+    return this.http.post<TT01DataDTO>(`${this.apiUrl}/r1/${PrintObjectID}/data/unauthorized`, query,{
+      headers: {
+        "Content-Type": "application/json"
+      }, responseType: 'json'
       
-    // })
-    return this.http.post(`${this.apiUrl}/TokenAuth/Authenticate`, {userNameOrEmailAddress: username, password: password }, {responseType: 'json'}).pipe(
-      
-      tap((tokens: any) => {
-        
-        
-        this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.result.accessToken);
-        this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.result.encryptedAccessToken);
-        this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.result.userId);
-        
-        const helper = new JwtHelperService();
-        const decodedToken = helper.decodeToken(this.localStoreService.getLocalStorageItemAsJSON(this.accessTokenKey));
-       
-        // this.setValueRole(decodedToken.role);
+    },)
 
-        console.log(decodedToken)
-
-        
-        // this.roleUserSubject.next(decodedToken.role);
-        // this.roleUserSubject.next(1);
-        // this.roleUserSubject.next(2);
-        
-        
-        
-        
-        // this.setToken(tokens.access_token);
-        // this.setRefreshToken(tokens.refreshToken);
-      })
-    );
   }
+
+  
 
   getRoleUser(userId: any): Observable<any> {
    
@@ -122,3 +104,4 @@ export class AuthService {
     
   }
 }
+

@@ -57,8 +57,8 @@ export class TT01DataDTO {
     private _mnChiTieuKHNamGD: number;
     private _mnTyLeThucHienGiaiDoan: number;
     private _ntGhiChu: string;
-    constructor(nsMs: string, nsTT: string, nsChiSo: string, nsDVT: string, nsPhanTo: string, nsDB: string, mnSoLieuTH: number, mnSoLieuLuyKe: number, mnChiTieuKHNamBC: number, mnTyLeKHNam: number, mnLuyKeThucHien: number, mnChiTieuKHNamGD: number, mnTyLeThucHienGiaiDoan: number, ntGhiChu: string) {
-        this._nsMS = nsMs;
+    constructor(nsMS: string, nsTT: string, nsChiSo: string, nsDVT: string, nsPhanTo: string, nsDB: string, mnSoLieuTH: number, mnSoLieuLuyKe: number, mnChiTieuKHNamBC: number, mnTyLeKHNam: number, mnLuyKeThucHien: number, mnChiTieuKHNamGD: number, mnTyLeThucHienGiaiDoan: number, ntGhiChu: string) {
+        this._nsMS = nsMS;
         this._nsTT = nsTT;
         this._nsChiSo = nsChiSo;
         this._nsDVT = nsDVT;

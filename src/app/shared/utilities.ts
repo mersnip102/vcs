@@ -1,3 +1,6 @@
+import { ReportNode } from "../models/ReportNode.model";
+import * as _ from "lodash";
+
 export const EMPTY = '';
 export const COLOR_BTN_CANCEL = '#ffdfd8';
 export const COLOR_BTN_CONFIRM = '#008bd4';
@@ -38,3 +41,24 @@ export const RoleNumber: any = [ {name: 'Nhóm xem báo cáo', value: 0},
 
 export const CURRENT_USER = 'currentUser';
 export const SECRET_KEY = 'PAKN_CAT@2023$';
+
+
+
+export function detailChild(nodes: any[]): any {
+ 
+nodes = nodes.map(node => ({ name: node.toString() }));
+
+  let projectMap: any = _.groupBy(nodes, (node: ReportNode) => node.name.split('.')[0]);
+
+let detailLeavesMap: any = _.reduce(projectMap, (result: { [project: string]: ReportNode[] }, nodes: ReportNode[], project: string) => {
+
+
+const detailLeaves = _.filter(nodes, (node: ReportNode) => !_.some(nodes, (childNode: ReportNode) => childNode.name.startsWith(node.name + '.')));
+result[project] = detailLeaves;
+return result;
+},{});
+
+return detailLeavesMap;
+
+}
+

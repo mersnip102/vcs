@@ -1,5 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import { NzImageService } from 'ng-zorro-antd/image';
+import { map } from 'rxjs';
+import { TT01DataDTO } from 'src/app/models/tt01DataDto.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { ProxiesService } from 'src/app/services/proxies/proxies.service';
+import { DataService } from 'src/app/shared/data.service';
+import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
+import { detailChild } from 'src/app/shared/utilities';
+import { NotifyService } from 'src/app/shared/utils/notify';
 
 @Component({
   selector: 'app-ke-hoach-thuc-hien',
@@ -7,6 +19,31 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
 export class KeHoachThucHienComponent implements OnInit {
+  roleUserCurrent!: number;
+  constructor(
+    
+    private dataService: DataService,
+    private fb: FormBuilder, private authService: AuthService,
+    private localStorageSv: LocalStorageService,
+    private renderer2: Renderer2,
+    private cdr: ChangeDetectorRef,
+    private nzImageService: NzImageService,
+    private http: HttpClient,
+    private apiReport: ProxiesService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private notifyService: NotifyService) {
+    this.authService.roleUser.subscribe(res => {
+      this.roleUserCurrent = res;
+
+
+    });
+
+    
+
+
+  }
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -65,9 +102,73 @@ export class KeHoachThucHienComponent implements OnInit {
     }
     return color;
   }
+  isSpinning = false;
+
+  getDA1_01Data(): any {
+    this.isSpinning = true;
+      // const data = { status: this.status, idBaoCao: this.selectedReportId };
+      this.apiReport.DA1_01('01_DA1').pipe( 
+        map((response: any) => response.result),
+        map(data => data.map((d: any) => new TT01DataDTO(
+          d.nsMS,
+          d.nsTT,
+          d.nsChiSo,
+          d.nsDVT,
+          d.nsPhanTo,
+          d.nsDB,
+          d.mnSoLieuTH,
+          d.mnSoLieuLuyKe,
+          d.mnChiTieuKHNamBC,
+          d.mnTyLeKHNam,
+          d.mnLuyKeThucHien,
+          d.mnChiTieuKHNamGD,
+          d.mnTyLeThucHienGiaiDoan,
+          d.ntGhiChu
+         
+          
+        )))
+     
+    )
+        .subscribe(
+          (data: TT01DataDTO[]) => {
+            const temp = data;
+            const  nsTTArray = temp.map((item: any) => {
+              return item.nsTT;
+            })
+            console.log(nsTTArray);
+            this.isSpinning = false;
+
+            
+
+
+            
+
+            console.log(detailChild(nsTTArray));
+            
+            
+            // this.notifyService.successMessage("Lấy báo cáo oke").then(
+            //   () => {
+
+            //     // this.ngOnInit();
+
+            //   }
+            // );
+
+
+            // TODO: Update the list of users
+          },
+          error => {
+            console.error(error);
+            this.isSpinning = false;
+          }
+        );
+    
+
+  }
 
   ngOnInit() {
     // assuming you have an array of data called 'data'
+    this.getDA1_01Data()
     for (let i = 0; i < 3; i++) {
       this.colors.push(this.getRandomColor());
     }
@@ -431,7 +532,7 @@ export class KeHoachThucHienComponent implements OnInit {
 
 
 
-  
+
   chartOptions5: Highcharts.Options = {
     credits: {
       enabled: false

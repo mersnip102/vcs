@@ -418,7 +418,7 @@ export class QuyetToanComponent implements OnInit {
       type: 'column'
     },
     title: {
-      text: 'Dự án 1',
+      text: 'Dự án 2',
     style: {
       fontSize: "2em",
       textAlign: 'center'
@@ -528,7 +528,7 @@ export class QuyetToanComponent implements OnInit {
     }, {
       type: 'column',
       name: 'Vốn đã quyết toán',
-      data: [580,400],
+      data: [620,415],
       color: 'rgba(107, 199, 142)'
     }],
 

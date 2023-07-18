@@ -39,3 +39,10 @@ export const environment2 = {
   apiUrl: 'http://localhost:8081/api' // URL API của ứng dụng
 };
 
+
+export const reportAPI = {
+  production: false,
+  apiUrl: 'http://192.168.1.10:3032/api/v1/reports' // URL API của ứng dụng
+};
+
+

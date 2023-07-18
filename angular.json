@@ -55,6 +55,11 @@
               "src/assets/css/style.css"
             ],
             "scripts": [
+              "node_modules/highcharts/highcharts.js",
+  "node_modules/highcharts/modules/exporting.js",
+  "node_modules/highcharts/modules/export-data.js",
+  "node_modules/highcharts/modules/accessibility.js",
+  
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/lib/jquery.min.js",

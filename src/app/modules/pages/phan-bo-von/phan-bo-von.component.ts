@@ -176,7 +176,7 @@ export class PhanBoVonComponent implements OnInit {
       {
         type: 'column',
         name: 'Tổng số dự án',
-        data: [300, 600, 800, 300,155]
+        data: [610, 750, 950, 730,1100]
       },{
       type: 'column',
       name: 'Dự án mới',

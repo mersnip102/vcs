@@ -8,7 +8,11 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { NotifyService } from 'src/app/shared/utils/notify';
 import { RoleNumber } from 'src/app/shared/utilities';
+import * as _ from "lodash";
 
+interface ProjectNode {
+  name: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -86,15 +90,31 @@ export class LoginComponent implements OnInit {
     //     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     // })
 
+
+
+    
+
+
+
+
+
+
     phone?: any;
    
     login() {
+     
         
         this.authService.login(
             this.username,
             this.password,
         ).subscribe(async res => {
-          // console.log(res);
+        
+
+          
+
+       
+          
+              
 
             
         const helper = new JwtHelperService();
@@ -151,7 +171,7 @@ export class LoginComponent implements OnInit {
         
         error => {
            
-            console.log(error.error.error.details); 
+            console.log(error); 
             this.notifyService.errorMessage(error.error.error.details);
             
         }
