@@ -62,6 +62,7 @@ import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.compone
 import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 import { ApiInterceptor } from 'src/app/core/interceptor/api.interceptor';
+import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -89,6 +90,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     BaoCaoKetQuaComponent,
     QuyetToanComponent,
     ThongKeSoLieuComponent,
+    KeHoachThucHienDetailsComponent,
   ],
   imports: [
     LayoutModule,

@@ -48,7 +48,10 @@ export function detailChild(nodes: any[]): any {
  
 nodes = nodes.map(node => ({ name: node.toString() }));
 
-  let projectMap: any = _.groupBy(nodes, (node: ReportNode) => node.name.split('.')[0]);
+nodes = nodes.filter(node => node.name !== '');
+console.log(nodes);
+
+let projectMap: any = _.groupBy(nodes, (node: ReportNode) => node.name.split('.')[0]);
 
 let detailLeavesMap: any = _.reduce(projectMap, (result: { [project: string]: ReportNode[] }, nodes: ReportNode[], project: string) => {
 

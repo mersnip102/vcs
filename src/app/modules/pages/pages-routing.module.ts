@@ -20,6 +20,8 @@ import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
 import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.component';
 import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
+import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
+
 
 const routes: Routes = [
  
@@ -102,6 +104,7 @@ const routes: Routes = [
     path: 'thong-ke-so-lieu',
     component: ThongKeSoLieuComponent,
   },
+  { path: 'ke-hoach-thuc-hien/:id', component: KeHoachThucHienDetailsComponent},
 
   { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
   { path: 'nhac-viec', loadChildren: () => import('./nhac-viec/nhac-viec.module').then(m => m.NhacViecModule) }, 

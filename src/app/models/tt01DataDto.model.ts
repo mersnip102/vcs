@@ -57,7 +57,14 @@ export class TT01DataDTO {
     private _mnChiTieuKHNamGD: number;
     private _mnTyLeThucHienGiaiDoan: number;
     private _ntGhiChu: string;
-    constructor(nsMS: string, nsTT: string, nsChiSo: string, nsDVT: string, nsPhanTo: string, nsDB: string, mnSoLieuTH: number, mnSoLieuLuyKe: number, mnChiTieuKHNamBC: number, mnTyLeKHNam: number, mnLuyKeThucHien: number, mnChiTieuKHNamGD: number, mnTyLeThucHienGiaiDoan: number, ntGhiChu: string) {
+
+    // private _nsTTDuAn: string;
+    // private _nsChiSoDuAn: string;
+    
+    constructor(nsMS: string, nsTT: string, nsChiSo: string, nsDVT: string, nsPhanTo: string, nsDB: string, mnSoLieuTH: number, mnSoLieuLuyKe: number, mnChiTieuKHNamBC: number, mnTyLeKHNam: number, mnLuyKeThucHien: number, mnChiTieuKHNamGD: number, mnTyLeThucHienGiaiDoan: number, ntGhiChu: string
+        ,
+        // nsTTDuAn: string, nsChiSoDuAn: string
+        ) {
         this._nsMS = nsMS;
         this._nsTT = nsTT;
         this._nsChiSo = nsChiSo;
@@ -72,6 +79,8 @@ export class TT01DataDTO {
         this._mnChiTieuKHNamGD = mnChiTieuKHNamGD;
         this._mnTyLeThucHienGiaiDoan = mnTyLeThucHienGiaiDoan;
         this._ntGhiChu = ntGhiChu;
+        // this._nsTTDuAn = nsTTDuAn;
+        // this._nsChiSoDuAn = nsChiSoDuAn;
     }
     public get nsMS(): string {
         return this._nsMS;
@@ -157,6 +166,19 @@ export class TT01DataDTO {
     public set ntGhiChu(value: string) {
         this._ntGhiChu = value;
     }
+    // public get nsTTDuAn(): string {
+    //     return this._nsTTDuAn;
+    // }
+    // public set nsTTDuAn(value: string) {
+    //     this._nsTTDuAn = value;
+    // }
+    // public get nsChiSoDuAn(): string {
+    //     return this._nsChiSoDuAn;
+    // }
+    // public set nsChiSoDuAn(value: string) {
+    //     this._nsChiSoDuAn = value;
+    // }
+
 
 
 

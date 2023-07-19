@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
@@ -14,14 +14,14 @@ import { detailChild } from 'src/app/shared/utilities';
 import { NotifyService } from 'src/app/shared/utils/notify';
 
 @Component({
-  selector: 'app-ke-hoach-thuc-hien',
-  templateUrl: './ke-hoach-thuc-hien.component.html',
-  styleUrls: ['./ke-hoach-thuc-hien.component.css']
+  selector: 'app-ke-hoach-thuc-hien-details',
+  templateUrl: './ke-hoach-thuc-hien-details.component.html',
+  styleUrls: ['./ke-hoach-thuc-hien-details.component.css']
 })
-export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
+export class KeHoachThucHienDetailsComponent implements OnInit {
   roleUserCurrent!: number;
   constructor(
-
+   
     private dataService: DataService,
     private fb: FormBuilder, private authService: AuthService,
     private localStorageSv: LocalStorageService,
@@ -37,25 +37,19 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     this.authService.roleUser.subscribe(res => {
       this.roleUserCurrent = res;
 
+      
+
 
     });
 
+    
 
 
-
-  }
-  ngAfterViewInit(): void {
-    const panelBodyElements = document.getElementsByClassName('panel-body');
-    for (let i = 0; i < panelBodyElements.length; i++) {
-      panelBodyElements[i].addEventListener('click', (event) => {
-        this.router.navigate(['pages/ke-hoach-thuc-hien/01_DA1']);
-      });
-    }
   }
   isCollapsed = false;
 
   toggleCollapsed(): void {
-
+    
     this.isCollapsed = !this.isCollapsed;
   }
 
@@ -119,10 +113,10 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
   count = 1;
   startIndex = 1;
 
-  dataChart: any[] = [];
+   dataChart: any[] = [];
 
-  chart!: Highcharts.Chart;
-
+   chart!: Highcharts.Chart;
+   charts: any[] = [];
   getDA1_01Data(): any {
     // interval().subscribe(() => {
     //   // this.dataService.getData().subscribe(data => {
@@ -131,182 +125,205 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     // });
     this.isSpinning = true;
     // interval(this.intervalMs).subscribe(() => {
-    // const data = { status: this.status, idBaoCao: this.selectedReportId };
-    this.apiReport.DA1_01('01_DA1').pipe(
-      map((response: any) => response.result),
-      map(data => data.map((d: any) => new TT01DataDTO(
-        d.nsMS,
-        d.nsTT,
-        d.nsChiSo,
-        d.nsDVT,
-        d.nsPhanTo,
-        d.nsDB,
-        d.mnSoLieuTH,
-        d.mnSoLieuLuyKe,
-        d.mnChiTieuKHNamBC,
-        d.mnTyLeKHNam,
-        d.mnLuyKeThucHien,
-        d.mnChiTieuKHNamGD,
-        d.mnTyLeThucHienGiaiDoan,
-        d.ntGhiChu
-      )))
-
-    )
-      .subscribe(
-        (data: TT01DataDTO[]) => {
-          this.isSpinning = false;
-          const temp = data;
-
-
-
-          const nsTTArray = temp.map((item: any) => {
-            return item.nsTT;
-          })
-
-          this.isSpinning = false;
-
-
-          const detail = detailChild(nsTTArray)
-
-
-
-          //get data from temp object array by object.name = 'nsMS'
-          // const nsMSArray = temp.map((item: any) => {
-          //   return item.nsMS;
-          // })
-          //loop through detail
-
-          for (const [key, value] of Object.entries(detail)) {
-
-            detail[key].map((item: any) => {
-
-              temp.map((item2: any) => {
-
-                if (item.name === item2._nsTT) {
-                  item2._nsTTDuAn = item2._nsTT.split('.')[0]
-                  temp.filter((item3: any) => {
-                    if (item3.nsTT === item2._nsTTDuAn) {
-
-                      item2._nsChiSoDuAn = item3.nsChiSo
-
+        // const data = { status: this.status, idBaoCao: this.selectedReportId };
+        this.apiReport.DA1_01(this.paramId).pipe( 
+          map((response: any) => response.result),
+          map(data => data.map((d: any) => new TT01DataDTO(
+            d.nsMS,
+            d.nsTT,
+            d.nsChiSo,
+            d.nsDVT,
+            d.nsPhanTo,
+            d.nsDB,
+            d.mnSoLieuTH,
+            d.mnSoLieuLuyKe,
+            d.mnChiTieuKHNamBC,
+            d.mnTyLeKHNam,
+            d.mnLuyKeThucHien,
+            d.mnChiTieuKHNamGD,
+            d.mnTyLeThucHienGiaiDoan,
+            d.ntGhiChu
+          )))
+       
+      )
+          .subscribe(
+             (data: TT01DataDTO[]) => {
+              this.isSpinning = false;
+              const temp = data;
+              
+              
+             
+              const  nsTTArray = temp.map((item: any) => {
+                return item.nsTT;
+              })
+              
+              this.isSpinning = false;
+  
+              
+              const detail = detailChild(nsTTArray)
+  
+              
+              
+              //get data from temp object array by object.name = 'nsMS'
+              // const nsMSArray = temp.map((item: any) => {
+              //   return item.nsMS;
+              // })
+              //loop through detail
+              
+              for (const [key, value] of Object.entries(detail)) {
+               
+                detail[key].map((item: any) => {
+                
+                temp.map((item2: any) => {
+                  
+                  if (item.name === item2._nsTT) {
+                    item2._nsTTDuAn = item2._nsTT.split('.')[0]
+                    temp.filter((item3: any) => {
+                      if (item3.nsTT === item2._nsTTDuAn ) {
+                        
+                        item2._nsChiSoDuAn = item3.nsChiSo
+                        
+                      }
+                    })
+                    
+                    if(item2.mnSoLieuTH !== null){
+                      this.dataChart.push(item2)
                     }
+                     
+                  }
+                }
+                )
+                  
+                  })
+  
+                // detail.key.map((item: any) => {
+                //   temp.map((item2: any) => {
+                //     if (item === item2.nsTT) {
+                //       a.push(item2)
+                //     }
+                //   }
+                //   )
+                  
+                // }
+                // )
+              }
+
+              console.log(this.dataChart);
+              if(this.dataChart.length > 0){
+              this.dataChart.forEach((item: any) => {
+                  //add object to array
+                  this.charts.push({
+                    chart1: this.getChartOptions1(item),
+                    chart2: this.getChartOptions2(item)
+                  }
+                    
+                 
+                )
                   })
 
-                  if (item2.mnSoLieuTH !== null) {
-                    this.dataChart.push(item2)
-                  }
-
-                }
+                
               }
-              )
+              console.log(this.charts);
 
-            })
 
-            // detail.key.map((item: any) => {
-            //   temp.map((item2: any) => {
-            //     if (item === item2.nsTT) {
-            //       a.push(item2)
-            //     }
-            //   }
-            //   )
 
-            // }
-            // )
-          }
+              // this.getChartOptions1(this.dataChart[0]);
 
-          console.log(this.dataChart);
+              // this. this.getChartOptions2(this.dataChart[0]);
 
-          this.getChartOptions(this.dataChart[0]);
-          interval(this.intervalMs).subscribe(() => {
-            console.log(this.startIndex);
+              // interval(this.intervalMs).subscribe(() => {
+              //   console.log(this.startIndex);
+                
+              //   this.getChartOptions(this.dataChart[this.startIndex]);
+                
+              //     if (this.startIndex > this.dataChart.length) {
+              //       // We have reached the end of the data, start over
+              //       this.startIndex = 0;
+              //     } else {
+              //       this.startIndex += this.count;
+              //     }
+                
+              // });
+              
+              
+              
+             
+             
+              
+              // this.chart = Highcharts.chart('chart', options);
+              // this.chartOptions = this.getChartOptions(this.dataChart[0]);
 
-            this.getChartOptions(this.dataChart[this.startIndex]);
-
-            if (this.startIndex > this.dataChart.length) {
-              // We have reached the end of the data, start over
-              this.startIndex = 0;
-            } else {
-              this.startIndex += this.count;
+              // if (this.dataChart.length < this.count) {
+              //   // We have reached the end of the data, start over
+              //   this.startIndex = 0;
+              // } else {
+              //   this.startIndex += this.count;
+              // }
+  
+         
+              // const newMap = new Map<any, any>()
+            
+              // for (const [key, value] of Object.entries(detail)) {
+              //   newMap.set(key, value);
+              // }
+              // //loop through map
+              // for (const [key, value] of newMap) {
+              //   console.log(key, value);
+              // }
+              
+             
+  
+              
+              
+              // this.notifyService.successMessage("Lấy báo cáo oke").then(
+              //   () => {
+  
+              //     // this.ngOnInit();
+  
+              //   }
+              // );
+  
+              // TODO: Update the list of users
+            },
+            error => {
+              console.error(error);
+              this.isSpinning = false;
             }
-
-          });
-
-
-
-
-
-
-          // this.chart = Highcharts.chart('chart', options);
-          // this.chartOptions = this.getChartOptions(this.dataChart[0]);
-
-          // if (this.dataChart.length < this.count) {
-          //   // We have reached the end of the data, start over
-          //   this.startIndex = 0;
-          // } else {
-          //   this.startIndex += this.count;
-          // }
-
-
-          // const newMap = new Map<any, any>()
-
-          // for (const [key, value] of Object.entries(detail)) {
-          //   newMap.set(key, value);
-          // }
-          // //loop through map
-          // for (const [key, value] of newMap) {
-          //   console.log(key, value);
-          // }
-
-
-
-
-
-          // this.notifyService.successMessage("Lấy báo cáo oke").then(
-          //   () => {
-
-          //     // this.ngOnInit();
-
-          //   }
-          // );
-
-          // TODO: Update the list of users
-        },
-        error => {
-          console.error(error);
-          this.isSpinning = false;
-        }
-      );
-
+          );
+      
     // }
     // )
 
-
-
-
-
+      
+   
+    
+    
 
   }
 
+  paramId!: string;
+
   ngOnInit(): void {
+    this.paramId  = this.route.snapshot.paramMap.get('id')!;
     // assuming you have an array of data called 'data'
     this.getDA1_01Data();
-
-
+   
+    
     // for (let i = 0; i < 3; i++) {
     //   this.colors.push(this.getRandomColor());
     // }
   }
 
-  public getChartOptions(data: any) {
-
+  public getChartOptions1(data: any): Highcharts.Options {
+    
     let yAxisData: any[] = [];
     yAxisData.push(data._mnSoLieuTH)
     yAxisData.push(data._mnSoLieuLuyKe)
     yAxisData.push(data._mnLuyKeThucHien)
 
-
-
-    this.chartOptions = {
+   
+    
+    return  {
       credits: {
         enabled: false
       },
@@ -321,12 +338,11 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           style: {
             fontSize: "1.5em"
           },
-
-
+  
+  
         }
       },
       title: {
-
         text: `Dự án 1.${data._nsTTDuAn}. ${data._nsChiSoDuAn}`,
         style: {
           fontSize: "2em"
@@ -339,7 +355,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
         footerFormat: '</table>',
         shared: true,
         useHTML: true,
-
+  
         style: {
           fontSize: "1em"
         }
@@ -359,26 +375,16 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
         animation: {
           duration: 2000,
           easing: 'easeOutBounce',
-
+          
         },
-        // events: {
-        //   click: (event: any) => {
-        //     // if (event.point) {
-        //     //   // Lấy giá trị của cột được click
-        //     //   const value = event.point.y;
+        
 
-        //     //   // Chuyển hướng đến trang mới với tham số là giá trị cột
-
-        //     // }
-        //     this.router.navigate(['pages/ke-hoach-thuc-hien/01_DA1']);
-
-        //   }
-
-        // }
+        
+        
       },
-
+     
       xAxis: {
-        categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo', 'Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
+        categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo','Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
         labels: {
           style: {
             fontSize: "1.5em"
@@ -387,18 +393,18 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
       },
       // colors: ['red'],
       series: [{
-        color: this.getRandomColor(),
-        type: 'column',
-        name: data._nsChiSo,
-        data: yAxisData,
         dataLabels: {
           enabled: true,
           style: {
             color: 'black',
             fontSize: '1.5em'
-
+            
           }
         },
+        color: this.getRandomColor(),
+        type: 'column',
+        name: data._nsChiSo,
+        data: yAxisData,
         animation: {
           duration: 2000,
           easing: 'easeOutBounce',
@@ -407,8 +413,15 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     };
   }
 
-  public getChartOptions2(data: TT01DataDTO): Highcharts.Options {
-    return {
+  public getChartOptions2(data: any): Highcharts.Options {
+    
+    let yAxisData: number[] = [];
+   
+    
+    yAxisData.push(parseInt((data._mnTyLeKHNam * 100).toFixed(2)))
+    yAxisData.push(parseInt((data._mnTyLeThucHienGiaiDoan * 100).toFixed(2)))
+   
+     return  {
       credits: {
         enabled: false
       },
@@ -423,12 +436,12 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           style: {
             fontSize: "1.5em"
           },
-
-
+  
+  
         }
       },
       title: {
-        text: 'Dự án 1: Hỗ trợ đất ở',
+        text: `Dự án 1.${data._nsTTDuAn}. ${data._nsChiSoDuAn}`,
         style: {
           fontSize: "2em"
         }
@@ -440,7 +453,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
         footerFormat: '</table>',
         shared: true,
         useHTML: true,
-
+  
         style: {
           fontSize: "1em"
         }
@@ -456,9 +469,13 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
         }
       },
       chart: {
-        type: 'column'
+        type: 'column',
+        animation: {
+          duration: 2000,
+          easing: 'easeOutBounce',
+        }
       },
-
+  
       xAxis: {
         categories: ['Tỷ lệ (%) thực hiện KH năm', 'Tỷ lệ (%) thực hiện KH cả giai đoạn'],
         labels: {
@@ -467,14 +484,29 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           }
         }
       },
-      colors: ['#198754'],
+      
       series: [{
+        dataLabels: {
+          enabled: true,
+          style: {
+            color: 'black',
+            fontSize: '1.5em'
+            
+          }
+        },
+        color: this.getRandomColor(),
         type: 'column',
-        name: 'Số hộ nghèo dân tộc thiểu số',
-        data: [300, 54]
+        name: data._nsChiSo,
+        data: yAxisData,
+        animation: {
+          duration: 2000,
+          easing: 'easeOutBounce',
+        }
       },]
     };
   }
+
+
 
   colors: string[] = [];
 
@@ -744,7 +776,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     },
 
     xAxis: {
-      categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo', 'Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
+      categories: ['Số liệu thực hiện trong kỳ báo cáo', 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo','Lũy kế thực hiện giai đoạn đến thời điểm báo cáo'],
       labels: {
         style: {
           fontSize: "1.5em"
