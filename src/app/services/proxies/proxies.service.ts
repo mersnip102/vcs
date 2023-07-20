@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { TT01DataDTO } from 'src/app/models/tt01DataDto.model';
+import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { reportAPI } from 'src/environments/environment.prod';
 

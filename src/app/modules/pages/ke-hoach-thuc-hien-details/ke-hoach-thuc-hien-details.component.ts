@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { interval, map } from 'rxjs';
-import { TT01DataDTO } from 'src/app/models/tt01DataDto.model';
+import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProxiesService } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -160,53 +160,8 @@ export class KeHoachThucHienDetailsComponent implements OnInit {
               this.isSpinning = false;
   
               
-              const detail = detailChild(nsTTArray)
-  
-              
-              
-              //get data from temp object array by object.name = 'nsMS'
-              // const nsMSArray = temp.map((item: any) => {
-              //   return item.nsMS;
-              // })
-              //loop through detail
-              
-              for (const [key, value] of Object.entries(detail)) {
-               
-                detail[key].map((item: any) => {
-                
-                temp.map((item2: any) => {
-                  
-                  if (item.name === item2._nsTT) {
-                    item2._nsTTDuAn = item2._nsTT.split('.')[0]
-                    temp.filter((item3: any) => {
-                      if (item3.nsTT === item2._nsTTDuAn ) {
-                        
-                        item2._nsChiSoDuAn = item3.nsChiSo
-                        
-                      }
-                    })
-                    
-                    if(item2.mnSoLieuTH !== null){
-                      this.dataChart.push(item2)
-                    }
-                     
-                  }
-                }
-                )
-                  
-                  })
-  
-                // detail.key.map((item: any) => {
-                //   temp.map((item2: any) => {
-                //     if (item === item2.nsTT) {
-                //       a.push(item2)
-                //     }
-                //   }
-                //   )
-                  
-                // }
-                // )
-              }
+              this.dataChart = detailChild(nsTTArray, temp);
+
 
               console.log(this.dataChart);
               if(this.dataChart.length > 0){

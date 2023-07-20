@@ -63,6 +63,10 @@ import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 import { ApiInterceptor } from 'src/app/core/interceptor/api.interceptor';
 import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
+import { DxChartModule } from 'devextreme-angular';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Chart1UIComponent } from './chart1-ui/chart1-ui.component';
+import { Chart2UIComponent } from './chart2-ui/chart2-ui.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -91,6 +95,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     QuyetToanComponent,
     ThongKeSoLieuComponent,
     KeHoachThucHienDetailsComponent,
+    Chart1UIComponent,
+    Chart2UIComponent,
   ],
   imports: [
     LayoutModule,
@@ -140,6 +146,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     GoogleMapsModule ,
 
     NgxExtendedPdfViewerModule,
+
+    DxChartModule,
+   
     
     
    
@@ -149,3 +158,4 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }]
 })
 export class PagesModule { }
+platformBrowserDynamic().bootstrapModule(PagesModule);

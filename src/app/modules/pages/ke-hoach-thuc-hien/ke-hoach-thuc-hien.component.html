@@ -163,33 +163,33 @@
 </div> -->
 <div class="card-body">
     <!-- container-fluid d-flex justify-content-center -->
-    <div class="container"> 
+    <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-12 text-center">
-            <div class="page-header">
-              <div class="page-title">
-                
-                  <h3 class="dashTitle">KẾ HOẠCH THỰC HIỆN</h3>
-                  <h4 class="dashTitle">(ĐẾN THỜI ĐIỂM HIỆN TẠI)</h4>
-                
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div class="col-lg-12 text-center">
+                <div class="page-header">
+                    <div class="page-title">
 
-      <!-- <div class="row">
+                        <h3 class="dashTitle">KẾ HOẠCH THỰC HIỆN</h3>
+                        <h4 class="dashTitle">(ĐẾN THỜI ĐIỂM HIỆN TẠI)</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="row">
         <div class="col-lg-12">
             <div class="footer">
                 <p>This dashboard was generated on <span id="date-time"></span> <a href="#" class="page-refresh">Refresh Dashboard</a></p>
             </div>
         </div>
     </div> -->
-    <div id="chart"></div>
-    
+    <app-chart1-ui></app-chart1-ui>
+
     <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
         <div class="row">
-    
+
             <!-- Pie Chart -->
             <div class="col-sm-12 col-md-6">
                 <div class="panel">
@@ -201,6 +201,50 @@
                     <div class="panel-body">
                         <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
                             style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <!-- <h4>Dự án 1</h4> -->
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui></app-chart1-ui>
+                        <!-- <dx-chart id="chart" [dataSource]="grossProductData" (onPointClick)="onPointClick($event)">
+
+                            <dxi-series name="Average Temperature, °C" valueField="year2016" name="2016">
+
+                                <dxo-label [visible]="true" backgroundColor="white"
+                                    [font]="{ size: 12, color: 'black' }"></dxo-label>
+                            </dxi-series>
+                            <dxo-common-series-settings argumentField="state" type="bar" hoverMode="allArgumentPoints"
+                                selectionMode="allArgumentPoints">
+                                <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: 0
+                                }">
+                                </dxo-label>
+                            </dxo-common-series-settings>
+
+                            <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center"
+                                itemTextPosition="bottom" [markerSize]="15" markerShape="square">
+                            </dxo-legend>
+                            <dxo-title [text]="'okeee'" >
+                                <dxo-font [weight]="900" color="black">
+                                </dxo-font>
+                            </dxo-title>
+                            <dxo-export [enabled]="true"></dxo-export>
+                            <dxi-value-axis pane="topPane">
+                                <dxo-grid [visible]="true"></dxo-grid>
+                                <dxo-title text="Temperature, °C"></dxo-title>
+                            </dxi-value-axis>
+
+                        </dx-chart> -->
+
                     </div>
                 </div>
             </div>
@@ -217,8 +261,8 @@
                     </div>
                 </div>
             </div> -->
-            
-        
+
+
             <!-- Line Chart -->
             <!-- <div class="col-sm-12 col-md-7">
                 <div class="panel panel-bd lobidrag">
@@ -326,10 +370,10 @@
                 </div>
             </div>
         </div> -->
-            
-        
-            <!-- Line Chart -->
-            <!-- <div class="col-sm-12 col-md-7">
+
+
+        <!-- Line Chart -->
+        <!-- <div class="col-sm-12 col-md-7">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="panel-title">
@@ -404,15 +448,14 @@
                     </div>
                 </div>
             </div> -->
-        
-        
-        
-    </nz-spin>
-    
-   
-    
-    
-   
-    
-</div>
 
+
+
+    </nz-spin>
+
+
+
+
+
+
+</div>

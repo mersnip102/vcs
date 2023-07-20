@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { interval, map } from 'rxjs';
-import { TT01DataDTO } from 'src/app/models/tt01DataDto.model';
+import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProxiesService } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -13,12 +13,76 @@ import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.
 import { detailChild } from 'src/app/shared/utilities';
 import { NotifyService } from 'src/app/shared/utils/notify';
 
+
 @Component({
   selector: 'app-ke-hoach-thuc-hien',
   templateUrl: './ke-hoach-thuc-hien.component.html',
   styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
 export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
+  customizeTooltip(info: any) {
+    return {
+      text: `${info.seriesName} - ${info.argumentText}: ${info.valueText}`
+    };
+  }
+
+  animation = {
+    enabled: true,
+    duration: 3000,
+    easing: 'easeOutCubic',
+    from: { translateY: '100%' },
+  };
+
+  
+  grossProductData: any[] = [{
+    state: 'Illinois',
+    year2016: 850,
+    
+  }, {
+    state: 'Indiana',
+    year2016: 316,
+   
+  }, {
+    state: 'Michigan',
+    year2016: 452,
+   
+  }, {
+    state: 'Ohio',
+    year2016: 621,
+   
+  }, {
+    state: 'Wisconsin',
+    year2016: 290,
+   
+  }];
+  
+
+  onPointClick(e: any) {
+    e.target.select();
+  }
+  
+  populationData: any[] = [{
+    arg: 1960,
+    val: 3032019978,
+  }, {
+    arg: 1970,
+    val: 3683676306,
+  }, {
+    arg: 1980,
+    val: 4434021975,
+  }, {
+    arg: 1990,
+    val: 5281340078,
+  }, {
+    arg: 2000,
+    val: 6115108363,
+  }, {
+    arg: 2010,
+    val: 6922947261,
+  }, {
+    arg: 2020,
+    val: 7795000000,
+  }];
   roleUserCurrent!: number;
   constructor(
 
@@ -45,12 +109,12 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    const panelBodyElements = document.getElementsByClassName('panel-body');
-    for (let i = 0; i < panelBodyElements.length; i++) {
-      panelBodyElements[i].addEventListener('click', (event) => {
-        this.router.navigate(['pages/ke-hoach-thuc-hien/01_DA1']);
-      });
-    }
+    // const panelBodyElements = document.getElementsByClassName('panel-body');
+    // for (let i = 0; i < panelBodyElements.length; i++) {
+    //   panelBodyElements[i].addEventListener('click', (event) => {
+    //     this.router.navigate(['pages/ke-hoach-thuc-hien/01_DA1']);
+    //   });
+    // }
   }
   isCollapsed = false;
 
@@ -117,7 +181,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
 
   intervalMs = 0.1 * 60 * 1000; // 5 minutes in milliseconds
   count = 1;
-  startIndex = 1;
+  startIndex = 0;
 
   dataChart: any[] = [];
 
@@ -157,8 +221,6 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           this.isSpinning = false;
           const temp = data;
 
-
-
           const nsTTArray = temp.map((item: any) => {
             return item.nsTT;
           })
@@ -166,61 +228,44 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           this.isSpinning = false;
 
 
-          const detail = detailChild(nsTTArray)
+          this.dataChart = detailChild(nsTTArray, temp);
 
+          // for (const [key, value] of Object.entries(detail)) {
 
+          //   detail[key].map((item: any) => {
 
-          //get data from temp object array by object.name = 'nsMS'
-          // const nsMSArray = temp.map((item: any) => {
-          //   return item.nsMS;
-          // })
-          //loop through detail
+          //     temp.map((item2: any) => {
 
-          for (const [key, value] of Object.entries(detail)) {
+          //       if (item.name === item2._nsTT) {
+          //         item2._nsTTDuAn = item2._nsTT.split('.')[0]
+          //         temp.filter((item3: any) => {
+          //           if (item3.nsTT === item2._nsTTDuAn) {
 
-            detail[key].map((item: any) => {
+          //             item2._nsChiSoDuAn = item3.nsChiSo
 
-              temp.map((item2: any) => {
+          //           }
+          //         })
 
-                if (item.name === item2._nsTT) {
-                  item2._nsTTDuAn = item2._nsTT.split('.')[0]
-                  temp.filter((item3: any) => {
-                    if (item3.nsTT === item2._nsTTDuAn) {
+          //         if (item2.mnSoLieuTH !== null) {
+          //           this.dataChart.push(item2)
+          //         }
 
-                      item2._nsChiSoDuAn = item3.nsChiSo
+          //       }
+          //     }
+          //     )
 
-                    }
-                  })
+          //   })
 
-                  if (item2.mnSoLieuTH !== null) {
-                    this.dataChart.push(item2)
-                  }
-
-                }
-              }
-              )
-
-            })
-
-            // detail.key.map((item: any) => {
-            //   temp.map((item2: any) => {
-            //     if (item === item2.nsTT) {
-            //       a.push(item2)
-            //     }
-            //   }
-            //   )
-
-            // }
-            // )
-          }
+          
+          // }
 
           console.log(this.dataChart);
 
           this.getChartOptions(this.dataChart[0]);
           interval(this.intervalMs).subscribe(() => {
-            console.log(this.startIndex);
+            
 
-            this.getChartOptions(this.dataChart[this.startIndex]);
+            
 
             if (this.startIndex > this.dataChart.length) {
               // We have reached the end of the data, start over
@@ -228,6 +273,8 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
             } else {
               this.startIndex += this.count;
             }
+            this.getChartOptions(this.dataChart[this.startIndex]);
+            
 
           });
 
