@@ -10,6 +10,7 @@ import { reportAPI } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class ProxiesService {
+  
 
   private readonly apiUrl = reportAPI.apiUrl; // URL API được lấy từ environment
 
@@ -33,7 +34,7 @@ export class ProxiesService {
   }
 
 
-  DA1_01(PrintObjectID: string, TuNgay?: string, DenNgay?: string): Observable<any> {
+  async DA1_01(PrintObjectID: string, TuNgay?: string, DenNgay?: string): Promise<Observable<any>> {
     const query = JSON.stringify(JSON.stringify({
       "PrintObjectID" : PrintObjectID, // giống reportCode
       "PeriodOfTime2": TuNgay && DenNgay ? {
@@ -43,7 +44,7 @@ export class ProxiesService {
       } : {}
     }))
     
-    return this.http.post<TT01DataDTO>(`${this.apiUrl}/r1/${PrintObjectID}/data/unauthorized`, query,{
+    return await this.http.post<TT01DataDTO>(`${this.apiUrl}/r1/${PrintObjectID}/data/unauthorized`, query,{
       headers: {
         "Content-Type": "application/json"
       }, responseType: 'json'

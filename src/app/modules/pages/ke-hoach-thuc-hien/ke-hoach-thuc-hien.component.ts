@@ -6,6 +6,7 @@ import * as Highcharts from 'highcharts';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { interval, map } from 'rxjs';
 import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
+import { TT01DataExport } from 'src/app/models/tt01DTO/tt01DataExport.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProxiesService } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -21,7 +22,8 @@ import { NotifyService } from 'src/app/shared/utils/notify';
   templateUrl: './ke-hoach-thuc-hien.component.html',
   styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
-export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
+export class KeHoachThucHienComponent implements OnInit {
+  grossChartData!: any[];
   customizeTooltip(info: any) {
     return {
       text: `${info.seriesName} - ${info.argumentText}: ${info.valueText}`
@@ -52,7 +54,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     year2016: 290,
    
   }];
-  
+  color: string = this.getRandomColor();
 
   onPointClick(e: any) {
     e.target.select();
@@ -105,14 +107,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
 
 
   }
-  ngAfterViewInit(): void {
-    // const panelBodyElements = document.getElementsByClassName('panel-body');
-    // for (let i = 0; i < panelBodyElements.length; i++) {
-    //   panelBodyElements[i].addEventListener('click', (event) => {
-    //     this.router.navigate(['pages/ke-hoach-thuc-hien/01_DA1']);
-    //   });
-    // }
-  }
+  
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -165,148 +160,103 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
   // };
 
   getRandomColor(): string {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 3; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    // const letters = '0123456789ABCDEF';
+    // let color = '#';
+    // for (let i = 0; i < 3; i++) {
+    //   color += letters[Math.floor(Math.random() * 16)];
+    // }
+    // return color;
+    let result = '';
+    for (let i = 0; i < 6; ++i) {
+      const value = Math.floor(16 * Math.random());
+      result += value.toString(16);
     }
-    return color;
+    return '#' + result;
   }
   isSpinning = false;
 
   animation = {
     enabled: true,
-    duration: 5000,
+    duration: 3000,
     easing: 'easeOutCubic',
-    from: { translateY: '100%' },
+    // from: { translateY: '100%' },
   };
   
 
 
 
-  intervalMs = 0.1 * 60 * 1000; // 5 minutes in milliseconds
+  intervalMs = 0.1 * 60 * 1000; 
   count = 1;
   startIndex = 0;
 
-  dataChart: any[] = [];
+  dataChartArray: any[] = [];
+  
 
   chart!: Highcharts.Chart;
 
   getDA1_01Data(): any {
-    // interval().subscribe(() => {
-    //   // this.dataService.getData().subscribe(data => {
-    //   //   this.data = data;
-    //   // });
-    // });
+   
     this.isSpinning = true;
-    // interval(this.intervalMs).subscribe(() => {
-    // const data = { status: this.status, idBaoCao: this.selectedReportId };
     this.apiReport.DA1_01('01_DA1').pipe(
       map((response: any) => response.result),
-      map(data => data.map((d: any) => getTT01DataImport(d))),
+      map(data => data.map((d: any) => getTT01DataImport(d)))
 
-    )
-      .subscribe(
+    ).subscribe(
         (data: TT01DataDTO[]) => {
           this.isSpinning = false;
           const temp = data;
 
           const nsTTArray = temp.map((item: any) => {
             return item.nsTT;
-          })
+          });
 
           this.isSpinning = false;
 
 
-          this.dataChart = getTT01DataExport(nsTTArray, temp);
+          this.dataChartArray = getTT01DataExport(nsTTArray, temp);
 
           // for (const [key, value] of Object.entries(detail)) {
-
           //   detail[key].map((item: any) => {
-
           //     temp.map((item2: any) => {
-
           //       if (item.name === item2._nsTT) {
           //         item2._nsTTDuAn = item2._nsTT.split('.')[0]
           //         temp.filter((item3: any) => {
           //           if (item3.nsTT === item2._nsTTDuAn) {
-
           //             item2._nsChiSoDuAn = item3.nsChiSo
-
           //           }
           //         })
-
           //         if (item2.mnSoLieuTH !== null) {
           //           this.dataChart.push(item2)
           //         }
-
           //       }
           //     }
           //     )
-
           //   })
-
+          // }
           
-          // }
 
-          console.log(this.dataChart);
+          // this.getChartOptions(this.dataChartArray[0]);
+          
+          this.grossChartData = this.dataChartArray
+          
+          console.log(this.grossChartData)
 
-          this.getChartOptions(this.dataChart[0]);
-          interval(this.intervalMs).subscribe(() => {
-            
+          // interval(this.intervalMs).subscribe(() => {
+           
 
-            
+          //   if (this.startIndex > this.dataChartArray.length) {
 
-            if (this.startIndex > this.dataChart.length) {
-              // We have reached the end of the data, start over
-              this.startIndex = 0;
-            } else {
-              this.startIndex += this.count;
-            }
-            this.getChartOptions(this.dataChart[this.startIndex]);
-            
-
-          });
-
-
-
-
-
-
-          // this.chart = Highcharts.chart('chart', options);
-          // this.chartOptions = this.getChartOptions(this.dataChart[0]);
-
-          // if (this.dataChart.length < this.count) {
-          //   // We have reached the end of the data, start over
-          //   this.startIndex = 0;
-          // } else {
-          //   this.startIndex += this.count;
-          // }
-
-
-          // const newMap = new Map<any, any>()
-
-          // for (const [key, value] of Object.entries(detail)) {
-          //   newMap.set(key, value);
-          // }
-          // //loop through map
-          // for (const [key, value] of newMap) {
-          //   console.log(key, value);
-          // }
-
-
-
-
-
-          // this.notifyService.successMessage("Lấy báo cáo oke").then(
-          //   () => {
-
-          //     // this.ngOnInit();
-
+          //     this.startIndex = 0;
+          //   } else {
+          //     this.startIndex += this.count;
           //   }
-          // );
+          //   this.color = this.getRandomColor();
+          //   this.grossChartData = this.dataChartArray[this.startIndex]
+          //   console.log(this.grossChartData);
+          //   // this.getChartOptions(this.dataChartArray[this.startIndex]);
+          // });
 
-          // TODO: Update the list of users
+
         },
         error => {
           console.error(error);
@@ -317,16 +267,11 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     // }
     // )
 
-
-
-
-
-
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // assuming you have an array of data called 'data'
-    this.getDA1_01Data();
+    await this.getDA1_01Data();
 
 
     // for (let i = 0; i < 3; i++) {

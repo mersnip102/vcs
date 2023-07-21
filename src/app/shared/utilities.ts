@@ -47,12 +47,12 @@ export const SECRET_KEY = 'PAKN_CAT@2023$';
 
 
 export function detailChild(nodes: any[], temp: TT01DataDTO[]): TT01DataExport[] {
-  let dataChart: TT01DataExport[] = [];
+  let dataChart: any[] = [];
 
   nodes = nodes.map(node => ({ name: node.toString() }));
 
   nodes = nodes.filter(node => node.name !== '');
-  console.log(nodes);
+ 
 
   let projectMap: any = _.groupBy(nodes, (node: ReportNode) => node.name.split('.')[0]);
 
@@ -81,7 +81,7 @@ export function detailChild(nodes: any[], temp: TT01DataDTO[]): TT01DataExport[]
           })
 
           if (item2.mnSoLieuTH !== null) {
-            console.log(item2)
+           
             dataChart.push(new TT01DataExport(
               item2._nsMS,
               item2._nsTT,
