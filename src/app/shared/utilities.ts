@@ -46,7 +46,7 @@ export const SECRET_KEY = 'PAKN_CAT@2023$';
 
 
 
-export function detailChild(nodes: any[], temp: TT01DataDTO[]): any {
+export function detailChild(nodes: any[], temp: TT01DataDTO[]): TT01DataExport[] {
   let dataChart: TT01DataExport[] = [];
 
   nodes = nodes.map(node => ({ name: node.toString() }));

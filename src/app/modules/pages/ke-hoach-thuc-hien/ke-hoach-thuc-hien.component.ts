@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProxiesService } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
+import { getTT01DataExport } from 'src/app/shared/transformData/tt01/tt01DataExport';
+import { getTT01DataImport } from 'src/app/shared/transformData/tt01/tt01DataImport';
 import { detailChild } from 'src/app/shared/utilities';
 import { NotifyService } from 'src/app/shared/utils/notify';
 
@@ -26,12 +28,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     };
   }
 
-  animation = {
-    enabled: true,
-    duration: 3000,
-    easing: 'easeOutCubic',
-    from: { translateY: '100%' },
-  };
+  
 
   
   grossProductData: any[] = [{
@@ -177,6 +174,14 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
   }
   isSpinning = false;
 
+  animation = {
+    enabled: true,
+    duration: 5000,
+    easing: 'easeOutCubic',
+    from: { translateY: '100%' },
+  };
+  
+
 
 
   intervalMs = 0.1 * 60 * 1000; // 5 minutes in milliseconds
@@ -198,22 +203,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
     // const data = { status: this.status, idBaoCao: this.selectedReportId };
     this.apiReport.DA1_01('01_DA1').pipe(
       map((response: any) => response.result),
-      map(data => data.map((d: any) => new TT01DataDTO(
-        d.nsMS,
-        d.nsTT,
-        d.nsChiSo,
-        d.nsDVT,
-        d.nsPhanTo,
-        d.nsDB,
-        d.mnSoLieuTH,
-        d.mnSoLieuLuyKe,
-        d.mnChiTieuKHNamBC,
-        d.mnTyLeKHNam,
-        d.mnLuyKeThucHien,
-        d.mnChiTieuKHNamGD,
-        d.mnTyLeThucHienGiaiDoan,
-        d.ntGhiChu
-      )))
+      map(data => data.map((d: any) => getTT01DataImport(d))),
 
     )
       .subscribe(
@@ -228,7 +218,7 @@ export class KeHoachThucHienComponent implements OnInit, AfterViewInit {
           this.isSpinning = false;
 
 
-          this.dataChart = detailChild(nsTTArray, temp);
+          this.dataChart = getTT01DataExport(nsTTArray, temp);
 
           // for (const [key, value] of Object.entries(detail)) {
 

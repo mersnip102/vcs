@@ -35,9 +35,9 @@
               }
             ],
             "styles": [
+              "node_modules/devextreme/dist/css/dx.light.css",
               "src/styles.css",
               "src/theme.less",
-              "node_modules/devextreme/dist/css/dx.light.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
@@ -57,10 +57,9 @@
             ],
             "scripts": [
               "node_modules/highcharts/highcharts.js",
-  "node_modules/highcharts/modules/exporting.js",
-  "node_modules/highcharts/modules/export-data.js",
-  "node_modules/highcharts/modules/accessibility.js",
-
+              "node_modules/highcharts/modules/exporting.js",
+              "node_modules/highcharts/modules/export-data.js",
+              "node_modules/highcharts/modules/accessibility.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/lib/jquery.min.js",

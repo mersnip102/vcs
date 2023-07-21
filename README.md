@@ -34,3 +34,12 @@ assets/style.css:
 [contenteditable]:hover {
     background: #48c4fd
 } -->
+
+
+Cách cài đặt:
+Cài: npm cho global
+Cài: NodeJs
+Cài: Angular CLI
+
+Chạy: npm i --force
+        ng serve -o

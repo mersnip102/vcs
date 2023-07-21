@@ -20,7 +20,7 @@ import { NotifyService } from 'src/app/shared/utils/notify';
 })
 export class Chart1UIComponent implements OnInit, AfterViewInit {
   // @Input() reportDataExport!: TT01DataExport[];
-  // @Input() title!: string;
+  @Input() animations!: any;
   // @Input() seriesType!: string;
 
   getRandomColor(): string {
@@ -101,6 +101,13 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.cdr.detectChanges()
   }
+
+  animation = {
+    enabled: true,
+    duration: 5000,
+    easing: 'easeOutCubic',
+    from: { translateY: '100%' },
+  };
   
 
   

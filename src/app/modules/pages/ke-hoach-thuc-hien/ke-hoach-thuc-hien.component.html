@@ -161,6 +161,8 @@
     </div>
     
 </div> -->
+
+
 <div class="card-body">
     <!-- container-fluid d-flex justify-content-center -->
     <div class="container">
@@ -185,7 +187,60 @@
             </div>
         </div>
     </div> -->
-    <app-chart1-ui></app-chart1-ui>
+    <dx-chart  [animation]="animation" [dataSource]="grossProductData" (onPointClick)="onPointClick($event)">  
+        <dxo-argument-axis>
+            <dxo-label [font]="{size: 14}">
+            </dxo-label>
+        </dxo-argument-axis>
+    
+        <dxo-animation easing="easeOutCubic" [duration]="2000" [maxPointCountSupported]="100"></dxo-animation>
+    
+    
+        <dxi-series [color]="colors" name="Average Temperature, °C" valueField="year2016" name="2016">
+            <dxo-animation easing="easeOutCubic" [duration]="5000" [maxPointCountSupported]="100"></dxo-animation>
+    
+            <dxo-label [visible]="true" backgroundColor="white" [font]="{ size: 16, color: 'black' }"></dxo-label>
+        </dxi-series>
+        <dxo-common-series-settings argumentField="state" type="bar" [barPadding]="0.5" hoverMode="allArgumentPoints"
+            selectionMode="allArgumentPoints">
+            <dxo-label [visible]="true" [format]="{
+                                        type: 'fixedPoint',
+                                        precision: 0
+                                    }">
+            </dxo-label>
+        </dxo-common-series-settings>
+    
+        <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"
+            [markerSize]="16">
+        </dxo-legend>
+        <dxo-title [text]="'okeee'">
+            <dxo-font [weight]="1000" color="black">
+            </dxo-font>
+        </dxo-title>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxi-value-axis pane="topPane">
+            <dxo-grid [visible]="true"></dxo-grid>
+            <dxo-title [font]="{size: 16}" text="Temperature, °C"></dxo-title>
+            <dxo-label [font]="{size: 16}"></dxo-label>
+        </dxi-value-axis>
+    
+    </dx-chart>
+    <app-chart2-ui></app-chart2-ui>
+    <dx-chart
+  id="chart"
+  title="World Population by Decade"
+  [dataSource]="populationData"
+>
+  <dxo-legend [visible]="false"></dxo-legend>
+  <dxi-series type="bar"></dxi-series>
+  <dxo-argument-axis [tickInterval]="10">
+    <dxo-label>
+      <dxo-format type="decimal"></dxo-format>
+    </dxo-label>
+  </dxo-argument-axis>
+</dx-chart>
+
+    <app-chart1-ui [animations]="animation"></app-chart1-ui>
 
     <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
         <div class="row">

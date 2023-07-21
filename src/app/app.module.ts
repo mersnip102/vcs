@@ -48,6 +48,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { RouterModule } from '@angular/router';
 
 import { GoogleMapsModule } from '@angular/google-maps';
+import { DxChartModule } from 'devextreme-angular';
 
 
 registerLocaleData(en);
@@ -104,10 +105,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     RouterModule,
 
     GoogleMapsModule,
-
+    DxChartModule
     
     
   ],
+ 
   providers: [{ provide: NZ_I18N, useValue: en_US },
     // {
     //   provide: HTTP_INTERCEPTORS,
