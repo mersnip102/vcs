@@ -1,18 +1,23 @@
-<!-- <dx-chart  [animation]="animation" [dataSource]="a" (onPointClick)="onPointClick($event)">  
-    <dxo-argument-axis>
-        <dxo-label [font]="{size: 14}">
+
+
+<dx-chart id="chart" [dataSource]="convertDataChart"  [animation]="animation" (onPointClick)="onPointClick($event)">
+    <dxo-legend [visible]="false"></dxo-legend>
+    
+
+    <dxi-series type="bar" [color]="color" [name]="seriesName" valueField="data" argumentField="nameColumn">
+        <!-- <dxo-animation easing="easeOutCubic" [duration]="2000" [maxPointCountSupported]="100"></dxo-animation> -->
+
+        <dxo-label backgroundColor="white" [visible]="true" [font]="{ size: 14, color: 'black' }"></dxo-label>
+    </dxi-series>
+   
+
+    <dxo-argument-axis [tickInterval]="10">
+        <dxo-label>
+            <dxo-format type="decimal"></dxo-format>
         </dxo-label>
     </dxo-argument-axis>
 
-    <dxo-animation easing="easeOutCubic" [duration]="2000" [maxPointCountSupported]="100"></dxo-animation>
-
-
-    <dxi-series [color]="color" name="Average Temperature, °C" valueField="500" name="190">
-        <dxo-animation easing="easeOutCubic" [duration]="2000" [maxPointCountSupported]="100"></dxo-animation>
-
-        <dxo-label [visible]="true" [font]="{ size: 16, color: 'black' }"></dxo-label>
-    </dxi-series>
-    <dxo-common-series-settings argumentField="state" type="bar" [barPadding]="0.5" hoverMode="allArgumentPoints"
+    <dxo-common-series-settings type="bar" [barPadding]="0.5" hoverMode="allArgumentPoints"
         selectionMode="allArgumentPoints">
         <dxo-label [visible]="true" [format]="{
                                     type: 'fixedPoint',
@@ -21,32 +26,27 @@
         </dxo-label>
     </dxo-common-series-settings>
 
-    <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"
-        [markerSize]="16">
-    </dxo-legend>
-    <dxo-title [text]="'okeee'">
-        <dxo-font [weight]="1000" color="black">
-        </dxo-font>
-    </dxo-title>
-    <dxo-export [enabled]="true"></dxo-export>
     <dxi-value-axis pane="topPane">
         <dxo-grid [visible]="true"></dxo-grid>
-        <dxo-title [font]="{size: 16}" text="Temperature, °C"></dxo-title>
+        <dxo-title [font]="{size: 16}" [text]="dxiSeries"></dxo-title>
         <dxo-label [font]="{size: 16}"></dxo-label>
     </dxi-value-axis>
 
-</dx-chart> -->
+    <dxo-title [text]="titleChart">
+        <dxo-font [size]="18" [weight]="1000" color="black">
+        </dxo-font>
+    </dxo-title>
 
-<dx-chart
-  id="chart"
-  title="World Population by Decade"
-  [dataSource]="a"
->
-  <dxo-legend [visible]="false"></dxo-legend>
-  <dxi-series type="bar" [color]="color" name="Average Temperature, °C" valueField="d" name="arg"></dxi-series>
-  <dxo-argument-axis [tickInterval]="10">
-    <dxo-label>
-      <dxo-format type="decimal"></dxo-format>
-    </dxo-label>
-  </dxo-argument-axis>
+    <dxo-export [enabled]="true"></dxo-export>
+
+    <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center" itemTextPosition="bottom"
+        [markerSize]="16">
+    </dxo-legend>
+
+    <dxo-animation easing="easeOutCubic" [duration]="2000" [maxPointCountSupported]="100"></dxo-animation>
+
+    <dxo-argument-axis>
+        <dxo-label [font]="{size: 14}">
+        </dxo-label>
+    </dxo-argument-axis>
 </dx-chart>

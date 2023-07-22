@@ -1,127 +1,3 @@
-
-import { ActivatedRoute, Router } from '@angular/router';
-import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
-import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
-import { reportAPI } from 'src/environments/environment.prod';
-
-import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
-import { Observable, BehaviorSubject, throwError as _observableThrow, of as _observableOf } from 'rxjs';
-import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
-
-
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
-export interface IClient {
-  apiV1ReportsR1(reportCode: string, jsonCompress: string | null | undefined): Observable<FileResponse>;
-  apiV1ReportsR1SampleGet(reportCode: string, jsonCompress: string | null | undefined): Observable<OperationResultInfoOfByteOf>;
-  apiV1ReportsR1SamplePost(reportCode: string, jsonCompress: string): Observable<OperationResultInfoOfByteOf>;
-  apiV1ReportsR1SampleUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfByteOf>;
-  apiV1ReportsR1Data(reportCode: string, jsonCompress: string | null | undefined): Observable<OperationResultInfoOfString>;
-  apiV1ReportsR1DataUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfString>;
-  apiV1ReportsR1SampleData(reportCode: string): Observable<OperationResultInfoOfString>;
-  apiV1ReportsR1On(): Observable<FileResponse>;
-  apiV1ReportsR1Ondb(): Observable<FileResponse>;
-  apiV1ReportsR1Onerror(): Observable<FileResponse>;
-  apiV1ReportsR1Onnocontent(): Observable<FileResponse>;
-}
-
-// export class ProxiesService {
-  
-
-//   private readonly apiUrl = reportAPI.apiUrl; // URL API được lấy từ environment
-
-//   // private readonly apiUrl = 'http://localhost:3000';
-//   private readonly accessTokenKey = 'accessToken'; 
-//   private readonly refreshTokenKey = 'encryptedAccessToken';
-//   roleUser: Observable<number>;
-//   //role-number
-//   roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(2);
-//   // roleUserSubject!: BehaviorSubject<number>
-
-//   constructor( private router: Router, private http: HttpClient, private route: ActivatedRoute, private localStoreService: LocalStorageService) {
-//     // if(this.localStoreService.getLocalStorageItemAsJSON(this.accessTokenKey) !== null) {
-//     this.roleUser = this.roleUserSubject.asObservable();
-    
-//   }
-
-//   setValueRole(value: number) {
-//     console.log(value)
-//     this.roleUserSubject.next(value);
-//   }
-
-
-//   getDataChartFromDatabase(PrintObjectID: string, TuNgay?: string, DenNgay?: string): Observable<any> {
-//     const query = {
-//       "PrintObjectID" : PrintObjectID, // giống reportCode
-//       "PeriodOfTime2": TuNgay && DenNgay ? {
-//         "TuNgay": TuNgay,
-//         "DenNgay": DenNgay,
-//         "PeriodType": "DD"
-//       } : {}
-//     }
-    
-//     return this.http.post<TT01DataDTO>(`${this.apiUrl}/r1/${PrintObjectID}/data/unauthorized`, query,{
-//       headers: {
-//         "Content-Type": "application/json"
-//       }, responseType: 'json'
-      
-//     },)
-
-//   }
-
-  
-
-//   getRoleUser(userId: any): Observable<any> {
-   
-//     return this.http.get(`${this.apiUrl}/services/app/Role/GetRoleByUserId?userId=${userId}`, {responseType: 'json'});
-//   }
-
-//   getToken(): any {
-//     return localStorage.getItem(this.accessTokenKey);
-//   }
-
-//   setToken(token: string): void {
-//     localStorage.setItem(this.accessTokenKey, token);
-//   }
-
-//   getRefreshToken(): any {
-//     return localStorage.getItem(this.refreshTokenKey);
-//   }
-
-//   setRefreshToken(token: string): void {
-//     localStorage.setItem(this.refreshTokenKey, token);
-//   }
-
-//   isUserAuthenticated(): boolean {
-//     const token = this.getToken();
-//     // kiểm tra xem token có tồn tại hay không
-//     return !!token;
-//   }
-
-//   refreshToken(): Observable<any> {
-//     const refreshToken = this.getRefreshToken();
-//     return this.http.post(`${this.apiUrl}/refreshToken`, { refresh_token: refreshToken })
-//     // .pipe(
-//     //   tap((tokens: any) => { //tap là 1 operator của rxjs nó sẽ thực hiện 1 hành động nào đó khi observable được gọi 
-//     //     // this.setToken(tokens.access_token); 
-//     //     // this.setRefreshToken(tokens.refresh_token);
-//     //     this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.accessToken);
-//     //     this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.refreshToken);
-//     //   })
-//     // );
-//   }
-
-//   logout() {
-//     this.setValueRole(4);
-//     localStorage.removeItem(this.accessTokenKey);
-//     localStorage.removeItem(this.refreshTokenKey);
-
-//     this.router.navigateByUrl('/auth/login');
-    
-    
-//   }
-// }
-
 //----------------------
 // <auto-generated>
 //     Generated using the NSwag toolchain v13.19.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0)) (http://NSwag.org)
@@ -132,6 +8,26 @@ export interface IClient {
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
+import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
+import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
+import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
+
+export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
+
+export interface IClient {
+    apiV1ReportsR1(reportCode: string, jsonCompress: string | null | undefined): Observable<FileResponse>;
+    apiV1ReportsR1SampleGet(reportCode: string, jsonCompress: string | null | undefined): Observable<OperationResultInfoOfByteOf>;
+    apiV1ReportsR1SamplePost(reportCode: string, jsonCompress: string): Observable<OperationResultInfoOfByteOf>;
+    apiV1ReportsR1SampleUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfByteOf>;
+    apiV1ReportsR1Data(reportCode: string, jsonCompress: string | null | undefined): Observable<OperationResultInfoOfString>;
+    apiV1ReportsR1DataUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfString>;
+    apiV1ReportsR1SampleData(reportCode: string): Observable<OperationResultInfoOfString>;
+    apiV1ReportsR1On(): Observable<FileResponse>;
+    apiV1ReportsR1Ondb(): Observable<FileResponse>;
+    apiV1ReportsR1Onerror(): Observable<FileResponse>;
+    apiV1ReportsR1Onnocontent(): Observable<FileResponse>;
+}
 
 @Injectable({
     providedIn: 'root'
@@ -143,7 +39,7 @@ export class Client implements IClient {
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
-        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://192.168.1.10:3032";
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://localhost:64950";
     }
 
     apiV1ReportsR1(reportCode: string, jsonCompress: string | null | undefined): Observable<FileResponse> {
@@ -909,4 +805,3 @@ function blobToText(blob: any): Observable<string> {
         }
     });
 }
-

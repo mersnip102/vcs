@@ -177,172 +177,18 @@
             </div>
         </div>
     </div>
-
-    <!-- <div class="row">
-        <div class="col-lg-12">
-            <div class="footer">
-                <p>This dashboard was generated on <span id="date-time"></span> <a href="#" class="page-refresh">Refresh Dashboard</a></p>
-            </div>
-        </div>
-    </div> -->
  
-    <app-chart1-ui *ngIf="grossChartData" [color]="color" [dataChart]="grossChartData" [animation]="animation" ></app-chart1-ui>
+    
+    
     <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning">
         <div class="row">
-
-            <!-- Pie Chart -->
-            <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <!-- <h4>Dự án 1</h4> -->
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        
-                        <!-- <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions"
-                            style="width: 100%; height: 400px; display: block;"></highcharts-chart> -->
-                    </div>
-                </div>
+            <div class="col-sm-12 col-md-12">
+                <span class="text-primary">Từ ngày - Đến ngày: <nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker></span>
             </div>
-
-            <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <!-- <h4>Dự án 1</h4> -->
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <!-- <app-chart1-ui [color]="color" [dataChart]="grossChartData" [animation]="animation"></app-chart1-ui> -->
-                        <!-- <dx-chart id="chart" [dataSource]="grossProductData" (onPointClick)="onPointClick($event)">
-
-                            <dxi-series name="Average Temperature, °C" valueField="year2016" name="2016">
-
-                                <dxo-label [visible]="true" backgroundColor="white"
-                                    [font]="{ size: 12, color: 'black' }"></dxo-label>
-                            </dxi-series>
-                            <dxo-common-series-settings argumentField="state" type="bar" hoverMode="allArgumentPoints"
-                                selectionMode="allArgumentPoints">
-                                <dxo-label [visible]="true" [format]="{
-                                    type: 'fixedPoint',
-                                    precision: 0
-                                }">
-                                </dxo-label>
-                            </dxo-common-series-settings>
-
-                            <dxo-legend [visible]="true" verticalAlignment="bottom" horizontalAlignment="center"
-                                itemTextPosition="bottom" [markerSize]="15" markerShape="square">
-                            </dxo-legend>
-                            <dxo-title [text]="'okeee'" >
-                                <dxo-font [weight]="900" color="black">
-                                </dxo-font>
-                            </dxo-title>
-                            <dxo-export [enabled]="true"></dxo-export>
-                            <dxi-value-axis pane="topPane">
-                                <dxo-grid [visible]="true"></dxo-grid>
-                                <dxo-title text="Temperature, °C"></dxo-title>
-                            </dxi-value-axis>
-
-                        </dx-chart> -->
-
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="col-sm-12 col-md-6">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions2"
-                            style="width: 100%; height: 400px; display: block;"></highcharts-chart>
-                    </div>
-                </div>
-            </div> -->
-
-
-            <!-- Line Chart -->
-            <!-- <div class="col-sm-12 col-md-7">
-                <div class="panel panel-bd lobidrag">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4>Table</h4>
-                        </div>
-                    </div>
-                    <div class="bootstrap-data-table-panel">
-                        <div class="table-responsive">
-        
-                            <table class="table table-hover table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tên đơn vị</th>
-                                        <th>Được giao</th>
-                                        <th>Đã phân bổ</th>
-                                        <th>Tỷ lệ</th>
-        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Thanh Hóa</td>
-        
-                                        <td>1000</td>
-                                        <td>7500</td>
-                                        <td>75%</td>
-        
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>An Giang</td>
-        
-                                        <td>12000</td>
-                                        <td>66600</td>
-                                        <td>55%</td>
-        
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Bắc Kạn</td>
-        
-                                        <td>11000</td>
-                                        <td>5200</td>
-                                        <td>47%</td>
-        
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="page-nation text-center">
-                                        <ul class="pagination pagination-large">
-                                            <li class="disabled"><span>«</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a href="#">2</a></li>
-                                            <li class="hidden-xs"><a href="#">3</a></li>
-                                            <li class="hidden-xs"><a href="#">4</a></li>
-                                            <li class="hidden-xs"><a href="#">6</a></li>
-                                            <li class="hidden-xs"><a href="#">7</a></li>
-                                            <li class="hidden-xs"><a href="#">8</a></li>
-                                            <li class="hidden-xs"><a href="#">9</a></li>
-                                            <li class="disabled hidden-xs"><span>...</span></li>
-                                            <li>
-                                            <li><a rel="next" href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+    
         </div>
-        <!-- <div class="row">
-        
+        <div class="row">
+
             
             <div class="col-sm-12 col-md-6">
                 <div class="panel">
@@ -352,11 +198,13 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions3"
-                            style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+                        <app-chart1-ui *ngIf="dataChartArray1" [color]="color" [dataChart]="dataChartArray1" [animation]="animation" [duAn]="'1'"></app-chart1-ui>
+                        
+                        
                     </div>
                 </div>
             </div>
+
             <div class="col-sm-12 col-md-6">
                 <div class="panel">
                     <div class="panel-heading">
@@ -365,92 +213,340 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions4"
-                            style="width: 100%; height: 400px; display: block;"></highcharts-chart>
+
+                        <app-chart2-ui *ngIf="dataChartArray1" [color]="color" [dataChart]="dataChartArray1" [animation]="animation" [duAn]="'1'"></app-chart2-ui>
+
+                       
+
                     </div>
                 </div>
             </div>
-        </div> -->
+           
+        </div>
+        <div class="row">
 
-
-        <!-- Line Chart -->
-        <!-- <div class="col-sm-12 col-md-7">
-                <div class="panel panel-bd lobidrag">
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h4>Table</h4>
+                            
                         </div>
                     </div>
-                    <div class="bootstrap-data-table-panel">
-                        <div class="table-responsive">
-        
-                            <table class="table table-hover table-striped table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tên đơn vị</th>
-                                        <th>Được giao</th>
-                                        <th>Đã phân bổ</th>
-                                        <th>Tỷ lệ</th>
-        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Thanh Hóa</td>
-        
-                                        <td>1000</td>
-                                        <td>7500</td>
-                                        <td>75%</td>
-        
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>An Giang</td>
-        
-                                        <td>12000</td>
-                                        <td>66600</td>
-                                        <td>55%</td>
-        
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Bắc Kạn</td>
-        
-                                        <td>11000</td>
-                                        <td>5200</td>
-                                        <td>47%</td>
-        
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="page-nation text-center">
-                                        <ul class="pagination pagination-large">
-                                            <li class="disabled"><span>«</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a href="#">2</a></li>
-                                            <li class="hidden-xs"><a href="#">3</a></li>
-                                            <li class="hidden-xs"><a href="#">4</a></li>
-                                            <li class="hidden-xs"><a href="#">6</a></li>
-                                            <li class="hidden-xs"><a href="#">7</a></li>
-                                            <li class="hidden-xs"><a href="#">8</a></li>
-                                            <li class="hidden-xs"><a href="#">9</a></li>
-                                            <li class="disabled hidden-xs"><span>...</span></li>
-                                            <li>
-                                            <li><a rel="next" href="#">Next</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray2" [color]="color" [dataChart]="dataChartArray2" [animation]="animation" [duAn]="'2'"></app-chart1-ui>
+                        
+                        
                     </div>
                 </div>
-            </div> -->
+            </div>
 
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
 
+                        <app-chart2-ui *ngIf="dataChartArray2" [color]="color" [dataChart]="dataChartArray2" [animation]="animation" [duAn]="'2'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray3" [color]="color" [dataChart]="dataChartArray3" [animation]="animation" [duAn]="'3'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray3" [color]="color" [dataChart]="dataChartArray3" [animation]="animation" [duAn]="'3'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray4" [color]="color" [dataChart]="dataChartArray4" [animation]="animation" [duAn]="'4'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray4" [color]="color" [dataChart]="dataChartArray4" [animation]="animation" [duAn]="'4'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray5" [color]="color" [dataChart]="dataChartArray5" [animation]="animation" [duAn]="'5'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray5" [color]="color" [dataChart]="dataChartArray5" [animation]="animation" [duAn]="'5'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray6" [color]="color" [dataChart]="dataChartArray6" [animation]="animation" [duAn]="'6'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray6" [color]="color" [dataChart]="dataChartArray6" [animation]="animation" [duAn]="'6'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray7" [color]="color" [dataChart]="dataChartArray7" [animation]="animation" [duAn]="'7'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray7" [color]="color" [dataChart]="dataChartArray7" [animation]="animation" [duAn]="'7'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray8" [color]="color" [dataChart]="dataChartArray8" [animation]="animation" [duAn]="'8'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray8" [color]="color" [dataChart]="dataChartArray8" [animation]="animation" [duAn]="'8'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray9" [color]="color" [dataChart]="dataChartArray9" [animation]="animation" [duAn]="'9'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray9" [color]="color" [dataChart]="dataChartArray9" [animation]="animation" [duAn]="'9'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+
+            
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <app-chart1-ui *ngIf="dataChartArray10" [color]="color" [dataChart]="dataChartArray10" [animation]="animation" [duAn]="'10'"></app-chart1-ui>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <app-chart2-ui *ngIf="dataChartArray10" [color]="color" [dataChart]="dataChartArray10" [animation]="animation" [duAn]="'10'"></app-chart2-ui>
+
+                       
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
 
     </nz-spin>
 

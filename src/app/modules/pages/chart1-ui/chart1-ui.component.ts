@@ -7,7 +7,7 @@ import { NzImageService } from 'ng-zorro-antd/image';
 import { interval } from 'rxjs';
 import { TT01DataExport } from 'src/app/models/tt01DTO/tt01DataExport.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ProxiesService } from 'src/app/services/proxies/proxies.service';
+import { Client } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { NotifyService } from 'src/app/shared/utils/notify';
@@ -22,8 +22,9 @@ import { NotifyService } from 'src/app/shared/utils/notify';
 export class Chart1UIComponent implements OnInit, AfterViewInit {
   // @Input() reportDataExport!: TT01DataExport[];
   @Input() animation?: any;
-  @Input() dataChart: any[] = [];
+  @Input() dataChart: TT01DataExport[] = [];
   @Input() color?: string;
+  @Input() duAn?: string;
 
   // @Input() seriesType!: string;
 
@@ -42,32 +43,32 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   //     enabled: true,
   //     duration: 10000,
   //     easing: 'easeOutCubic',
-      
+
   //   }
   // };
 
   onPointClick(e: any) {
     e.target.select();
   }
-  
+
 
   grossProductData: any[] = [
-  //   {
-    
-  //   state: 'Illinois',
-  //   year2016: 850,
-    
-  // }, {
-  //   state: 'Indiana',
-  //   year2016: 316,
-   
-  // },
-  // {
-  //   state: 'aaa',
-  //   year2016: 316,
-   
-  // }  
-];
+    //   {
+
+    //   state: 'Illinois',
+    //   year2016: 850,
+
+    // }, {
+    //   state: 'Indiana',
+    //   year2016: 316,
+
+    // },
+    // {
+    //   state: 'aaa',
+    //   year2016: 316,
+
+    // }  
+  ];
 
   constructor(
 
@@ -78,33 +79,34 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private nzImageService: NzImageService,
     private http: HttpClient,
-    private apiReport: ProxiesService,
+    private apiReport: Client,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private notifyService: NotifyService) {
-     
+
     // this.authService.roleUser.subscribe(res => {
     //   this.roleUserCurrent = res;
 
 
     // });
-    }
+  }
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
   }
-    // colors: string = this.getRandomColor()
-  
+  // colors: string = this.getRandomColor()
 
-    data: any
 
-    intervalMs = 0.1 * 60 * 1000; 
+  data: any
+
+  intervalMs = 0.2 * 60 * 1000;
   count = 1;
   startIndex = 0;
-  a: any[] = [{
-    d: 500,
-    arg: "okee"
-  }]
+
+  seriesName = ''
+  dxiSeries = '' 
+  titleChart = ''
+  convertDataChart: any[] = []
 
   // chart = new DevExpress.ui.cg("chart", {
   //   dataSource: this.a,
@@ -134,36 +136,69 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   //   }
   // });
 
-  
-   ngOnInit() {
-      // this.a[0].d = this.dataChart._mnSoLieuTH
-      //       this.a[0].arg = this.dataChart._mnSoLieuTH
-      console.log(this.dataChart)
-    
-      this.a[0].d = this.dataChart[this.startIndex]._mnSoLieuTH
-      this.a[0].arg = this.dataChart[this.startIndex]._nsChiSoDuAn
-      
-           interval(this.intervalMs).subscribe(() => {
-           
+  // convertDataChart(data: TT01DataExport[]): any[] {
+  //   let dataChart: any[] = []
+  //   data.forEach((item: any) => {
+  //     dataChart.push({
+  //       nsChiSoDuAn: item.nsChiSoDuAn,
+  //       mnSoLieuTH: item.mnSoLieuTH,
+  //       nsDVT: item.nsDVT,
+  //       nsTTDuAn: item.nsTTDuAn,
+  //       nsChiSo: item.nsChiSo,
+  //       nsChiSoDuAn: item.nsChiSoDuAn,
+  //     })
+  //   });
+  //   return dataChart
+  // }
 
-            if (this.startIndex > this.dataChart.length) {
-
-              this.startIndex = 0;
-            } else {
-              this.startIndex += this.count;
-            }
-            this.color = this.getRandomColor();
-            this.a[0].d = this.dataChart[this.startIndex]._mnSoLieuTH
-            this.a[0].arg = this.dataChart[this.startIndex]._nsChiSoDuAn
-           
-            // this.getChartOptions(this.dataChartArray[this.startIndex]);
-          });
-    
-    
-    
+   convertDataChartFunction(data: TT01DataExport): any {
+    this.titleChart = `Dự án ${this.duAn!}.${data.nsTTDuAn}. ${data.nsChiSoDuAn}`
+    this.seriesName = data.nsChiSo
+    this.dxiSeries = `Đơn vị tính: ${data.nsDVT}`
+    this.convertDataChart = []
+    this.convertDataChart.push(
+      {
+        data: data.mnSoLieuTH,
+        nameColumn: 'Số liệu thực hiện trong kỳ bào cáo'
+      },
+      {
+        data: data.mnSoLieuLuyKe,
+        nameColumn: 'Số liệu lũy kế từ đầu năm đến thời điểm báo cáo'
+      },
+      {
+        data: data.mnLuyKeThucHien,
+        nameColumn: 'Lũy kế thực hiện từ đầu giai đoạn'
+      }
+    )
   }
 
-  
+
+  ngOnInit() {
+    this.color = this.getRandomColor();
+
+    this.convertDataChartFunction(this.dataChart[0])
+    
+
+    interval(this.intervalMs).subscribe(async () => {
+
+
+      if (this.startIndex > this.dataChart.length) {
+
+        this.startIndex = 0;
+      } else {
+        this.startIndex += this.count;
+      }
+      this.color = this.getRandomColor();
+      await this.convertDataChartFunction(this.dataChart[this.startIndex])
+
+      // this.getChartOptions(this.dataChartArray[this.startIndex]);
+    });
+
+
+
+  }
+
+
 
 
   // animation = {
@@ -172,8 +207,8 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   //   easing: 'easeOutCubic',
   //   from: { translateY: '100%' },
   // };
-  
 
-  
+
+
 
 }

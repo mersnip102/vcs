@@ -49,6 +49,8 @@ import { RouterModule } from '@angular/router';
 
 import { GoogleMapsModule } from '@angular/google-maps';
 import { DxChartModule } from 'devextreme-angular';
+import { API_BASE_URL } from './services/proxies/proxies.service';
+import { AppConsts } from './shared/constants';
 
 
 registerLocaleData(en);
@@ -117,7 +119,10 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     //   multi: true,
     // },
     { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons },
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true } ],
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: API_BASE_URL, useFactory: () => AppConsts.remoteServiceBaseUrl }, ],
+    
+    
     
   bootstrap: [AppComponent]
 })

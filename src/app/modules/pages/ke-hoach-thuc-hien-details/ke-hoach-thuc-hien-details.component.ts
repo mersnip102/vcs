@@ -7,7 +7,7 @@ import { NzImageService } from 'ng-zorro-antd/image';
 import { interval, map } from 'rxjs';
 import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ProxiesService } from 'src/app/services/proxies/proxies.service';
+import { Client } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { detailChild } from 'src/app/shared/utilities';
@@ -29,7 +29,7 @@ export class KeHoachThucHienDetailsComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private nzImageService: NzImageService,
     private http: HttpClient,
-    private apiReport: ProxiesService,
+    private apiReport: Client,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -124,127 +124,127 @@ export class KeHoachThucHienDetailsComponent implements OnInit {
     //   // });
     // });
     this.isSpinning = true;
-    // interval(this.intervalMs).subscribe(() => {
-        // const data = { status: this.status, idBaoCao: this.selectedReportId };
-        this.apiReport.DA1_01(this.paramId).pipe( 
-          map((response: any) => response.result),
-          map(data => data.map((d: any) => new TT01DataDTO(
-            d.nsMS,
-            d.nsTT,
-            d.nsChiSo,
-            d.nsDVT,
-            d.nsPhanTo,
-            d.nsDB,
-            d.mnSoLieuTH,
-            d.mnSoLieuLuyKe,
-            d.mnChiTieuKHNamBC,
-            d.mnTyLeKHNam,
-            d.mnLuyKeThucHien,
-            d.mnChiTieuKHNamGD,
-            d.mnTyLeThucHienGiaiDoan,
-            d.ntGhiChu
-          )))
+    // // interval(this.intervalMs).subscribe(() => {
+    //     // const data = { status: this.status, idBaoCao: this.selectedReportId };
+    //     this.apiReport.getDataChartFromDatabase(this.paramId).pipe( 
+    //       map((response: any) => response.result),
+    //       map(data => data.map((d: any) => new TT01DataDTO(
+    //         d.nsMS,
+    //         d.nsTT,
+    //         d.nsChiSo,
+    //         d.nsDVT,
+    //         d.nsPhanTo,
+    //         d.nsDB,
+    //         d.mnSoLieuTH,
+    //         d.mnSoLieuLuyKe,
+    //         d.mnChiTieuKHNamBC,
+    //         d.mnTyLeKHNam,
+    //         d.mnLuyKeThucHien,
+    //         d.mnChiTieuKHNamGD,
+    //         d.mnTyLeThucHienGiaiDoan,
+    //         d.ntGhiChu
+    //       )))
        
-      )
-          .subscribe(
-             (data: TT01DataDTO[]) => {
-              this.isSpinning = false;
-              const temp = data;
+    //   )
+    //       .subscribe(
+    //          (data: TT01DataDTO[]) => {
+    //           this.isSpinning = false;
+    //           const temp = data;
               
               
              
-              const  nsTTArray = temp.map((item: any) => {
-                return item.nsTT;
-              })
+    //           const  nsTTArray = temp.map((item: any) => {
+    //             return item.nsTT;
+    //           })
               
-              this.isSpinning = false;
+    //           this.isSpinning = false;
   
               
-              this.dataChart = detailChild(nsTTArray, temp);
+    //           this.dataChart = detailChild(nsTTArray, temp);
 
 
-              console.log(this.dataChart);
-              if(this.dataChart.length > 0){
-              this.dataChart.forEach((item: any) => {
-                  //add object to array
-                  this.charts.push({
-                    chart1: this.getChartOptions1(item),
-                    chart2: this.getChartOptions2(item)
-                  }
+    //           console.log(this.dataChart);
+    //           if(this.dataChart.length > 0){
+    //           this.dataChart.forEach((item: any) => {
+    //               //add object to array
+    //               this.charts.push({
+    //                 chart1: this.getChartOptions1(item),
+    //                 chart2: this.getChartOptions2(item)
+    //               }
                     
                  
-                )
-                  })
+    //             )
+    //               })
 
                 
-              }
-              console.log(this.charts);
+    //           }
+    //           console.log(this.charts);
 
 
 
-              // this.getChartOptions1(this.dataChart[0]);
+    //           // this.getChartOptions1(this.dataChart[0]);
 
-              // this. this.getChartOptions2(this.dataChart[0]);
+    //           // this. this.getChartOptions2(this.dataChart[0]);
 
-              // interval(this.intervalMs).subscribe(() => {
-              //   console.log(this.startIndex);
+    //           // interval(this.intervalMs).subscribe(() => {
+    //           //   console.log(this.startIndex);
                 
-              //   this.getChartOptions(this.dataChart[this.startIndex]);
+    //           //   this.getChartOptions(this.dataChart[this.startIndex]);
                 
-              //     if (this.startIndex > this.dataChart.length) {
-              //       // We have reached the end of the data, start over
-              //       this.startIndex = 0;
-              //     } else {
-              //       this.startIndex += this.count;
-              //     }
+    //           //     if (this.startIndex > this.dataChart.length) {
+    //           //       // We have reached the end of the data, start over
+    //           //       this.startIndex = 0;
+    //           //     } else {
+    //           //       this.startIndex += this.count;
+    //           //     }
                 
-              // });
+    //           // });
               
               
               
              
              
               
-              // this.chart = Highcharts.chart('chart', options);
-              // this.chartOptions = this.getChartOptions(this.dataChart[0]);
+    //           // this.chart = Highcharts.chart('chart', options);
+    //           // this.chartOptions = this.getChartOptions(this.dataChart[0]);
 
-              // if (this.dataChart.length < this.count) {
-              //   // We have reached the end of the data, start over
-              //   this.startIndex = 0;
-              // } else {
-              //   this.startIndex += this.count;
-              // }
+    //           // if (this.dataChart.length < this.count) {
+    //           //   // We have reached the end of the data, start over
+    //           //   this.startIndex = 0;
+    //           // } else {
+    //           //   this.startIndex += this.count;
+    //           // }
   
          
-              // const newMap = new Map<any, any>()
+    //           // const newMap = new Map<any, any>()
             
-              // for (const [key, value] of Object.entries(detail)) {
-              //   newMap.set(key, value);
-              // }
-              // //loop through map
-              // for (const [key, value] of newMap) {
-              //   console.log(key, value);
-              // }
+    //           // for (const [key, value] of Object.entries(detail)) {
+    //           //   newMap.set(key, value);
+    //           // }
+    //           // //loop through map
+    //           // for (const [key, value] of newMap) {
+    //           //   console.log(key, value);
+    //           // }
               
              
   
               
               
-              // this.notifyService.successMessage("Lấy báo cáo oke").then(
-              //   () => {
+    //           // this.notifyService.successMessage("Lấy báo cáo oke").then(
+    //           //   () => {
   
-              //     // this.ngOnInit();
+    //           //     // this.ngOnInit();
   
-              //   }
-              // );
+    //           //   }
+    //           // );
   
-              // TODO: Update the list of users
-            },
-            error => {
-              console.error(error);
-              this.isSpinning = false;
-            }
-          );
+    //           // TODO: Update the list of users
+    //         },
+    //         error => {
+    //           console.error(error);
+    //           this.isSpinning = false;
+    //         }
+    //       );
       
     // }
     // )

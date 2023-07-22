@@ -3,12 +3,13 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2 } from '
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
+import * as moment from 'moment';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { interval, map } from 'rxjs';
 import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { TT01DataExport } from 'src/app/models/tt01DTO/tt01DataExport.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { ProxiesService } from 'src/app/services/proxies/proxies.service';
+import { Client } from 'src/app/services/proxies/proxies.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { getTT01DataExport } from 'src/app/shared/transformData/tt01/tt01DataExport';
@@ -23,43 +24,53 @@ import { NotifyService } from 'src/app/shared/utils/notify';
   styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
 export class KeHoachThucHienComponent implements OnInit {
-  grossChartData!: any[];
+  date = null
+  grossChartData1!: TT01DataExport[];
+  grossChartData2!: TT01DataExport[];
+  grossChartData3!: TT01DataExport[];
+  grossChartData4!: TT01DataExport[];
+  grossChartData5!: TT01DataExport[];
+  grossChartData6!: TT01DataExport[];
+  grossChartData7!: TT01DataExport[];
+  grossChartData8!: TT01DataExport[];
+  grossChartData9!: TT01DataExport[];
+  grossChartData10!: TT01DataExport[];
   customizeTooltip(info: any) {
     return {
       text: `${info.seriesName} - ${info.argumentText}: ${info.valueText}`
     };
   }
 
-  
 
-  
+
+
   grossProductData: any[] = [{
     state: 'Illinois',
     year2016: 850,
-    
+
   }, {
     state: 'Indiana',
     year2016: 316,
-   
+
   }, {
     state: 'Michigan',
     year2016: 452,
-   
+
   }, {
     state: 'Ohio',
     year2016: 621,
-   
+
   }, {
     state: 'Wisconsin',
     year2016: 290,
-   
+
   }];
   color: string = this.getRandomColor();
 
   onPointClick(e: any) {
     e.target.select();
   }
-  
+
   populationData: any[] = [{
     arg: 1960,
     val: 3032019978,
@@ -92,7 +103,7 @@ export class KeHoachThucHienComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private nzImageService: NzImageService,
     private http: HttpClient,
-    private apiReport: ProxiesService,
+    private apiReport: Client,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -107,7 +118,7 @@ export class KeHoachThucHienComponent implements OnInit {
 
 
   }
-  
+
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -177,32 +188,85 @@ export class KeHoachThucHienComponent implements OnInit {
 
   animation = {
     enabled: true,
-    duration: 3000,
+    duration: 2000,
     easing: 'easeOutCubic',
     // from: { translateY: '100%' },
   };
-  
 
 
 
-  intervalMs = 0.1 * 60 * 1000; 
+
+  intervalMs = 0.1 * 60 * 1000;
   count = 1;
   startIndex = 0;
 
-  dataChartArray: any[] = [];
-  
+  dataChartArray1!: TT01DataExport[]
+  dataChartArray2!: TT01DataExport[]
+  dataChartArray3!: TT01DataExport[]
+  dataChartArray4!: TT01DataExport[]
+  dataChartArray5!: TT01DataExport[]
+  dataChartArray6!: TT01DataExport[]
+  dataChartArray7!: TT01DataExport[]
+  dataChartArray8!: TT01DataExport[]
+  dataChartArray9!: TT01DataExport[]
+  dataChartArray10!: TT01DataExport[]
 
   chart!: Highcharts.Chart;
 
-  getDA1_01Data(): any {
+  async onChange(result: Date[]): Promise<void> {
+    
    
-    this.isSpinning = true;
-    this.apiReport.DA1_01('01_DA1').pipe(
-      map((response: any) => response.result),
-      map(data => data.map((d: any) => getTT01DataImport(d)))
+    this.startDate = moment(result[0]).format("MM/DD/YYYY");
+    this.endDate = moment(result[1]).format("MM/DD/YYYY");
+    await this.afunction()
+    console.log(this.dataChartArray1)
+  }
 
-    ).subscribe(
-        (data: TT01DataDTO[]) => {
+  startDate = '';
+  endDate = '';
+
+  async callApiReport(rpCode: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let dataExport: any[] = []
+      let query: any = {}
+      if (this.startDate != '' && this.endDate != '') {
+        query = {
+          "PrintObjectID": rpCode, // giống reportCode
+          "PeriodOfTime2": {
+            "TuNgay": this.startDate,
+            "DenNgay": this.endDate
+          }
+        }
+      } else if (this.startDate != '' && this.endDate == '') {
+        query = {
+          "PrintObjectID": rpCode, // giống reportCode
+          "PeriodOfTime2": {
+            "TuNgay": this.startDate,
+          }
+        }
+
+      } else {
+        query = {
+          "PrintObjectID": rpCode, // giống reportCode
+
+        }
+      }
+
+      this.isSpinning = true;
+
+      // const response = await this.apiReport
+      //   .apiV1ReportsR1DataUnauthorized(rpCode, query)
+      //   .toPromise().then( value=> {
+      //     return 
+      //   })
+
+
+      this.apiReport.apiV1ReportsR1DataUnauthorized(rpCode, query).pipe(
+        map((response: any) => response.result),
+        map(data => data.map((d: any) => getTT01DataImport(d)))
+
+      ).subscribe(
+        async (data: TT01DataDTO[]) => {
           this.isSpinning = false;
           const temp = data;
 
@@ -212,71 +276,161 @@ export class KeHoachThucHienComponent implements OnInit {
 
           this.isSpinning = false;
 
+          dataExport = await getTT01DataExport(nsTTArray, temp);
 
-          this.dataChartArray = getTT01DataExport(nsTTArray, temp);
 
-          // for (const [key, value] of Object.entries(detail)) {
-          //   detail[key].map((item: any) => {
-          //     temp.map((item2: any) => {
-          //       if (item.name === item2._nsTT) {
-          //         item2._nsTTDuAn = item2._nsTT.split('.')[0]
-          //         temp.filter((item3: any) => {
-          //           if (item3.nsTT === item2._nsTTDuAn) {
-          //             item2._nsChiSoDuAn = item3.nsChiSo
-          //           }
-          //         })
-          //         if (item2.mnSoLieuTH !== null) {
-          //           this.dataChart.push(item2)
-          //         }
-          //       }
-          //     }
-          //     )
-          //   })
-          // }
-          
-
-          // this.getChartOptions(this.dataChartArray[0]);
-          
-          this.grossChartData = this.dataChartArray
-          
-          console.log(this.grossChartData)
-
-          // interval(this.intervalMs).subscribe(() => {
-           
-
-          //   if (this.startIndex > this.dataChartArray.length) {
-
-          //     this.startIndex = 0;
-          //   } else {
-          //     this.startIndex += this.count;
-          //   }
-          //   this.color = this.getRandomColor();
-          //   this.grossChartData = this.dataChartArray[this.startIndex]
-          //   console.log(this.grossChartData);
-          //   // this.getChartOptions(this.dataChartArray[this.startIndex]);
-          // });
-
+          resolve(dataExport);
 
         },
         error => {
+          reject(error);
           console.error(error);
           this.isSpinning = false;
+
         }
       );
 
-    // }
-    // )
+
+    })
+  }
+
+  async getDA1() {
+    let F01_DA1 = await this.callApiReport('01_DA1')
+    console.log(F01_DA1)
+
+    let data = [...F01_DA1]
+    return data
+
+  }
+  async getDA2() {
+    let F02_DA2 = await this.callApiReport('02_DA2')
+
+    let data = [...F02_DA2]
+    return data
+
+  }
+  async getDA3() {
+
+
+    //   ...this.callApiReport('03_DA3_01'),
+    // ... this.callApiReport('04_DA3_02_01'), ...this.callApiReport('05_DA3_02_02_02')
+
+    let F03_DA3_01 = await this.callApiReport('03_DA3_01')
+    let F04_DA3_02_01 = await this.callApiReport('04_DA3_02_01')
+    let F05_DA3_02_02_02 = await this.callApiReport('05_DA3_02_02_02')
+    let F06_DA3_02_03 = await this.callApiReport('06_DA3_02_03')
+    let F07_DA3_03 = await this.callApiReport('07_DA3_03')
+    let data = [...F03_DA3_01, ...F04_DA3_02_01, ...F05_DA3_02_02_02, ...F06_DA3_02_03, ...F07_DA3_03]
+    return data
+
 
   }
 
+  async getDA4() {
+    let F08_DA4_01_01 = await this.callApiReport('08_DA4_01_01')
+    let F09_DA4_01_02 = await this.callApiReport('09_DA4_01_02')
+    // let F10_DA4_02 = await this.callApiReport('10_DA4_02')
+    
+    let data = [...F08_DA4_01_01, ...F09_DA4_01_02]
+    return data
+
+  }
+
+  async getDA5() {
+    let F11_DA5_01 = await this.callApiReport('11_DA5_01')
+    let F12_DA5_02 = await this.callApiReport('12_DA5_02')
+    let F13_DA5_03 = await this.callApiReport('13_DA5_03')
+    let F14_DA5_04 = await this.callApiReport('14_DA5_04')
+    
+    let data = [...F11_DA5_01, ...F12_DA5_02, ...F13_DA5_03, ...F14_DA5_04]
+    return data
+
+  }
+
+
+  async getDA6() {
+    let F15_DA6 = await this.callApiReport('15_DA6')
+   
+    
+    let data = [...F15_DA6]
+    return data
+
+  }
+
+  async getDA7() {
+    let F16_DA7 = await this.callApiReport('16_DA7')
+   
+    
+    let data = [...F16_DA7]
+    return data
+
+  }
+
+
+  async getDA8() {
+    let F17_DA8= await this.callApiReport('17_DA8')
+   
+    
+    let data = [...F17_DA8]
+    return data
+
+  }
+
+
+  async getDA9() {
+    let F18_DA9_01= await this.callApiReport('18_DA9_01')
+    let F19_DA9_02= await this.callApiReport('19_DA9_02')
+   
+    
+    let data = [...F18_DA9_01, ...F19_DA9_02]
+    return data
+
+  }
+
+  async getDA10() {
+    let F20_DA10_01= await this.callApiReport('20_DA10_01')
+    let F21_DA10_02= await this.callApiReport('21_DA10_02')
+    let F22_DA10_03= await this.callApiReport('22_DA10_03')
+   
+    
+    let data = [...F20_DA10_01, ...F21_DA10_02, ...F22_DA10_03]
+    return data
+
+  }
+
+
+  async afunction() {
+    this.dataChartArray1 =  await this.getDA1();
+   
+    this.dataChartArray2 = await this.getDA2();
+    
+    this.dataChartArray3 = await this.getDA3();
+    this.dataChartArray4 = await this.getDA4();
+    this.dataChartArray5 = await this.getDA5();
+    this.dataChartArray6 = await this.getDA6();
+    this.dataChartArray7 = await this.getDA7();
+    this.dataChartArray8 = await this.getDA8();
+    this.dataChartArray9 = await this.getDA9();
+    this.dataChartArray10 = await this.getDA10();
+  }
+  
+
+
   async ngOnInit() {
-    // assuming you have an array of data called 'data'
-    await this.getDA1_01Data();
+    await this.afunction();
+    // this.dataChartArray1 =  await this.getDA1();
+    // console.log(this.dataChartArray1)
+    // this.dataChartArray2 = await this.getDA2();
+    // console.log(this.dataChartArray2)
+    // this.dataChartArray3 = await this.getDA3();
+    // this.dataChartArray4 = await this.getDA4();
+    // this.dataChartArray5 = await this.getDA5();
+    // this.dataChartArray6 = await this.getDA6();
+    // this.dataChartArray7 = await this.getDA7();
+    // this.dataChartArray8 = await this.getDA8();
+    // this.dataChartArray9 = await this.getDA9();
+    // this.dataChartArray10 = await this.getDA10();
 
-
-    // for (let i = 0; i < 3; i++) {
-    //   this.colors.push(this.getRandomColor());
-    // }
   }
 
   public getChartOptions(data: any) {
@@ -285,8 +439,6 @@ export class KeHoachThucHienComponent implements OnInit {
     yAxisData.push(data._mnSoLieuTH)
     yAxisData.push(data._mnSoLieuLuyKe)
     yAxisData.push(data._mnLuyKeThucHien)
-
-
 
     this.chartOptions = {
       credits: {
