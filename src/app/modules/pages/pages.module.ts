@@ -58,7 +58,7 @@ import { BaoCaoTongHopComponent } from './bao-cao-tong-hop/bao-cao-tong-hop.comp
 import { KeHoachThucHienComponent } from './ke-hoach-thuc-hien/ke-hoach-thuc-hien.component';
 import { PhanBoVonComponent } from './phan-bo-von/phan-bo-von.component';
 import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
-import { BaoCaoKetQuaComponent } from './bao-cao-ket-qua/bao-cao-ket-qua.component';
+
 import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 import { ApiInterceptor } from 'src/app/core/interceptor/api.interceptor';
@@ -91,7 +91,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     KeHoachThucHienComponent,
     PhanBoVonComponent,
     GiaiNganComponent,
-    BaoCaoKetQuaComponent,
+   
     QuyetToanComponent,
     ThongKeSoLieuComponent,
     KeHoachThucHienDetailsComponent,
@@ -155,7 +155,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons },
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }]
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }],
+    exports: [Chart1UIComponent, Chart2UIComponent]
 })
 export class PagesModule { }
 platformBrowserDynamic().bootstrapModule(PagesModule);

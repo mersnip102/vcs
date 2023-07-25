@@ -21,8 +21,13 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
   @Input() dataChart: TT01DataExport[] = [];
   @Input() color?: string;
   @Input() duAn?: string;
+  @Input() moveAnimation?: boolean;
 
   // @Input() seriesType!: string;
+
+  getData() {
+    console.log("2222")
+  }
 
   getRandomColor(): string {
     let result = '';
@@ -32,6 +37,14 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
     }
     return '#' + result;
   }
+
+  customizeTooltip(arg: any) {
+   
+    return {
+      text: arg.argument + ": " + arg.value.toFixed(2)
+    };
+  }
+
 
   // commonSeriesSettings = {
   //   type: 'bar',
@@ -43,9 +56,9 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
   //   }
   // };
 
-  onPointClick(e: any) {
-    e.target.select();
-  }
+  // onPointClick(e: any) {
+  //   e.target.select();
+  // }
 
 
   grossProductData: any[] = [
@@ -147,7 +160,7 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
   //   return dataChart
   // }
 
-   convertDataChartFunction(data: TT01DataExport): any {
+   convertDataChartFunction(data: any): any {
     this.titleChart = `Dự án ${this.duAn!}.${data.nsTTDuAn}. ${data.nsChiSoDuAn}`
     this.seriesName = '%'
     this.dxiSeries = `Đơn vị tính: %`
@@ -168,8 +181,10 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
-    console.log(this.dataChart)
+    
     this.color = this.getRandomColor();
+    
+    if(this.moveAnimation == true) {
 
     this.convertDataChartFunction(this.dataChart[0])
     
@@ -189,6 +204,12 @@ export class Chart2UIComponent implements OnInit, AfterViewInit {
 
       // this.getChartOptions(this.dataChartArray[this.startIndex]);
     });
+  } 
+    else {
+      this.convertDataChartFunction(this.dataChart[0])
+
+    
+  }
 
 
 

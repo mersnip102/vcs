@@ -9,6 +9,7 @@ import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.
 import { NotifyService } from 'src/app/shared/utils/notify';
 import { RoleNumber } from 'src/app/shared/utilities';
 import * as _ from "lodash";
+import { environmentAPI } from 'src/environments/environment';
 
 interface ProjectNode {
   name: string;
@@ -71,10 +72,12 @@ export class LoginComponent implements OnInit {
         //     phone: this.route.snapshot.queryParamMap.get('phone')!,
         //     password: this.route.snapshot.queryParamMap.get('password')!
         //   });
+        console.log('222222222');
+        window.location.href = environmentAPI.REACT_APP_SSO_SITE_URL
         this.phone = this.route.snapshot.queryParamMap.get('phone')!;
         this.password = this.route.snapshot.queryParamMap.get('password')!;
-        console.log(this.route.snapshot.queryParamMap);
-
+        console.log(this.route.snapshot.queryParamMap.get('a')!);
+        console.log("2222");
           
 
      }

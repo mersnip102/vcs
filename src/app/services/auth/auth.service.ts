@@ -18,7 +18,7 @@ export class AuthService {
   private readonly refreshTokenKey = 'encryptedAccessToken';
   roleUser: Observable<number>;
   //role-number
-  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(2);
+  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(4);
   // roleUserSubject!: BehaviorSubject<number>
 
   constructor( private router: Router, private http: HttpClient, private route: ActivatedRoute, private localStoreService: LocalStorageService) {

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import * as moment from 'moment';
 import { NzImageService } from 'ng-zorro-antd/image';
-import { interval, map } from 'rxjs';
+import { Subscription, interval, map } from 'rxjs';
 import { TT01DataDTO } from 'src/app/models/tt01DTO/tt01DataDto.model';
 import { TT01DataExport } from 'src/app/models/tt01DTO/tt01DataExport.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -23,7 +23,8 @@ import { NotifyService } from 'src/app/shared/utils/notify';
   templateUrl: './ke-hoach-thuc-hien.component.html',
   styleUrls: ['./ke-hoach-thuc-hien.component.css']
 })
-export class KeHoachThucHienComponent implements OnInit {
+export class KeHoachThucHienComponent implements OnInit, OnDestroy {
+  private subscription!: Subscription;
   date = null
   grossChartData1!: TT01DataExport[];
   grossChartData2!: TT01DataExport[];
@@ -39,6 +40,15 @@ export class KeHoachThucHienComponent implements OnInit {
     return {
       text: `${info.seriesName} - ${info.argumentText}: ${info.valueText}`
     };
+  }
+
+
+
+  navigateRouteChild(duAn: number, child?:any[]){
+    
+    this.router.navigate([`/pages/bao-cao-ket-qua/child/${duAn}`], { queryParams: { child:  child} });
+    
+
   }
 
 
@@ -110,6 +120,7 @@ export class KeHoachThucHienComponent implements OnInit {
     private notifyService: NotifyService) {
     this.authService.roleUser.subscribe(res => {
       this.roleUserCurrent = res;
+      
 
 
     });
@@ -117,6 +128,9 @@ export class KeHoachThucHienComponent implements OnInit {
 
 
 
+  }
+  ngOnDestroy(): void {
+    // this.subscription.unsubscribe();
   }
 
   isCollapsed = false;
@@ -218,7 +232,7 @@ export class KeHoachThucHienComponent implements OnInit {
    
     this.startDate = moment(result[0]).format("MM/DD/YYYY");
     this.endDate = moment(result[1]).format("MM/DD/YYYY");
-    await this.afunction()
+    await this.getAllDuAn()
     console.log(this.dataChartArray1)
   }
 
@@ -226,8 +240,9 @@ export class KeHoachThucHienComponent implements OnInit {
   endDate = '';
 
   async callApiReport(rpCode: string): Promise<any> {
+    this.isSpinning = true;
     return new Promise((resolve, reject) => {
-      let dataExport: any[] = []
+      let dataExport: TT01DataExport[] = []
       let query: any = {}
       if (this.startDate != '' && this.endDate != '') {
         query = {
@@ -252,7 +267,7 @@ export class KeHoachThucHienComponent implements OnInit {
         }
       }
 
-      this.isSpinning = true;
+      
 
       // const response = await this.apiReport
       //   .apiV1ReportsR1DataUnauthorized(rpCode, query)
@@ -399,7 +414,7 @@ export class KeHoachThucHienComponent implements OnInit {
   }
 
 
-  async afunction() {
+  async getAllDuAn() {
     this.dataChartArray1 =  await this.getDA1();
    
     this.dataChartArray2 = await this.getDA2();
@@ -417,7 +432,7 @@ export class KeHoachThucHienComponent implements OnInit {
 
 
   async ngOnInit() {
-    await this.afunction();
+    await this.getAllDuAn();
     // this.dataChartArray1 =  await this.getDA1();
     // console.log(this.dataChartArray1)
     // this.dataChartArray2 = await this.getDA2();

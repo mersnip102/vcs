@@ -504,7 +504,7 @@ export const listMenu =[
     },
     {
       screenName: 'Báo cáo kết quả',
-      routerLink: 'bao-cao-ket-qua',
+      routerLink: 'pages/bao-cao-ket-qua',
       icon: 'bar-chart',
     },
     {

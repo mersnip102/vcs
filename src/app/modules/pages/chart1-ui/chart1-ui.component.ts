@@ -25,6 +25,7 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   @Input() dataChart: TT01DataExport[] = [];
   @Input() color?: string;
   @Input() duAn?: string;
+  @Input() moveAnimation?: boolean;
 
   // @Input() seriesType!: string;
 
@@ -47,8 +48,16 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   //   }
   // };
 
-  onPointClick(e: any) {
-    e.target.select();
+  // onPointClick(e: any) {
+  //   e.target.select();
+  //   console.log("okeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+  // }
+
+  customizeTooltip(arg: any) {
+    
+    return {
+      text: arg.argument + ": " + arg.value.toFixed(2)
+    };
   }
 
 
@@ -151,8 +160,9 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
   //   return dataChart
   // }
 
-   convertDataChartFunction(data: TT01DataExport): any {
-    this.titleChart = `Dự án ${this.duAn!}.${data.nsTTDuAn}. ${data.nsChiSoDuAn}`
+   convertDataChartFunction(data: any): any {
+   
+    this.titleChart = `Dự án ${this.duAn}.${data.nsTTDuAn}. ${data.nsChiSoDuAn}`
     this.seriesName = data.nsChiSo
     this.dxiSeries = `Đơn vị tính: ${data.nsDVT}`
     this.convertDataChart = []
@@ -174,25 +184,33 @@ export class Chart1UIComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    
     this.color = this.getRandomColor();
-
-    this.convertDataChartFunction(this.dataChart[0])
+   
+    if( this.moveAnimation == true) {
+      this.convertDataChartFunction(this.dataChart[0])
     
 
-    interval(this.intervalMs).subscribe(async () => {
+      interval(this.intervalMs).subscribe(async () => {
+  
+  
+        if (this.startIndex > this.dataChart.length) {
+  
+          this.startIndex = 0;
+        } else {
+          this.startIndex += this.count;
+        }
+        this.color = this.getRandomColor();
+        await this.convertDataChartFunction(this.dataChart[this.startIndex])
+  
+        // this.getChartOptions(this.dataChartArray[this.startIndex]);
+      });
+    } else {
+      this.convertDataChartFunction(this.dataChart[0])
 
+    }
 
-      if (this.startIndex > this.dataChart.length) {
-
-        this.startIndex = 0;
-      } else {
-        this.startIndex += this.count;
-      }
-      this.color = this.getRandomColor();
-      await this.convertDataChartFunction(this.dataChart[this.startIndex])
-
-      // this.getChartOptions(this.dataChartArray[this.startIndex]);
-    });
+   
 
 
 
