@@ -12,10 +12,6 @@ import { environmentAPI } from 'src/environments/environment';
 export class HeaderComponent {
   currentDate!: string;
 
-  
-
-  
-
   getCurrentDate() {
     const date = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };

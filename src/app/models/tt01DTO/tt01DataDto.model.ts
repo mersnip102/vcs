@@ -43,6 +43,8 @@
 // public string ntGhiChu { get; set; }
 // }
 export class TT01DataDTO {
+       
+    
     private _nsMS: string;
     private _nsTT: string;
     private _nsChiSo: string;
@@ -179,8 +181,124 @@ export class TT01DataDTO {
     //     this._nsChiSoDuAn = value;
     // }
 
-
-
-
    
+
+
   }
+
+
+//C2:
+
+//   export interface TT01DataDTOInterface {
+//      _nsMS: string | undefined;
+//      _nsTT: string | undefined;
+//      _nsChiSo: string | undefined;
+//      _nsDVT: string | undefined;
+//      _nsPhanTo: string | undefined;
+//      _nsDB: string | undefined;
+//      _mnSoLieuTH: number | undefined ;
+//      _mnSoLieuLuyKe: number | undefined;
+//      _mnChiTieuKHNamBC: number | undefined;
+//      _mnTyLeKHNam: number | undefined;
+//      _mnLuyKeThucHien: number | undefined;
+//      _mnChiTieuKHNamGD: number | undefined;
+//      _mnTyLeThucHienGiaiDoan: number | undefined;
+//      _ntGhiChu: string | undefined;
+  
+// }
+
+// export class TT01DataDTO implements TT01DataDTOInterface {
+//     // organization: string | undefined;
+//     // browser: number | undefined;
+//     // decided: number | undefined;
+//     // expense: number | undefined;
+//     _nsMS: string | undefined;
+//     _nsTT: string | undefined;
+//     _nsChiSo: string | undefined;
+//     _nsDVT: string | undefined;
+//     _nsPhanTo: string | undefined;
+//     _nsDB: string | undefined;
+//     _mnSoLieuTH: number | undefined;
+//     _mnSoLieuLuyKe: number | undefined;
+//     _mnChiTieuKHNamBC: number | undefined;
+//     _mnTyLeKHNam: number | undefined;
+//     _mnLuyKeThucHien: number | undefined;
+//     _mnChiTieuKHNamGD: number | undefined;
+//     _mnTyLeThucHienGiaiDoan: number | undefined;
+//     _ntGhiChu: string | undefined;
+
+
+
+//     constructor(data?: TT01DataDTOInterface) {
+//         if (data) {
+//             for (var property in data) {
+//                 if (data.hasOwnProperty(property))
+//                     (<any>this)[property] = (<any>data)[property];
+//             }
+//         }
+//     }
+   
+
+//     init(_data?: any) {
+//         if (_data) {
+//             this._nsMS = _data["nsMS"];
+//             this._nsTT = _data["nsTT"];
+//             this._nsChiSo = _data["nsChiSo"];
+//             this._nsDVT = _data["nsDVT"];
+//             this._nsPhanTo = _data["nsPhanTo"];
+//             this._nsDB = _data["nsDB"];
+//             this._mnSoLieuTH = _data["mnSoLieuTH"];
+//             this._mnSoLieuLuyKe = _data["mnSoLieuLuyKe"];
+//             this._mnChiTieuKHNamBC = _data["mnChiTieuKHNamBC"];
+//             this._mnTyLeKHNam = _data["mnTyLeKHNam"];
+//             this._mnLuyKeThucHien = _data["mnLuyKeThucHien"];
+//             this._mnChiTieuKHNamGD = _data["mnChiTieuKHNamGD"];
+//             this._mnTyLeThucHienGiaiDoan = _data["mnTyLeThucHienGiaiDoan"];
+//             this._ntGhiChu = _data["ntGhiChu"];
+
+                
+//             // this.organization = _data["organization"];
+//             // this.browser = _data["browser"];
+//             // this.decided = _data["decided"];
+//             // this.expense = _data["expense"];
+//         }
+//     }
+
+//     static fromJS(data: any): TT01DataDTO {
+//         data = typeof data === 'object' ? data : {};
+//         let result = new TT01DataDTO();
+//         result.init(data);
+//         return result;
+//     }
+
+//     toJSON(data?: any) {
+//         data = typeof data === 'object' ? data : {};
+//         data["nsMS"] = this._nsMS;
+//         data["nsTT"] = this._nsTT;
+//         data["nsChiSo"] = this._nsChiSo;
+//         data["nsDVT"] = this._nsDVT;
+//         data["nsPhanTo"] = this._nsPhanTo;
+//         data["nsDB"] = this._nsDB;
+//         data["mnSoLieuTH"] = this._mnSoLieuTH;
+//         data["mnSoLieuLuyKe"] = this._mnSoLieuLuyKe;
+//         data["mnChiTieuKHNamBC"] = this._mnChiTieuKHNamBC;
+//         data["mnTyLeKHNam"] = this._mnTyLeKHNam;
+//         data["mnLuyKeThucHien"] = this._mnLuyKeThucHien;
+//         data["mnChiTieuKHNamGD"] = this._mnChiTieuKHNamGD;
+//         data["mnTyLeThucHienGiaiDoan"] = this._mnTyLeThucHienGiaiDoan;
+//         data["ntGhiChu"] = this._ntGhiChu;
+
+//         // data["organization"] = this.organization;
+//         // data["browser"] = this.browser;
+//         // data["decided"] = this.decided;
+//         // data["expense"] = this.expense;
+//         return data; 
+//     }
+
+//     clone(): TT01DataDTO {
+//         const json = this.toJSON();
+//         let result = new TT01DataDTO();
+//         result.init(json);
+//         return result;
+//     }
+// }

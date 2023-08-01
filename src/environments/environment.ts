@@ -29,11 +29,11 @@ export const environmentAPI = {
   REACT_APP_API_URL: 'https://localhost:44384/api/v1',
 REACT_APP_SSO_SITE_URL: 'https://cas.phanmemvcs.com/Authenticate.aspx',
 REACT_APP_SSO_SITE_CHGPASS: 'https://cas.phanmemvcs.com/ChangePassword.aspx',
-REACT_APP_LOGIN_URL: 'http://192.168.1.10:3035/auth/login',
-REACT_APP_DEFAULT_URL: 'http://192.168.1.10:3035',
+// REACT_APP_LOGIN_URL: 'http://192.168.1.10:3035/auth/login',
+// REACT_APP_DEFAULT_URL: 'http://192.168.1.10:3035',
 
-// REACT_APP_LOGIN_URL: 'http://localhost:4200/auth/login',
-// REACT_APP_DEFAULT_URL: 'http://localhost:4200',
+REACT_APP_LOGIN_URL: 'http://localhost:4200/auth/login',
+REACT_APP_DEFAULT_URL: 'http://localhost:4200',
 
   // REACT_APP_API_URL: "https://localhost:44384/api/v1",
   // REACT_APP_SSO_SITE_URL: 'https://projectydev.phanmemvcs.com',

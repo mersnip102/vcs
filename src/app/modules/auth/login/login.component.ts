@@ -82,6 +82,7 @@ export class LoginComponent implements OnInit {
       
         
     ngOnInit(): void {
+      
         // this.loginForm.patchValue({
         //     phone: this.route.snapshot.queryParamMap.get('phone')!,
         //     password: this.route.snapshot.queryParamMap.get('password')!
@@ -107,7 +108,7 @@ export class LoginComponent implements OnInit {
         console.log(this.tgtoken)
     
         if (this.tgtoken) {
-          console.log("ok2")
+          
           this.redirectToSSOSiteToGetSTicket(
             environmentAPI.REACT_APP_LOGIN_URL,
             this.tgtoken

@@ -159,7 +159,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Accept": "application/octet-stream",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -216,7 +217,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -271,7 +273,8 @@ export class Client implements IClient {
             responseType: "blob",
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -326,7 +329,8 @@ export class Client implements IClient {
             responseType: "blob",
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -379,7 +383,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")?.toString
             })
         };
 
@@ -420,13 +425,14 @@ export class Client implements IClient {
     }
 
     apiV1ReportsR1DataUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfString> {
-        let url_ = this.baseUrl + "/api/v1/reports/r1/{reportCode}/data/unauthorized";
+        let url_ = this.baseUrl + "/api/v1/reports/r1/{reportCode}/data";
         if (reportCode === undefined || reportCode === null)
             throw new Error("The parameter 'reportCode' must be defined.");
         url_ = url_.replace("{reportCode}", encodeURIComponent("" + reportCode));
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(dataJSON);
+      
 
         let options_ : any = {
             body: content_,
@@ -434,7 +440,8 @@ export class Client implements IClient {
             responseType: "blob",
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                
             })
         };
 
@@ -485,7 +492,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -533,7 +541,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Accept": "application/octet-stream",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -585,7 +594,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Accept": "application/octet-stream",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -637,7 +647,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Accept": "application/octet-stream",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 
@@ -689,7 +700,8 @@ export class Client implements IClient {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
-                "Accept": "application/octet-stream"
+                "Accept": "application/octet-stream",
+                "Authorization": "Bearer " + localStorage.getItem("stoken")
             })
         };
 

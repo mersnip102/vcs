@@ -45,7 +45,8 @@ export class ApiInterceptor implements HttpInterceptor {
     // Lấy token xác thực từ localStorage
    
    
-    const accessToken = this.localStoreService.getLocalStorageItemAsJSON('accessToken')
+    // const accessToken = this.localStoreService.getLocalStorageItemAsJSON('accessToken')
+    const accessToken = localStorage.getItem('stoken')
     
     // Nếu token tồn tại, thêm header Authorization vào yêu cầu HTTP
     if (accessToken) {
