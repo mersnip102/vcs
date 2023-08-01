@@ -10,6 +10,37 @@ import { environment, environment2 } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class AuthService {
+  isLoggedIn = false;
+  redirectUrl!: string;
+
+
+
+  login2() {
+    // Navigate to the login page of the external website
+    window.location.href = 'https://projectydev.phanmemvcs.com';
+  }
+
+  handleLoginCallback() {
+    // Parse the URL search params to get the redirect URL
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log("okee")
+    const redirectUrl = queryParams.get('redirectUrl');
+
+    if (redirectUrl) {
+      this.redirectUrl = redirectUrl;
+    } else {
+      this.redirectUrl = '/';
+    }
+
+    // Set the login status and navigate to the redirect URL
+    this.isLoggedIn = true;
+    this.router.navigateByUrl(this.redirectUrl);
+  }
+
+  logout2() {
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
+  }
 
   private readonly apiUrl = environment2.apiUrl; // URL API được lấy từ environment
 

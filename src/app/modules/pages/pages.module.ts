@@ -68,6 +68,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Chart1UIComponent } from './chart1-ui/chart1-ui.component';
 import { Chart2UIComponent } from './chart2-ui/chart2-ui.component';
 
+import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
+
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -97,6 +99,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     KeHoachThucHienDetailsComponent,
     Chart1UIComponent,
     Chart2UIComponent,
+   
   ],
   imports: [
     LayoutModule,
@@ -150,13 +153,14 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     DxChartModule,
    
     
-    
+    OAuthModule.forRoot(),
    
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons },
-    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true }],
-    exports: [Chart1UIComponent, Chart2UIComponent]
+    { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },  provideOAuthClient()],
+    exports: [Chart1UIComponent, Chart2UIComponent],
+    
 })
 export class PagesModule { }
 platformBrowserDynamic().bootstrapModule(PagesModule);

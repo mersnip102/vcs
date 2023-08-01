@@ -166,7 +166,7 @@
 
 
                                 <li nz-menu-item [routerLink]="['/pages/changePassword']"><a><i class="ti-lock"></i> <span class="avatar-item">Cập nhật mật khẩu</span></a></li>
-                                <li nz-menu-item [routerLink]="['/auth/login']"><a><i class="ti-power-off"></i> <span class="avatar-item">Đăng
+                                <li nz-menu-item (click)="logout()"><a><i class="ti-power-off"></i> <span class="avatar-item">Đăng
                                             xuất</span></a></li>
                             </ul>
                         </div>

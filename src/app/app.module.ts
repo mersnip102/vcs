@@ -51,6 +51,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { DxChartModule } from 'devextreme-angular';
 import { API_BASE_URL } from './services/proxies/proxies.service';
 import { AppConsts } from './shared/constants';
+import { BeforeUnloadServiceService } from './services/beforeUnload/before-unload-service.service';
 
 
 registerLocaleData(en);
@@ -113,6 +114,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
   ],
  
   providers: [{ provide: NZ_I18N, useValue: en_US },
+    BeforeUnloadServiceService,
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: ApiInterceptor,

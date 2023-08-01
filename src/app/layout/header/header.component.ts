@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { listMenu } from 'src/app/shared/router';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { environmentAPI } from 'src/environments/environment';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -88,6 +89,22 @@ export class HeaderComponent {
         this.openMap[key] = false;
       }
     }
+  }
+
+  logout() {
+    localStorage.removeItem('stoken')
+    localStorage.removeItem('tgtoken')
+    
+
+    
+  window.location.href =
+    environmentAPI.REACT_APP_SSO_SITE_URL +
+    "?" +
+    new URLSearchParams({
+      ReturnUrl: environmentAPI.REACT_APP_LOGIN_URL,
+      Action: "Logout",
+    }).toString();
+  
   }
 
 }

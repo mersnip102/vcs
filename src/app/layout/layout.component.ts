@@ -13,19 +13,19 @@ export class LayoutComponent {
 
   constructor(private router: Router, private authService: AuthService) {
     
-    this.authService.roleUser.subscribe(res => {
+    // this.authService.roleUser.subscribe(res => {
       
-      if(res == 4) {
-        this.router.navigateByUrl("/auth/login");
-      } else {
-        this.roleUserCurrent = res;
-        console.log(res)
-        // this.listMenu = listMenu[this.roleUserCurrent].permission;
-        this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
-      }
-    }
+    //   if(res == 4) {
+    //     this.router.navigateByUrl("/auth/login");
+    //   } else {
+    //     this.roleUserCurrent = res;
+    //     console.log(res)
+    //     // this.listMenu = listMenu[this.roleUserCurrent].permission;
+    //     this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
+    //   }
+    // }
     
-    );
+    // );
     
   }
 

@@ -13,12 +13,13 @@ export class BasicLayoutComponent {
   roleUserCurrent!: number;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.roleUser.subscribe(res => {
-      this.roleUserCurrent = res;
+    this.listMenuByRole = listMenu[2].permission;
+    // this.authService.roleUser.subscribe(res => {
+    //   this.roleUserCurrent = res;
       
-      this.listMenuByRole = listMenu[this.roleUserCurrent].permission;
+    //   this.listMenuByRole = listMenu[this.roleUserCurrent].permission;
       
-    });
+    // });
   }
 
   isCollapsed = false;

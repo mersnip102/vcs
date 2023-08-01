@@ -13,18 +13,18 @@ export class AuthComponent {
   roleUserCurrent!: number;
 
   constructor(private router: Router, private authService: AuthService) {
-    this.authService.roleUser.subscribe(res => {
+    // this.authService.roleUser.subscribe(res => {
       
-      if(res == 4) {
+    //   if(res == 4) {
         
-        // this.router.navigateByUrl("/auth/login");
-      } else {
-        this.roleUserCurrent = res;
-        this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
-      }
+    //     // this.router.navigateByUrl("/auth/login");
+    //   } else {
+    //     this.roleUserCurrent = res;
+    //     this.router.navigateByUrl(listMenu[this.roleUserCurrent].defaultScreen);
+    //   }
       
       
-    });
+    // });
     
   }
   

@@ -9,7 +9,9 @@ import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.
 import { NotifyService } from 'src/app/shared/utils/notify';
 import { RoleNumber } from 'src/app/shared/utilities';
 import * as _ from "lodash";
-import { environmentAPI } from 'src/environments/environment';
+import { REACT_APP_URL_SEND_STOKEN, environmentAPI } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import { UrlParams } from 'src/app/shared/constants';
 
 interface ProjectNode {
   name: string;
@@ -43,6 +45,7 @@ export class LoginComponent implements OnInit {
     status: any;
     durationInSeconds = 5;
     constructor(
+      private cookieService: CookieService,
       
       private authService: AuthService, private localStorageSv: LocalStorageService,
         
@@ -66,21 +69,93 @@ export class LoginComponent implements OnInit {
         //     });
         //   }
 
+
+        getCookieValue(): void {
+          // Lấy giá trị của cookie
+          const cookieValue = this.cookieService.get('AUTH_COOKIE');
+          console.log(cookieValue);
+        }
+
+        tgtoken?: string | null;
+        stoken?: string | null;
+        isAuth: string | undefined;
+      
         
     ngOnInit(): void {
         // this.loginForm.patchValue({
         //     phone: this.route.snapshot.queryParamMap.get('phone')!,
         //     password: this.route.snapshot.queryParamMap.get('password')!
         //   });
-        console.log('222222222');
-        window.location.href = environmentAPI.REACT_APP_SSO_SITE_URL
+        
+        // window.location.href = environmentAPI.REACT_APP_SSO_SITE_URL
+        
         this.phone = this.route.snapshot.queryParamMap.get('phone')!;
         this.password = this.route.snapshot.queryParamMap.get('password')!;
-        console.log(this.route.snapshot.queryParamMap.get('a')!);
-        console.log("2222");
-          
+      
+
+        const cookies = document.cookie
+
+
+        const query = this.route.snapshot.queryParamMap;
+        this.tgtoken = query.get(UrlParams.TGTOKEN);
+        this.stoken = query.get(UrlParams.STOKEN);
+        this.isAuth = localStorage.getItem('stoken') || undefined;
+    
+        console.log(query.get(UrlParams.STOKEN));
+        console.log(query.get(UrlParams.TGTOKEN));
+        console.log(this.isAuth);
+        console.log(this.tgtoken)
+    
+        if (this.tgtoken) {
+          console.log("ok2")
+          this.redirectToSSOSiteToGetSTicket(
+            environmentAPI.REACT_APP_LOGIN_URL,
+            this.tgtoken
+          );
+        } else if (this.stoken) {
+          this.adoptNewSToken(this.stoken);
+        } else if (!this.isAuth) {
+          this.redirectToSSOSite(environmentAPI.REACT_APP_LOGIN_URL);
+        } else {
+          console.log("testtttttttttttt")
+          this.router.navigate(['/'])
+        }
 
      }
+
+     redirectToSSOSite(requestUrl: string) {
+      window.location.href =
+        environmentAPI.REACT_APP_SSO_SITE_URL +
+        '?' +
+        new URLSearchParams({ ReturnUrl: requestUrl }).toString();
+    }
+  
+    redirectToSSOSiteToGetSTicket(requestUrl: string, tgtoken: string) {
+      const url = REACT_APP_URL_SEND_STOKEN(requestUrl, tgtoken)
+      // `https://cas.phanmemvcs.com/Authenticate.aspx?ReturnUrl=${requestUrl}&TGT=${tgtoken}&SVC=https://projectydev.phanmemvcs.com/`
+      const serviceUrl = this.getServiceUrl();
+      window.location.href = url
+        // environmentAPI.REACT_APP_SSO_SITE_URL +
+        // '?' +
+        // new URLSearchParams({
+        //   ReturnUrl: requestUrl,
+        //   TGT: tgtoken,
+        //   SVC: serviceUrl
+        // }).toString();
+    }
+  
+    adoptNewSToken(stoken: string) {
+      // this.authService.setSToken(stoken);
+      localStorage.setItem('stoken', stoken);
+      this.router.navigate(['/']).then(() => {
+        this.notifyService.successMessage("Đăng nhập thành công");
+      }
+      );
+    }
+  
+    getServiceUrl(): string {
+      return environmentAPI.REACT_APP_DEFAULT_URL;
+    }
 
     //  openSnackBar() {
     //     this._snackBar.openFromComponent(ToastComponent, {

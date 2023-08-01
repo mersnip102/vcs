@@ -1,13 +1,54 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as Highcharts from 'highcharts';
 import { Chart } from 'highcharts';
-
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
+import { NotifyService } from 'src/app/shared/utils/notify';
+import { environmentAPI } from 'src/environments/environment';
+import {CdkPortal,DomPortalHost} from '@angular/cdk/portal';
+import { UrlParams } from 'src/app/shared/constants';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+  ngOnInit(): void {
+   
+  }
+
+  private cookieWindow!: Window | null;
+
+  openCookieWindow() {
+    const cookieUrl = 'https://projectydev.phanmemvcs.com/';
+    const cookieWindowName = 'CookieWindow';
+    const cookieWindowFeatures = 'width=600,height=400';
+
+    this.cookieWindow = window.open(cookieUrl, cookieWindowName, cookieWindowFeatures);
+
+    // Thêm sự kiện lắng nghe khi cửa sổ đóng
+    window.addEventListener('message', this.handleCookieMessage.bind(this));
+  }
+
+  handleCookieMessage(event: MessageEvent) {
+    // Kiểm tra xem thông điệp được gửi từ cửa sổ con
+    if (event.source === this.cookieWindow) {
+      // Lấy cookie từ thông điệp
+      const cookie = event.data.cookie;
+      console.log('Cookie:', cookie);
+
+      // Thực hiện xử lý cookie ở đây
+      // ...
+    }
+    console.log(document.cookie)
+  }
+
+
+
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -67,14 +108,40 @@ export class HomeComponent {
     return color;
   }
 
-  ngOnInit() {
-    // assuming you have an array of data called 'data'
-    for (let i = 0; i < 3; i++) {
-      this.colors.push(this.getRandomColor());
-    }
+  constructor(
+    private cookieService: CookieService,
+    
+    private authService: AuthService, private localStorageSv: LocalStorageService,
+      
+      private route: ActivatedRoute,
+      private http: HttpClient,
+      
+      private router: Router,
+      private notifyService: NotifyService) { } 
+
+      navigateToGoogle() {
+       
+        
+        this.router.navigateByUrl('pages/iframe')
+      
   }
 
-  colors: string[] = [];
+
+  
+  
+      
+      
+
+  // ngOnInit() {
+
+  //   // this.authService.handleLoginCallback();
+
+   
+   
+    
+
+  //   // this.router.navigateByUrl('https://www.google.com');
+  // }
 
   // chartOptions: Highcharts.Options = {
   //   chart: {

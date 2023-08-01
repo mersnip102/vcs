@@ -23,12 +23,13 @@ import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.comp
 import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
 
 
+
 const routes: Routes = [
 
   {
     path: '', component: PagesComponent, children:
       [
-        { path: '', redirectTo: 'home', pathMatch: 'full' },
+        // { path: '', redirectTo: 'home', pathMatch: 'full' },
         {
           path: 'home',
           component: HomeComponent,
@@ -102,6 +103,7 @@ const routes: Routes = [
           path: 'thong-ke-so-lieu',
           component: ThongKeSoLieuComponent,
         },
+        
         { path: 'ke-hoach-thuc-hien/:id', component: KeHoachThucHienDetailsComponent },
 
         { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
