@@ -266,7 +266,6 @@ export class KeHoachThucHienComponent implements OnInit, OnDestroy {
 
         }
       }
-
       
 
       // const response = await this.apiReport
