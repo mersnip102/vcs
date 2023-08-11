@@ -13,6 +13,13 @@ export class AuthService {
   isLoggedIn = false;
   redirectUrl!: string;
 
+  private userInfoSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public userInfo$ = this.userInfoSubject.asObservable();
+
+  setUserInfo(userInfo: any): void {
+    this.userInfoSubject.next(userInfo);
+  }
+
 
 
   login2() {

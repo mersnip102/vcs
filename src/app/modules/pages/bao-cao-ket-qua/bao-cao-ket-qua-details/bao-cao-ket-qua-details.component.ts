@@ -195,17 +195,30 @@ export class BaoCaoKetQuaDetailsComponent implements OnInit {
 
   chart!: Highcharts.Chart;
 
-  async onChange(result: Date[]): Promise<void> {
-    
-   
-    this.startDate = moment(result[0]).format("MM/DD/YYYY");
-    this.endDate = moment(result[1]).format("MM/DD/YYYY");
-    // await this.afunction()
-    // console.log(this.dataChartArray1)
-  }
-
   startDate = '';
   endDate = '';
+
+  async onChange(result: Date[]): Promise<void> {
+    if(result.length > 0) {
+      this.startDate = moment(result[0]).format("MM/DD/YYYY");
+      this.endDate = moment(result[1]).format("MM/DD/YYYY");
+      console.log(result)
+      console.log(this.startDate)
+      console.log(this.endDate)
+      // await this.getAllDuAn()
+     
+    } else {
+      this.startDate = ''
+      this.endDate = ''
+      console.log(result)
+      console.log(this.startDate)
+      console.log(this.endDate)
+      // await this.getAllDuAn()
+
+    }
+    
+   
+  }
 
   async callApiReport(rpCode: string): Promise<any> {
     this.isSpinning = true;

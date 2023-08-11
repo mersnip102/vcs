@@ -31,13 +31,10 @@ export class LoginComponent implements OnInit {
   
   uploadedFiles: any[] = [];
 
-    
-
     onUpload(event: any) {
         for(let file of event.files) {
             this.uploadedFiles.push(file);
         }
-
         
     }
 
@@ -118,7 +115,7 @@ export class LoginComponent implements OnInit {
         } else if (!this.isAuth) {
           this.redirectToSSOSite(environmentAPI.REACT_APP_LOGIN_URL);
         } else {
-          console.log("testtttttttttttt")
+         
           this.router.navigate(['/'])
         }
 

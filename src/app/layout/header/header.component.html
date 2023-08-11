@@ -1,7 +1,7 @@
 <div class="header">
     <div class="pull-left">
         <div class="logo"><a
-                ><!-- <img src="assets/images/logo.png" alt="" /> --><span style="color: rgb(0, 162, 255);">Địa bàn: Tỉnh Thanh Hóa</span></a></div>
+                ><!-- <img src="assets/images/logo.png" alt="" /> --><span style="color: rgb(0, 162, 255);">Địa bàn: Tỉnh Hà Giang</span></a></div>
         <div nz-button nzType="primary" (click)="toggleCollapsed()" [ngClass]="{'is-active': isCollapsed === true}"
             class="hamburger sidebar-toggle">
             <span class="line"></span>
@@ -83,7 +83,7 @@
 
             </li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="nhacViec" class="header-icon dib"><i
-                    class="ti-bag"><span class="badge badge-danger pull-right m-l-3">5</span></i>
+                    class="ti-announcement"><span class="badge badge-danger pull-right m-l-3">5</span></i>
                 
                 <div class="drop-down">
                     <nz-dropdown-menu #nhacViec="nzDropdownMenu">
@@ -151,7 +151,7 @@
 
             </li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" class="header-icon dib"><img class="avatar-img"
-                    src="../../../assets/img/User_icon-cp.svg.png" alt="" /> <span class="user-avatar">Nguyễn Xuân Quyến <i
+                    src="../../../assets/img/User_icon-cp.svg.png" alt="" /> <span class="user-avatar">{{userInfo.FullName}} <i
                         class="ti-angle-down f-s-10"></i></span>
                 <div class="drop-down dropdown-profile">
                     <div class="dropdown-content-heading">

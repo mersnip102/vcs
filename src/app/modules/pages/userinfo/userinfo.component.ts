@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Any } from '@grpc/grpc-js/build/src/generated/google/protobuf/Any';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Client } from 'src/app/services/proxies/proxies.service';
 
 @Component({
   selector: 'app-userinfo',
   templateUrl: './userinfo.component.html',
   styleUrls: ['./userinfo.component.css']
 })
-export class UserinfoComponent {
+export class UserinfoComponent implements OnInit {
   private citis?: HTMLSelectElement  
   private districts?: HTMLSelectElement 
   private wards?: HTMLSelectElement 
 
    // lay api ra
-   
- 
 
   private renderCity(data: any) {
 
@@ -97,13 +100,19 @@ export class UserinfoComponent {
 
   isVisible = false;
 
-  constructor() {}
+  userInfo: any
+  constructor(private router: Router, private authService: AuthService,  private http: HttpClient, private api: Client,) {}
   async ngOnInit(): Promise<void> {
     const children: string[] = [];
     for (let i = 10; i < 36; i++) {
       children.push(`${i.toString(36)}${i}`);
     }
     this.listOfOption = children;
+
+    this.authService.userInfo$.subscribe((userInfo: any) => {
+      this.userInfo = userInfo
+      console.log(this.userInfo)
+    });
     
   }
 
@@ -120,8 +129,6 @@ export class UserinfoComponent {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-
-  
 
   listOfOption: string[] = [];
   listOfSelectedValue = ['a10', 'c12'];

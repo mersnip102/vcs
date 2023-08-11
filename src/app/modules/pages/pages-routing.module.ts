@@ -21,6 +21,8 @@ import { GiaiNganComponent } from './giai-ngan/giai-ngan.component';
 import { QuyetToanComponent } from './quyet-toan/quyet-toan.component';
 import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.component';
 import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
+import { KetQuaReportComponent } from './ket-qua-report/ket-qua-report.component';
+import { TestComponent } from './test/test.component';
 
 
 
@@ -77,6 +79,14 @@ const routes: Routes = [
         {
           path: 'configs',
           component: ConfigsComponent,
+        },
+        {
+          path: 'test',
+          component: TestComponent,
+        },
+        {
+          path: 'ket-qua-report',
+          component: KetQuaReportComponent,
         },
         {
           path: 'bao-cao-tong-hop',

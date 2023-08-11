@@ -139,11 +139,13 @@ export interface IClient {
 export class Client implements IClient {
     private http: HttpClient;
     private baseUrl: string;
+    private baseUrl2: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://192.168.1.10:3032";
+        this.baseUrl2 = baseUrl !== undefined && baseUrl !== null ? baseUrl : "http://192.168.1.10:3031";
     }
 
     apiV1ReportsR1(reportCode: string, jsonCompress: string | null | undefined): Observable<FileResponse> {
@@ -422,6 +424,21 @@ export class Client implements IClient {
             }));
         }
         return _observableOf(null as any);
+    }
+
+    getUserInfo(): Observable<any> {
+        let url_ = this.baseUrl2 + "/api/v1/nghiepVu/WebServiceTicket/Info";
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "json",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            })
+        };
+
+        return this.http.request("get", url_, options_);
     }
 
     apiV1ReportsR1DataUnauthorized(reportCode: string, dataJSON: any): Observable<OperationResultInfoOfString> {

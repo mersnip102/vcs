@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Client } from 'src/app/services/proxies/proxies.service';
 import { listMenu } from 'src/app/shared/router';
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, OnDestroy {
   roleUserCurrent!: number;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService,  private http: HttpClient, private api: Client,) {
     
     // this.authService.roleUser.subscribe(res => {
       
@@ -28,8 +30,28 @@ export class PagesComponent implements OnInit {
     // );
     
   }
+  ngOnDestroy(): void {
+    localStorage.removeItem('stoken')
+    localStorage.clear();
+  }
+  @HostListener('window:beforeunload')
+  onBeforeUnload() {
+    localStorage.removeItem('stoken')
+    localStorage.clear();
+  }
+
+  userInfo: any;
+  getUserInfo(): void {
+    // Gọi API để lấy thông tin người dùng
+    this.api.getUserInfo().subscribe((response: any) => {
+    
+      this.userInfo = response;
+      console.log(response)
+      this.authService.setUserInfo(this.userInfo.body.result);
+    });
+  }
   ngOnInit(): void {
-    console.log("tessttttttttt")
+    this.getUserInfo();
   }
 
 }

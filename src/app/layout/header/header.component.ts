@@ -36,12 +36,17 @@ export class HeaderComponent {
     this.currentDate = new Intl.DateTimeFormat('vn-VN', options).format(date);
   }
 
-  
+  userInfo: any;
   ngOnInit(): void {
     this.updateTime();
     setInterval(() => {
       this.updateTime();
     }, 1000);
+
+    this.authService.userInfo$.subscribe((userInfo: any) => {
+      this.userInfo = userInfo
+      console.log(this.userInfo)
+    });
     // this.listMenu = listMenu[];
   }
 

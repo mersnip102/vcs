@@ -504,9 +504,10 @@ export const listMenu =[
     },
     {
       screenName: 'Báo cáo kết quả',
-      routerLink: 'pages/bao-cao-ket-qua',
+      routerLink: 'ket-qua-report',
       icon: 'bar-chart',
     },
+    
     {
       screenName: 'Quyết toán',
       routerLink: 'quyet-toan',
@@ -601,6 +602,11 @@ export const listMenu =[
       routerLink: 'quan-ly-thong-bao',
       icon: 'bell',
       
+    },
+    {
+      screenName: 'Quản lý nhắc việc',
+      routerLink: 'test',
+      icon: 'notification',
     },
     
     {

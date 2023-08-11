@@ -69,6 +69,9 @@ import { Chart1UIComponent } from './chart1-ui/chart1-ui.component';
 import { Chart2UIComponent } from './chart2-ui/chart2-ui.component';
 
 import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
+import { KetQuaReportComponent } from './ket-qua-report/ket-qua-report.component';
+import { TestComponent } from './test/test.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -99,6 +102,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     KeHoachThucHienDetailsComponent,
     Chart1UIComponent,
     Chart2UIComponent,
+    KetQuaReportComponent,
+    TestComponent,
    
   ],
   imports: [
@@ -154,6 +159,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
    
     
     OAuthModule.forRoot(),
+
+    LeafletModule
    
     
   ],
