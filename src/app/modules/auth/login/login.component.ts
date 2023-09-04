@@ -80,66 +80,66 @@ export class LoginComponent implements OnInit {
         
     ngOnInit(): void {
       
-        // this.loginForm.patchValue({
-        //     phone: this.route.snapshot.queryParamMap.get('phone')!,
-        //     password: this.route.snapshot.queryParamMap.get('password')!
-        //   });
+    //     // this.loginForm.patchValue({
+    //     //     phone: this.route.snapshot.queryParamMap.get('phone')!,
+    //     //     password: this.route.snapshot.queryParamMap.get('password')!
+    //     //   });
         
-        // window.location.href = environmentAPI.REACT_APP_SSO_SITE_URL
+    //     // window.location.href = environmentAPI.REACT_APP_SSO_SITE_URL
         
-        this.phone = this.route.snapshot.queryParamMap.get('phone')!;
-        this.password = this.route.snapshot.queryParamMap.get('password')!;
+    //     this.phone = this.route.snapshot.queryParamMap.get('phone')!;
+    //     this.password = this.route.snapshot.queryParamMap.get('password')!;
       
 
-        const cookies = document.cookie
+    //     const cookies = document.cookie
 
 
-        const query = this.route.snapshot.queryParamMap;
-        this.tgtoken = query.get(UrlParams.TGTOKEN);
-        this.stoken = query.get(UrlParams.STOKEN);
-        this.isAuth = localStorage.getItem('stoken') || undefined;
+    //     const query = this.route.snapshot.queryParamMap;
+    //     this.tgtoken = query.get(UrlParams.TGTOKEN);
+    //     this.stoken = query.get(UrlParams.STOKEN);
+    //     this.isAuth = localStorage.getItem('stoken') || undefined;
     
-        console.log(query.get(UrlParams.STOKEN));
-        console.log(query.get(UrlParams.TGTOKEN));
-        console.log(this.isAuth);
-        console.log(this.tgtoken)
+    //     console.log(query.get(UrlParams.STOKEN));
+    //     console.log(query.get(UrlParams.TGTOKEN));
+    //     console.log(this.isAuth);
+    //     console.log(this.tgtoken)
     
-        if (this.tgtoken) {
+    //     if (this.tgtoken) {
           
-          this.redirectToSSOSiteToGetSTicket(
-            environmentAPI.REACT_APP_LOGIN_URL,
-            this.tgtoken
-          );
-        } else if (this.stoken) {
-          this.adoptNewSToken(this.stoken);
-        } else if (!this.isAuth) {
-          this.redirectToSSOSite(environmentAPI.REACT_APP_LOGIN_URL);
-        } else {
+    //       this.redirectToSSOSiteToGetSTicket(
+    //         environmentAPI.REACT_APP_LOGIN_URL,
+    //         this.tgtoken
+    //       );
+    //     } else if (this.stoken) {
+    //       this.adoptNewSToken(this.stoken);
+    //     } else if (!this.isAuth) {
+    //       this.redirectToSSOSite(environmentAPI.REACT_APP_LOGIN_URL);
+    //     } else {
          
-          this.router.navigate(['/'])
-        }
+    //       this.router.navigate(['/'])
+    //     }
 
-     }
+    //  }
 
-     redirectToSSOSite(requestUrl: string) {
-      window.location.href =
-        environmentAPI.REACT_APP_SSO_SITE_URL +
-        '?' +
-        new URLSearchParams({ ReturnUrl: requestUrl }).toString();
-    }
+    //  redirectToSSOSite(requestUrl: string) {
+    //   window.location.href =
+    //     environmentAPI.REACT_APP_SSO_SITE_URL +
+    //     '?' +
+    //     new URLSearchParams({ ReturnUrl: requestUrl }).toString();
+    // }
   
-    redirectToSSOSiteToGetSTicket(requestUrl: string, tgtoken: string) {
-      const url = REACT_APP_URL_SEND_STOKEN(requestUrl, tgtoken)
-      // `https://cas.phanmemvcs.com/Authenticate.aspx?ReturnUrl=${requestUrl}&TGT=${tgtoken}&SVC=https://projectydev.phanmemvcs.com/`
-      const serviceUrl = this.getServiceUrl();
-      window.location.href = url
-        // environmentAPI.REACT_APP_SSO_SITE_URL +
-        // '?' +
-        // new URLSearchParams({
-        //   ReturnUrl: requestUrl,
-        //   TGT: tgtoken,
-        //   SVC: serviceUrl
-        // }).toString();
+    // redirectToSSOSiteToGetSTicket(requestUrl: string, tgtoken: string) {
+    //   const url = REACT_APP_URL_SEND_STOKEN(requestUrl, tgtoken)
+    //   // `https://cas.phanmemvcs.com/Authenticate.aspx?ReturnUrl=${requestUrl}&TGT=${tgtoken}&SVC=https://projectydev.phanmemvcs.com/`
+    //   const serviceUrl = this.getServiceUrl();
+    //   window.location.href = url
+    //     // environmentAPI.REACT_APP_SSO_SITE_URL +
+    //     // '?' +
+    //     // new URLSearchParams({
+    //     //   ReturnUrl: requestUrl,
+    //     //   TGT: tgtoken,
+    //     //   SVC: serviceUrl
+    //     // }).toString();
     }
   
     adoptNewSToken(stoken: string) {

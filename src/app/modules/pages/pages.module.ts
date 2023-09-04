@@ -72,6 +72,13 @@ import { OAuthModule, provideOAuthClient } from 'angular-oauth2-oidc';
 import { KetQuaReportComponent } from './ket-qua-report/ket-qua-report.component';
 import { TestComponent } from './test/test.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { DmChiTieuKTXHComponent } from './dm-chi-tieu-ktxh/dm-chi-tieu-ktxh.component';
+import { ChiTieuKinhTeXaHoiComponent } from './chi-tieu-kinh-te-xa-hoi/chi-tieu-kinh-te-xa-hoi.component';
+import { KeHoachThucHienNhapComponent } from './ke-hoach-thuc-hien-nhap/ke-hoach-thuc-hien-nhap.component';
+import { NguonVonThucHienNhapComponent } from './nguon-von-thuc-hien-nhap/nguon-von-thuc-hien-nhap.component';
+import { PhanBoVonThucHienNhapComponent } from './phan-bo-von-thuc-hien-nhap/phan-bo-von-thuc-hien-nhap.component';
+import { KetQuaThucHienNhapComponent } from './ket-qua-thuc-hien-nhap/ket-qua-thuc-hien-nhap.component';
+import { GiaiNganNhapComponent } from './giai-ngan-nhap/giai-ngan-nhap.component';
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -104,6 +111,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     Chart2UIComponent,
     KetQuaReportComponent,
     TestComponent,
+    DmChiTieuKTXHComponent,
+    ChiTieuKinhTeXaHoiComponent,
+    KeHoachThucHienNhapComponent,
+    NguonVonThucHienNhapComponent,
+    PhanBoVonThucHienNhapComponent,
+    KetQuaThucHienNhapComponent,
+    GiaiNganNhapComponent,
    
   ],
   imports: [

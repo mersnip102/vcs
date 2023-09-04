@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit {
     console.log(document.cookie)
   }
 
-
-
   isCollapsed = false;
 
   toggleCollapsed(): void {
@@ -98,7 +96,7 @@ export class HomeComponent implements OnInit {
 
   //   }]
   // };
-
+  
   getRandomColor(): string {
     const letters = '0123456789ABCDEF';
     let color = '#';

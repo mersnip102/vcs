@@ -7,7 +7,7 @@ import { authGuard } from './services/auth/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: '/pages/home', pathMatch: 'full' },
   { path: '', component: AppComponent, children:[
-    { path: 'pages', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule), canActivate: [authGuard] },
+    { path: 'pages', loadChildren: () => import('./modules/pages/pages.module').then(m => m.PagesModule),  }, //canActivate: [authGuard]
     { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   ] },
   { path: '**', component: PageNotFoundComponent },

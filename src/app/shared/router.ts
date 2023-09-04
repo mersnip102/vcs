@@ -609,18 +609,64 @@ export const listMenu =[
       icon: 'notification',
     },
     
+    // {
+    //   screenName: 'Quản lý log',
+    //   routerLink: 'logs',
+    //   icon: 'tool',
+      
+    // },
+    // {
+    //   screenName: 'Quản lý cấu hình',
+    //   routerLink: 'configs',
+    //   icon: 'setting',
+      
+    // },
     {
-      screenName: 'Quản lý log',
-      routerLink: 'logs',
-      icon: 'tool',
+      screenName: 'DM Chỉ tiêu Kinh tế - Xã hội',
+      routerLink: 'dm-chi-tieu-ktxh',
+      icon: 'align-left',
       
     },
     {
-      screenName: 'Quản lý cấu hình',
-      routerLink: 'configs',
-      icon: 'setting',
+      screenName: 'Nhập liệu',
+      routerLink: '',
+      icon: 'form',
+      children: [
+        {
+          screenName: 'Chỉ tiêu kinh tế xã hội',
+          routerLink: 'chi-tieu-ktxh',
+          icon: '',
+        },
+        {
+          screenName: 'Kế hoạch thực hiện',
+          routerLink: 'nhap-ke-hoach-thuc-hien',
+          icon: '',
+        },
+        {
+          screenName: 'Nguồn vốn thực hiện',
+          routerLink: 'nhap-nguon-von-thuc-hien',
+          icon: '',
+        },
+        {
+          screenName: 'Phân bổ nguồn vốn thực hiện',
+          routerLink: 'nhap-phan-bo-von-thuc-hien',
+          icon: '',
+        },
+        {
+          screenName: 'Kết quả thực hiện',
+          routerLink: 'nhap-ket-qua-thuc-hien',
+          icon: '',
+        },
+        {
+          screenName: 'Giải ngân',
+          routerLink: 'nhap-giai-ngan',
+          icon: '',
+        },
+        
+      ]
       
     },
+
     
 
   ],

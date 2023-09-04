@@ -3,10 +3,30 @@
         <div class="col-lg-12">
             <div class="card alert">
     
-                <img id="banner" width="100%" src="../../../../assets/img/home-banner_new.png" alt="">
+                <img id="banner" width="100%" src="../../../../assets/img/slider_web_pakn_1.png" alt="">
     
             </div>
         </div>
     </div>
     <router-outlet></router-outlet>
+    <!-- <div class="chatbot-container">
+        <div class="chatbot-toggle" (click)="toggleChatbot()">
+          <i class="fa fa-comments" aria-hidden="true"></i>
+        </div>
+        <div class="chatbot-content" [ngClass]="{ 'open': isChatbotOpen }">
+        
+        </div>
+      </div> -->
+
+
+        <!-- <div class="chatbot-messages">
+            <div *ngFor="let message of messages" class="message">
+              {{ message }}
+            </div>
+          </div> -->
+          <!-- <div class="chatbot-options">
+            <button (click)="sendMessage('Option 1')">Option 1</button>
+            <button (click)="sendMessage('Option 2')">Option 2</button>
+            <button (click)="sendMessage('Option 3')">Option 3</button>
+          </div> -->
 </app-basic-layout>

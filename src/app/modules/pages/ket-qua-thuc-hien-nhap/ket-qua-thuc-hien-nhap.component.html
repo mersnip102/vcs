@@ -1,0 +1,568 @@
+<div class="card-body">
+
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 text-center">
+                <div class="page-header">
+                    <div class="page-title">
+
+                        <h3 class="dashTitle">KẾT QUẢ THỰC HIỆN DỰ ÁN</h3>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <nz-spin nzTip="Loading..." [nzSpinning]="isSpinning"> -->
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <!-- <div class="mb-3 float-md-start">
+    
+                    <div class="input-group input-group-default">
+                        <span class="input-group-btn"><button class="btn btn-primary" type="submit"><i class="ti-search"></i></button></span>
+                        <input type="text" placeholder="Search Default" name="Search" class="form-control">
+                    </div>
+                </div> -->
+            <div class="form-group">
+
+                <div class="input-group input-group-default">
+                    <span class="input-group-btn"><button class="btn btn-primary"><i
+                                class="ti-search"></i></button></span>
+                    <input type="text" placeholder="Tìm kiếm..." name="Search" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-6">
+            <div class="d-flex flex-wrap align-items-center justify-content-md-end gap-2 mb-3">
+
+                <div>
+                    <a (click)="showModal('')" class="btn btn-info text-light"><i class="ti-plus me-2"></i>Thêm mới</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-warning">KẾT QUẢ THỰC HIỆN</h4>
+                    <button (click)="showModal(1)" class="btn btn-info waves-effect waves-light pull-right"><i
+                            class="ti-plus me-2"></i>Thêm mới</button>
+                    <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
+
+                    <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listHuongDanLienQuan"
+                        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+                        <thead>
+                            <tr>
+                                <!-- <th class="text-center" [nzSelections]="listOfSelection" [(nzChecked)]="checked"
+                                    [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"><button *ngIf="checked || indeterminate" nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button" class="btn btn-danger waves-effect waves-light ml-4"><i
+                                        class="far fa-trash-alt"></i></button></th> -->
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Chương trình</th>
+                                <th class="text-center">Dự án, tiểu dự án</th>
+                                
+                                <th class="text-center">Nội dung thành phần</th>
+                                <th class="text-center">Nguồn vốn thực hiện</th>
+                                <th class="text-center">Loại số liệu</th>
+                                <th class="text-center">Địa bàn</th>
+                                <th class="text-center">Kỳ báo cáo</th>
+                                <th class="text-center">Thời gian thực hiện báo cáo</th>
+                                <th class="text-center">Năm</th>
+                                <th class="text-center">Ghi chú</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
+                                    (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
+                                <td class="text-center">1</td>
+
+
+                                <th class="text-center">dfgfdgfdg</th>
+                                <th class="text-center">gfdgfdg</th>
+                                <th class="text-center">Vốn đầu tư</th>
+                                <th class="text-center">DM 500</th>
+                                <th class="text-center">Trung hạn</th>
+                                <th class="text-center">DM 07</th>
+                                <th class="text-center">Chi tiết 07</th>
+                                <th class="text-center">DM 15</th>
+                                <th class="text-center">2023</th>
+                                <th class="text-center">dfgfdgfdgfdg...</th>
+
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <div class="btn-toolbar mb-0">
+                                        <div class="text-center">
+
+                                            <button nzTooltipTitle="Tab chi tiết" nzTooltipPlacement="bottomRight"
+                                                nz-button nz-tooltip type="button"
+                                                class="btn btn-warning waves-effect waves-light m-l-4 m-t-4"><i
+                                                    class="ti-eye"></i></button>
+                                            <button (click)="showModal(1)" nzTooltipTitle="Sửa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-success waves-effect waves-light m-l-4 m-t-4"><i
+                                                    class="ti-pencil"></i></button>
+                                            <button (click)="deleteHuongDanLienQuan(1)" nzTooltipTitle="Xóa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-danger waves-effect waves-light m-l-4 m-t-4"><i
+                                                    class="ti-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- <td>{{ data.age }}</td>
+              <td>{{ data.address }}</td> -->
+                            </tr>
+                            <tr *ngFor="let data of listHuongDanLienQuan; let i = index">
+                                <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
+                                    (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
+                                <td class="text-center">{{ i + 1 }}</td>
+
+
+                                <td class="text-center">{{ data.idhuongDanLq }}</td>
+                                <td class="text-center">{{ data.tenVb }}</td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <div class="btn-toolbar mb-0">
+                                        <div class="text-center">
+
+                                            <button nzTooltipTitle="Xem chi tiết" nzTooltipPlacement="bottomRight"
+                                                nz-button nz-tooltip type="button"
+                                                (click)="showModalDetail(data.idhuongDanLq)"
+                                                class="btn btn-warning waves-effect waves-light ml-2"><i
+                                                    class="far fa-eye"></i></button>
+                                            <button (click)="showModal(data.idhuongDanLq)" nzTooltipTitle="Sửa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-success waves-effect waves-light ml-2"><i
+                                                    class="far fa-edit"></i></button>
+                                            <button (click)="deleteHuongDanLienQuan(data.idhuongDanLq)"
+                                                nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button
+                                                nz-tooltip type="button"
+                                                class="btn btn-danger waves-effect waves-light ml-2"><i
+                                                    class="far fa-trash-alt"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- <td>{{ data.age }}</td>
+              <td>{{ data.address }}</td> -->
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+                <!-- end card-body-->
+            </div>
+            <!-- end card -->
+
+
+        </div> <!-- end col -->
+    </div>
+
+    <div class="row m-t-20">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-warning">TAB CHI TIẾT KẾT QUẢ THỰC HIỆN</h4>
+                    <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
+                    <button (click)="showModalDetail('')" class="btn btn-info waves-effect waves-light pull-right"><i
+                            class="ti-plus me-2"></i>Thêm
+                        mới</button>
+                    <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listHuongDanLienQuan"
+                        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+                        <thead>
+                            <tr>
+                                <!-- <th class="text-center" [nzSelections]="listOfSelection" [(nzChecked)]="checked"
+                                    [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"><button *ngIf="checked || indeterminate" nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button" class="btn btn-danger waves-effect waves-light ml-4"><i
+                                        class="far fa-trash-alt"></i></button></th> -->
+                                <th class="text-center">STT</th>
+
+                                <th class="text-center">Tên chỉ tiêu</th>
+                                <th class="text-center">Tên dự án đầu tư, nhiệm vụ</th>
+                                <th class="text-center">Đơn vị tính</th>
+                                <th class="text-center">Khối lượng hoàn thành</th>
+                                
+                                <th class="text-center">Nguồn vốn</th>
+                                <th class="text-center">Cấp ngân sách</th>
+                                <th class="text-center">Giá trị khối lượng hoàn thành</th>
+                                <!-- <th class="text-center">Chi tiết sử dụng</th> -->
+
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">1</td>
+                                <td class="text-center">DM 501</td>
+                                <td class="text-center">DACT</td>
+                                <td class="text-center">DM 14</td>
+                                <td class="text-center">500</td>
+                                <td class="text-center">DM 16</td>
+                                <td class="text-center">DM 52.1</td>
+                                <td class="text-center">70%</td>
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <div class="btn-toolbar mb-0">
+                                        <div class="text-center">
+
+
+
+
+                                            <button (click)="showModalDetail('')" nzTooltipTitle="Sửa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-success waves-effect waves-light m-l-4"><i
+                                                    class="ti-pencil"></i></button>
+                                            <button (click)="deleteHuongDanLienQuan('')" nzTooltipTitle="Xóa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-danger waves-effect waves-light m-l-4"><i
+                                                    class="ti-trash"></i></button>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let data of listHuongDanLienQuan; let i = index">
+                                <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
+                                    (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
+                                <td class="text-center">{{ i + 1 }}</td>
+
+
+                                <td class="text-center">{{ data.idhuongDanLq }}</td>
+                                <td class="text-center">{{ data.tenVb }}</td>
+
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <div class="btn-toolbar mb-0">
+                                        <div class="text-center">
+
+                                            <button nzTooltipTitle="Xem chi tiết" nzTooltipPlacement="bottomRight"
+                                                nz-button nz-tooltip type="button"
+                                                (click)="showModalDetail(data.idhuongDanLq)"
+                                                class="btn btn-warning waves-effect waves-light"><i
+                                                    class="ti-eye"></i></button>
+                                            <button (click)="showModalDetail(data.idhuongDanLq)" nzTooltipTitle="Sửa"
+                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                class="btn btn-success waves-effect waves-light m-l-4"><i
+                                                    class="ti-pencil"></i></button>
+                                            <button (click)="deleteHuongDanLienQuan(data.idhuongDanLq)"
+                                                nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button
+                                                nz-tooltip type="button"
+                                                class="btn btn-danger waves-effect waves-light m-l-4"><i
+                                                    class="ti-trash"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- <td>{{ data.age }}</td>
+              <td>{{ data.address }}</td> -->
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+                <!-- end card-body-->
+            </div>
+            <!-- end card -->
+
+
+        </div> <!-- end col -->
+    </div>
+
+    <ng-template #contentTemplate>
+        <div>
+            <p>Content</p>
+            <p>Content</p>
+        </div>
+    </ng-template>
+
+    <nz-modal [(nzVisible)]="isVisible" [nzWidth]="1000" (nzOnCancel)="handleCancel()">
+
+        <ng-container *nzModalContent>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">Kết quả thực hiện</h4>
+                            <!-- <p class="card-subtitle mb-4">Điền thông tin Danh mục Chỉ tiêu Kinh tế - Xã hội vào form bên dưới</p> -->
+
+                            <form class="needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Đơn vị sử dụng chương trình</label>
+                                    <input [disabled]="true" type="text" id="simpleinput" class="form-control"
+                                        value="Tỉnh Hà Giang">
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Chương trình</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 02</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Dự án, tiểu dự án</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 03</option>
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Nội dung thành phần</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>Chi tiết DM 03</option>
+                                        
+
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Nguồn vốn thực hiện</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>Vốn đầu tư</option>
+                                        <option>Vốn sự nghiệp</option>
+                                        <option>Vốn tín dụng</option>
+                                        <option>Vốn khác</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Loại số liệu</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option value="Vốn đầu tư">DM 500</option>
+                                        
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Địa bàn</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option value="DM500">DM 27</option>
+                                       
+                                       
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Kỳ báo cáo</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option value="DM500">DM 33</option>
+                                        
+                                       
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Thời gian thực hiện báo cáo</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option value="DM500">DM 35</option>
+                                        
+                                       
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+
+
+                                    <label for="exampleFormControlSelect1">Năm</label>
+                                    <nz-date-picker class="form-control" nzMode="year"></nz-date-picker>
+
+                                </div>
+
+                               
+
+                                <div class="form-group">
+
+
+
+                                    <label>Ghi chú</label>
+                                    <textarea class="form-control" rows="5"></textarea>
+
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <!-- <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
+                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
+                                        </div> -->
+
+                                    <button type="submit"
+                                        class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </ng-container>
+        <div *nzModalFooter>
+            <button (click)="handleCancel()" class="btn btn-danger waves-effect waves-light">Cancel</button>
+        </div>
+
+    </nz-modal>
+
+
+
+    <nz-modal [(nzVisible)]="isVisible2" [nzWidth]="1000" nzTitle="Tab chi tiết kết quả thực hiện"
+        (nzOnCancel)="handleCancel2()" [nzOkDisabled]="true">
+        <ng-container *nzModalContent>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form class="needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Tên chỉ tiêu</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 501</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Tên dự án đầu tư, nhiệm vụ</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DACT</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Đơn vị tính</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 14</option>
+
+                                    </select>
+
+                                </div>
+
+                                 <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Khối lượng hoàn thành</label>
+                                    <input type="text" placeholder="Khối lượng hoàn thành" class="form-control">
+
+                                </div>
+                               
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Nguồn vốn</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 16</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Cấp ngân sách</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 52.1</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Giá trị khối lượng hoàn thành</label>
+                                    <input type="text" placeholder="Số tiền" class="form-control">
+
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    <!-- <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
+                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
+                                        </div> -->
+
+                                    <button type="submit"
+                                        class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </ng-container>
+        <div *nzModalFooter>
+            <button class="btn btn-danger waves-effect waves-light">Cancel</button>
+        </div>
+    </nz-modal>
+
+    <!-- </nz-spin> -->
+
+</div>

@@ -201,6 +201,15 @@ label.required::after {
     width: 100%;
   }
 
+  /* select {
+	appearance: ;
+} */
+
+#main-content {
+    width: 100%; /* Đảm bảo rằng container chiếm hết chiều rộng của phần tử cha */
+    overflow-x: auto; /* Tạo thanh kéo ngang khi nội dung quá dài */
+}
+
 
 
  

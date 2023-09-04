@@ -23,6 +23,13 @@ import { ThongKeSoLieuComponent } from './thong-ke-so-lieu/thong-ke-so-lieu.comp
 import { KeHoachThucHienDetailsComponent } from './ke-hoach-thuc-hien-details/ke-hoach-thuc-hien-details.component';
 import { KetQuaReportComponent } from './ket-qua-report/ket-qua-report.component';
 import { TestComponent } from './test/test.component';
+import { DmChiTieuKTXHComponent } from './dm-chi-tieu-ktxh/dm-chi-tieu-ktxh.component';
+import { ChiTieuKinhTeXaHoiComponent } from './chi-tieu-kinh-te-xa-hoi/chi-tieu-kinh-te-xa-hoi.component';
+import { KeHoachThucHienNhapComponent } from './ke-hoach-thuc-hien-nhap/ke-hoach-thuc-hien-nhap.component';
+import { PhanBoVonThucHienNhapComponent } from './phan-bo-von-thuc-hien-nhap/phan-bo-von-thuc-hien-nhap.component';
+import { NguonVonThucHienNhapComponent } from './nguon-von-thuc-hien-nhap/nguon-von-thuc-hien-nhap.component';
+import { KetQuaThucHienNhapComponent } from './ket-qua-thuc-hien-nhap/ket-qua-thuc-hien-nhap.component';
+import { GiaiNganNhapComponent } from './giai-ngan-nhap/giai-ngan-nhap.component';
 
 
 
@@ -115,6 +122,36 @@ const routes: Routes = [
         },
         
         { path: 'ke-hoach-thuc-hien/:id', component: KeHoachThucHienDetailsComponent },
+
+        {
+          path: 'dm-chi-tieu-ktxh',
+          component: DmChiTieuKTXHComponent,
+        },
+        {
+          path: 'chi-tieu-ktxh',
+          component: ChiTieuKinhTeXaHoiComponent,
+        },
+        {
+          path: 'nhap-ke-hoach-thuc-hien',
+          component: KeHoachThucHienNhapComponent,
+        },
+        {
+          path: 'nhap-nguon-von-thuc-hien',
+          component: NguonVonThucHienNhapComponent,
+        },
+        {
+          path: 'nhap-phan-bo-von-thuc-hien',
+          component: PhanBoVonThucHienNhapComponent,
+        },
+        {
+          path: 'nhap-ket-qua-thuc-hien',
+          component: KetQuaThucHienNhapComponent,
+        },
+        {
+          path: 'nhap-giai-ngan',
+          component: GiaiNganNhapComponent,
+        },
+
 
         { path: 'danh-muc', loadChildren: () => import('./danh-muc/danh-muc.module').then(m => m.DanhMucModule) },
         { path: 'nhac-viec', loadChildren: () => import('./nhac-viec/nhac-viec.module').then(m => m.NhacViecModule) },

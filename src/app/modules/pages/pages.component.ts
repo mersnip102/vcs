@@ -10,6 +10,21 @@ import { listMenu } from 'src/app/shared/router';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit, OnDestroy {
+  messages: string[] = [];
+  inputMessage: string = '';
+  isChatbotOpen: boolean = false;
+
+  // socket = io('http://localhost:3000');
+
+toggleChatbot() {
+  this.isChatbotOpen = !this.isChatbotOpen;
+}
+
+
+sendMessage(option: string) {
+  this.messages.push(option);
+  // Gửi tin nhắn tới server (nếu cần thiết)
+}
   roleUserCurrent!: number;
 
   constructor(private router: Router, private authService: AuthService,  private http: HttpClient, private api: Client,) {
