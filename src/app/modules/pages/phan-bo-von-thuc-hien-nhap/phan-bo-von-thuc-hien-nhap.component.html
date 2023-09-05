@@ -63,7 +63,7 @@
                                 <th class="text-center">STT</th>
                                 <th class="text-center">Chương trình</th>
                                 <th class="text-center">Dự án, tiểu dự án</th>
-                                
+
                                 <th class="text-center">Nguồn vốn thực hiện</th>
                                 <th class="text-center">Loại số liệu</th>
                                 <th class="text-center">Kỳ hạn</th>
@@ -180,7 +180,7 @@
                                 <th class="text-center">Tên dự án đầu tư, nhiệm vụ</th>
                                 <th class="text-center">Đơn vị tính</th>
                                 <th class="text-center">Nguồn vốn</th>
-                                
+
                                 <th class="text-center">Cấp ngân sách</th>
                                 <th class="text-center">Số tiền</th>
                                 <!-- <th class="text-center">Chi tiết sử dụng</th> -->
@@ -196,7 +196,7 @@
                                 <td class="text-center">10000</td>
                                 <td class="text-center">def</td>
                                 <td class="text-center">def</td>
-                                
+
                                 <td class="text-center">2000000</td>
                                 <td class="d-flex justify-content-center align-items-center">
                                     <div class="btn-toolbar mb-0">
@@ -341,7 +341,7 @@
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option value="Vốn đầu tư">DM 500</option>
-                                        
+
 
                                     </select>
 
@@ -356,7 +356,7 @@
                                         class="form-control">
                                         <option value="DM500">Trung hạn</option>
                                         <option value="DM500">Hằng năm</option>
-                                       
+
 
                                     </select>
 
@@ -370,8 +370,8 @@
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option value="DM500">DM 07</option>
-                                        
-                                       
+
+
 
                                     </select>
 
@@ -385,8 +385,8 @@
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option value="DM500">Chi tiết DM 07</option>
-                                        
-                                       
+
+
 
                                     </select>
 
@@ -415,14 +415,14 @@
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option value="DM500">DM 11</option>
-                                        
-                                       
+
+
 
                                     </select>
 
                                 </div>
 
-                               
+
 
                                 <div class="form-group">
 
@@ -471,7 +471,27 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form class="needs-validation" validate [formGroup]="uploadForm"
+                            <div class="horizontal-form needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Tên chỉ tiêu</label>
+                                        <div class="col-sm-10">
+                                            <select formControlName="idcapBanHanh" class="form-control">
+                                                <option>DM 501</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Sign in</button>
+                                        </div>
+                                    </div> -->
+                                </form>
+                            </div>
+
+                            <!-- <form class="needs-validation" validate [formGroup]="uploadForm"
                                 enctype="multipart/form-data" (ngSubmit)="onSubmit()">
 
                                 <div class="form-group">
@@ -505,17 +525,17 @@
 
                                 </div>
 
-                                 <div class="form-group">
+                                <div class="form-group">
 
                                     <label for="exampleFormControlSelect1">Nguồn vốn</label>
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
-                                    class="form-control">
-                                    <option>DM 16</option>
+                                        class="form-control">
+                                        <option>DM 16</option>
 
-                                </select>
+                                    </select>
 
                                 </div>
-                               
+
 
                                 <div class="form-group">
 
@@ -537,17 +557,14 @@
 
 
                                 <div class="form-group mb-3">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
-                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
-                                        </div> -->
+                                    
 
                                     <button type="submit"
                                         class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
                                 </div>
 
 
-                            </form>
+                            </form> -->
 
                         </div>
 

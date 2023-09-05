@@ -52,7 +52,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-warning">DANH SÁCH DANH MỤC CHỈ TIÊU KTXH</h4>
-                    <button (click)="showModal(1)" class="btn btn-info waves-effect waves-light pull-right"><i class="ti-plus me-2"></i>Thêm
+                    <button (click)="showModal(1)" class="btn btn-info waves-effect waves-light pull-right"><i
+                            class="ti-plus me-2"></i>Thêm
                         mới</button>
                     <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
 
@@ -157,7 +158,8 @@
                 <div class="card-body">
                     <h4 class="card-title text-warning">TAB CHI TIẾT</h4>
                     <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
-                    <button (click)="showModalDetail('')" class="btn btn-info waves-effect waves-light pull-right"><i class="ti-plus me-2"></i>Thêm
+                    <button (click)="showModalDetail('')" class="btn btn-info waves-effect waves-light pull-right"><i
+                            class="ti-plus me-2"></i>Thêm
                         mới</button>
                     <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listHuongDanLienQuan"
                         (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
@@ -255,230 +257,147 @@
         </div>
     </ng-template>
 
-    <nz-modal [(nzVisible)]="isVisible" [nzWidth]="800" (nzOnCancel)="handleCancel()">
-
-        <ng-container *nzModalContent>
-
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h4 class="card-title">Danh mục Chỉ tiêu Kinh tế - Xã hội</h4>
-                            <!-- <p class="card-subtitle mb-4">Điền thông tin Danh mục Chỉ tiêu Kinh tế - Xã hội vào form bên dưới</p> -->
-
-                            <form class="needs-validation" validate [formGroup]="uploadForm"
-                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
-
-                                <!-- <div class="form-group">
-                                            
-                                            <label for="exampleFormControlSelect1">Đơn vị sử dụng chương trình</label>
-                                            <div *ngIf="loading">
-                                                Loading...
-                                              </div>
-                                            <select *ngIf="!loading" formControlName="idvanBanChinh"
-                                                class="form-control form-control-lg mb-3">
-                                                <option *ngFor="let option of listVanBanChinh"
-                                                    [value]="option.idvanBanChinh">{{option.ten}}</option>
-                                            </select>
-                                        </div> -->
-
-
-                                <!-- <div class="form-row">
-                                            <div class="col-md-12 mb-3">
-                                                <label>Hình thức văn bản</label>
-                                                <div *ngIf="loading">
-                                                    Loading...
-                                                  </div>
-                                                <select *ngIf="!loading" formControlName="idhinhThucVb" class="form-control">
-                                                    <option *ngFor="let option of listHinhThucVb"
-                                                        [value]="option.idhinhThucVb">{{option.tenHinhThucVb}}</option>
-    
-                                                </select>
-                                                <div class="valid-tooltip">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 mb-3">
-                                                <label>Loại văn bản</label>
-                                                <div *ngIf="loading">
-                                                    Loading...
-                                                  </div>
-                                                <select *ngIf="!loading" formControlName="idloaiVanBan" class="form-control">
-                                                    <option *ngFor="let option of listLoaiVanBan"
-                                                        [value]="option.idloaiVanBan">{{option.tenLoaiVanBan}}</option>
-    
-    
-                                                </select>
-                                                <div class="valid-tooltip">
-                                                    Looks good!
-                                                </div>
-                                            </div>
-    
-    
-                                        </div> -->
-
-
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Đơn vị sử dụng chương trình</label>
-                                    <input [disabled]="true" type="text" id="simpleinput" class="form-control"
-                                        value="Tỉnh Hà Giang">
-                                </div>
-
-                                <div class="form-group">
 
 
 
-                                    <label for="exampleFormControlSelect1">Loại số liệu</label>
-                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
-                                        class="form-control">
-                                        <option>Số kế hoạch thực hiện 1</option>
-                                        <option>Số kế hoạch thực hiện 2</option>
-                                        <option>Số kế hoạch thực hiện 3</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-
-
-
-                                    <label for="exampleFormControlSelect1">Kỳ báo cáo</label>
-                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
-                                        class="form-control">
-                                        <option>Năm</option>
-                                        <option>Giai đoạn</option>
-
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-
-
-
-                                    <label for="exampleFormControlSelect1">Giai đoạn</label>
-                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
-                                        class="form-control">
-                                        <option>Năm</option>
-                                        <option>Giai đoạn</option>
-
-                                    </select>
-
-                                </div>
-
-                                <div class="form-group">
-
-
-
-                                    <label for="exampleFormControlSelect1">Năm</label>
-                                    <nz-date-picker class="form-control" nzMode="year"></nz-date-picker>
-
-                                </div>
-
-                                <div class="form-group">
-
-
-
-                                    <label>Thời điểm báo cáo</label>
-                                    <input formControlName="ngayVb" type="date" id="simpleinput" class="form-control">
-
-                                </div>
-
-                                <div class="form-group mb-3">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
-                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
-                                        </div> -->
-
-                                    <button type="submit"
-                                        class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
-                                </div>
-
-
-                            </form>
-
-                        </div>
-
-                    </div>
-
-
-
-
-
-
-                </div>
-            </div>
-
-
-        </ng-container>
-        <div *nzModalFooter>
-            <button (click)="handleCancel()"
-                class="btn btn-danger waves-effect waves-light">Cancel</button>
-        </div>
-
-    </nz-modal>
-
-
-
-    <nz-modal [(nzVisible)]="isVisible2" [nzWidth]="1500" nzTitle="Tab chi tiết của danh mục: ..."
+    <nz-modal [(nzVisible)]="isVisible2" [nzWidth]="1200" nzTitle="Tab chi tiết của danh mục chỉ tiêu KTXH"
         (nzOnCancel)="handleCancel2()" [nzOkDisabled]="true">
         <ng-container *nzModalContent>
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
+
+
                         <div class="card-body">
 
-
-
-
-                            <form class="needs-validation" validate [formGroup]="uploadForm"
+                            <div class="horizontal-form needs-validation" validate [formGroup]="uploadForm"
                                 enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Chỉ tiêu báo cáo</label>
+                                        <div class="col-sm-9">
+
+                                            <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                                class="form-control">
+                                                <option>Số kế hoạch thực hiện 1</option>
+                                                <option>Số kế hoạch thực hiện 2</option>
+                                                <option>Số kế hoạch thực hiện 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Đơn vị tính</label>
+                                        <div class="col-sm-9">
+                                            <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                                class="form-control">
+                                                <option>Số kế hoạch thực hiện 1</option>
+                                                <option>Số kế hoạch thực hiện 2</option>
+                                                <option>Số kế hoạch thực hiện 3</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
 
 
 
+
+
+
+
+                                    <div class="form-group">
+                                        <!-- <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
+                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
+                                        </div> -->
+
+                                        <button type="submit"
+                                            class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
+                                    </div>
+
+                                    <!-- <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Sign in</button>
+                                        </div>
+                                    </div> -->
+                                </form>
+                            </div>
+
+                            <!-- <form class="needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
 
                                 <div class="form-group">
 
-
-
-                                    <label for="exampleFormControlSelect1">Chỉ tiêu báo cáo</label>
+                                    <label for="exampleFormControlSelect1">Tên chỉ tiêu</label>
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option>DM 501</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Tên dự án đầu tư, nhiệm vụ</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DACT</option>
 
                                     </select>
 
                                 </div>
 
                                 <div class="form-group">
-
-
 
                                     <label for="exampleFormControlSelect1">Đơn vị tính</label>
                                     <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
                                         class="form-control">
                                         <option>DM 14</option>
 
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Nguồn vốn</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 16</option>
 
                                     </select>
 
                                 </div>
 
 
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Cấp ngân sách</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 52.1</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Số tiền</label>
+                                    <input type="number" placeholder="Số tiền" class="form-control">
+
+                                </div>
+
+
                                 <div class="form-group mb-3">
-                                    <!-- <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
-                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
-                                        </div> -->
+                                    
 
                                     <button type="submit"
                                         class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
                                 </div>
 
 
-                            </form>
+                            </form> -->
 
                         </div>
 
@@ -496,11 +415,10 @@
 
         </ng-container>
         <div *nzModalFooter>
-            <button
-                class="btn btn-danger waves-effect waves-light">Cancel</button>
+            <button class="btn btn-danger waves-effect waves-light">Cancel</button>
         </div>
     </nz-modal>
-    <nz-modal [(nzVisible)]="isVisible3" [nzWidth]="1500" nzTitle="..." (nzOnCancel)="handleCancelModel3()"
+    <nz-modal [(nzVisible)]="isVisible3" [nzWidth]="1200" nzTitle="Chi tiết con mắt" (nzOnCancel)="handleCancelModel3()"
         [nzOkDisabled]="true">
         <ng-container *nzModalContent>
             <div class="row">
@@ -527,7 +445,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let control of listOfControl; let i = index">
                                         <th class="text-center" [(nzChecked)]="checked"
                                             [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)">
                                         </th>
@@ -560,6 +478,9 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    
+
+                                     
                                     <tr *ngFor="let data of listHuongDanLienQuan; let i = index">
                                         <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
                                         (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
@@ -594,8 +515,13 @@
                                         <!-- <td>{{ data.age }}</td>
                   <td>{{ data.address }}</td> -->
                                     </tr>
+                                    
                                 </tbody>
+                               
                             </nz-table>
+                            <button (click)="addField($event)" data-toggle="modal" data-target="#add-category" class="btn btn-md btn-success waves-effect waves-light m-t-10 pull-right">
+                                <i class="fa fa-plus"></i> Thêm trường
+                            </button>
                         </div>
                         <!-- end card-body-->
                     </div>
@@ -609,10 +535,207 @@
 
         </ng-container>
         <div *nzModalFooter>
-            <button
-                class="btn btn-danger waves-effect waves-light">Cancel</button>
+            <button class="btn btn-danger waves-effect waves-light">Cancel</button>
         </div>
     </nz-modal>
+
+    <nz-modal [(nzVisible)]="isVisible" [nzWidth]="800" (nzOnCancel)="handleCancel()"
+        nzTitle="Danh mục Chỉ tiêu Kinh tế - Xã hội" (nzOnCancel)="handleCancel2()" [nzOkDisabled]="true">
+        <ng-container *nzModalContent>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="horizontal-form needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+                                <nz-spin nzTip="Loading..." [nzSpinning]="loading">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Đơn vị sử dụng chương trình</label>
+                                            <div class="col-sm-9">
+                                                <input nz-input nzSize="default" [disabled]="true" type="text"
+                                                    id="simpleinput" [value]="userInfo.CustomerName" />
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Loại số liệu</label>
+                                            <div class="col-sm-9">
+
+
+
+                                                <nz-select nzSize="default" ngModel="lucy">
+                                                    <nz-option *ngFor="let item of listLoaiSoLieu" [nzValue]="item.oid"
+                                                        [nzLabel]="item.ten"></nz-option>
+
+
+                                                </nz-select>
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Kỳ báo cáo</label>
+                                            <div class="col-sm-9">
+                                                <nz-select nzSize="default" ngModel="lucy">
+                                                    <nz-option nzValue="Năm" nzLabel="Năm"></nz-option>
+                                                    <nz-option nzValue="Giai đoạn" nzLabel="Giai đoạn"></nz-option>
+
+                                                </nz-select>
+
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Giai đoạn</label>
+                                            <div class="col-sm-9">
+                                                
+
+                                                <nz-select nzSize="default" ngModel="lucy">
+                                                    <nz-option [nzValue]="item.oid" [nzLabel]="item.ten" *ngFor="let item of listGiaiDoan"></nz-option>
+                                                    
+                                                    
+                                                </nz-select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Năm</label>
+                                            <div class="col-sm-9">
+
+                                                <nz-date-picker nzMode="year"></nz-date-picker>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+
+                                            <label class="col-sm-3 control-label">Thời điểm báo cáo</label>
+                                            <div class="col-sm-3">
+                                                <input nz-input nzSize="default" type="date" />
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <!-- <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkmeout0">
+                                            <label class="custom-control-label" for="checkmeout0">Xác nhận thêm mới !</label>
+                                        </div> -->
+
+                                            <button type="submit"
+                                                class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
+                                        </div>
+
+                                        <!-- <div class="form-group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-default">Sign in</button>
+                                        </div>
+                                    </div> -->
+                                    </form>
+                                </nz-spin>
+                            </div>
+
+                            <!-- <form class="needs-validation" validate [formGroup]="uploadForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Tên chỉ tiêu</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 501</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Tên dự án đầu tư, nhiệm vụ</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DACT</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Đơn vị tính</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 14</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Nguồn vốn</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 16</option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Cấp ngân sách</label>
+                                    <select formControlName="idcapBanHanh" id="exampleFormControlSelect1"
+                                        class="form-control">
+                                        <option>DM 52.1</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect1">Số tiền</label>
+                                    <input type="number" placeholder="Số tiền" class="form-control">
+
+                                </div>
+
+
+                                <div class="form-group mb-3">
+                                    
+
+                                    <button type="submit"
+                                        class="btn btn-info waves-effect waves-light pull-right">Lưu</button>
+                                </div>
+
+
+                            </form> -->
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </ng-container>
+        <div *nzModalFooter>
+            <button (click)="handleCancel()" class="btn btn-danger waves-effect waves-light">Cancel</button>
+        </div>
+    </nz-modal>
+
 
     <!-- </nz-spin> -->
 

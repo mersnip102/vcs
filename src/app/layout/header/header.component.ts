@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { listMenu } from 'src/app/shared/router';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { environmentAPI } from 'src/environments/environment';
+import { Client } from 'src/app/services/proxies/proxies.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -36,14 +37,27 @@ export class HeaderComponent {
     this.currentDate = new Intl.DateTimeFormat('vn-VN', options).format(date);
   }
 
+  async getUserInfo(): Promise<void> {
+    // Gọi API để lấy thông tin người dùng
+    await this.api.getUserInfo().subscribe(async (response: any) => {
+    
+      this.userInfo = response;
+     
+      console.log(response)
+      
+      this.authService.setUserInfo(this.userInfo.body.result);
+    });
+    
+  }
+
   userInfo: any;
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.updateTime();
     setInterval(() => {
       this.updateTime();
     }, 1000);
 
-    this.authService.userInfo$.subscribe((userInfo: any) => {
+    await this.authService.userInfo$.subscribe((userInfo: any) => {
       this.userInfo = userInfo
       console.log(this.userInfo)
     });
@@ -52,7 +66,7 @@ export class HeaderComponent {
 
   roleUserCurrent!: number;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService,  private api: Client,) {
     this.authService.roleUser.subscribe(res => {
       console.log(res);
       if(res == 4) {
