@@ -79,7 +79,7 @@ import { NguonVonThucHienNhapComponent } from './nguon-von-thuc-hien-nhap/nguon-
 import { PhanBoVonThucHienNhapComponent } from './phan-bo-von-thuc-hien-nhap/phan-bo-von-thuc-hien-nhap.component';
 import { KetQuaThucHienNhapComponent } from './ket-qua-thuc-hien-nhap/ket-qua-thuc-hien-nhap.component';
 import { GiaiNganNhapComponent } from './giai-ngan-nhap/giai-ngan-nhap.component';
-
+import { NzFormModule } from 'ng-zorro-antd/form';
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -162,6 +162,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     NzTreeModule,
     NzToolTipModule,
     NzSpinModule,
+    NzFormModule,
 
     HighchartsChartModule,
 

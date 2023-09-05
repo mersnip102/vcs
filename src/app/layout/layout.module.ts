@@ -80,6 +80,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     NzImageModule,
     NzIconModule,
     NzBreadCrumbModule,
+
+    NzLayoutModule,
     NzIconModule.forRoot(icons),
   ],
   exports: [FooterComponent, HeaderComponent, SidebarComponent, BasicLayoutComponent],

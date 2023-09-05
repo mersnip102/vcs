@@ -8,7 +8,8 @@
                     <li nzSelected nz-menu-item [routerLink]="['/pages/home']" routerLinkActive="style_item_menu">
 
                         <span nz-icon nzType="home"></span>
-                        <span class="fs-1">Trang chủ</span>
+                        <span>Trang chủ</span>
+                        <!-- class="fs-1" -->
                     </li>
                     <ng-container *ngFor="let item of listMenuByRole">
 
@@ -74,3 +75,77 @@
 
 
 </div>
+
+
+
+<!-- <nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null">
+      <div class="sidebar-logo">
+        <a href="https://vcsvietnam.com/" target="_blank">
+          <img src="https://vcsvietnam.com/uploads/GioiThieu/620ac741-6a33-4e5a-86a1-d966f847468flogo.png" alt="logo">
+          <h1>Công ty VCS</h1>
+        </a>
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        
+        <li routerLink="/pages/danh-sach-van-ban-chinh" nz-menu-item nz-tooltip nzTooltipPlacement="right" nzSelected>
+          <span nz-icon nzType="unordered-list"></span>
+          <span>Danh sách văn bản chính</span>
+        </li>
+        <li #roundButtonOne routerLink="/pages/van-ban-chinh" nz-menu-item nz-tooltip nzTooltipPlacement="right" [nzSelected]="receivedData == 'van-ban-chinh'">
+          <span nz-icon nzType="file-text"></span>
+          <span>Thêm văn bản chính</span>
+        </li>
+        <li routerLink="/pages/huong-dan-lien-quan" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="group"></span>
+          <span>Hướng dẫn liên quan</span>
+        </li>
+        <li routerLink="/pages/loai-van-ban-chinh" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="snippets"></span>
+          <span>Loại văn bản chính</span>
+        </li>
+        <li routerLink="/pages/loai-CTDA" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="file"></span>
+          <span>Loại chương trình dự án</span>
+        </li>
+        <li routerLink="/pages/hinh-thuc-van-ban" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="diff"></span>
+          <span>Hình thức văn bản</span>
+        </li>
+        <li routerLink="/pages/loai-van-ban" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="copy"></span>
+          <span>Loại văn bản</span>
+        </li>
+        <li routerLink="/pages/cap-ban-hanh" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="apartment"></span>
+          <span>Cấp ban hành</span>
+        </li>
+        <li routerLink="/pages/cau-hoi" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+          <span nz-icon nzType="question"></span>
+          <span>Câu hỏi</span>
+        </li>
+       
+      </ul>
+    </nz-sider>
+    <nz-layout style="max-height: fit-content; overflow: scroll;">
+      <nz-header>
+        <div class="app-header">
+          <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+          </span>
+        </div>
+      </nz-header>
+      <nz-content>
+          
+            <div class="container-fluid">
+              <div class="inner-content">
+                
+                <router-outlet></router-outlet>
+            
+          </div>
+        </div>
+  
+      </nz-content>
+    </nz-layout>
+  </nz-layout> -->

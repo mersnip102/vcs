@@ -1,18 +1,22 @@
 <div class="header">
     <div class="pull-left">
-        <div class="logo"><a
-                ><!-- <img src="assets/images/logo.png" alt="" /> --><span style="color: rgb(0, 162, 255);">Địa bàn: Tỉnh Hà Giang</span></a></div>
+        <div class="logo"><a>
+                <!-- <img src="../../../assets/img/Logo_VCS.png" width="230px" height="35px" alt="" /> -->
+                <span style="color: rgb(0, 162, 255);">{{userInfo.CustomerName}}</span>
+                <!-- <span style="color: rgb(0, 162, 255);">Công ty CP Công Nghệ VCS Việt Nam</span> -->
+            </a>
+        </div>
         <div nz-button nzType="primary" (click)="toggleCollapsed()" [ngClass]="{'is-active': isCollapsed === true}"
             class="hamburger sidebar-toggle">
             <span class="line"></span>
             <span class="line"></span>
             <span class="line"></span>
         </div>
-       
+
     </div>
     <div class="pull-right p-r-15">
         <ul>
-            
+
             <!-- <li class="header-icon dib"><a href="#search"><i class="ti-search"></i></a></li> -->
             <li class="header-icon dib"><span class="text-primary">{{ currentDate }}</span></li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="thongBao" class="header-icon dib"><i
@@ -21,62 +25,67 @@
                 <div class="drop-down">
                     <nz-dropdown-menu #thongBao="nzDropdownMenu">
                         <div nz-menu>
-                        <div nz-menu-item class="dropdown-content-heading">
-                            <span class="text-left">Recent Notifications</span>
-                        </div>
+                            <div nz-menu-item class="dropdown-content-heading">
+                                <span class="text-left">Recent Notifications</span>
+                            </div>
 
-                        <div class="dropdown-content-body">
-                            <ul>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img"
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">5 members joined today </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img"
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">likes a photo of you</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img"
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg"
-                                            alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-content-body">
+                                <ul>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">5 members joined today </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">likes a photo of you</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/3.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="text-center">
+                                        <a href="#" class="more-link">See All</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     </nz-dropdown-menu>
                 </div>
 
@@ -84,75 +93,80 @@
             </li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="nhacViec" class="header-icon dib"><i
                     class="ti-announcement"><span class="badge badge-danger pull-right m-l-3">5</span></i>
-                
+
                 <div class="drop-down">
                     <nz-dropdown-menu #nhacViec="nzDropdownMenu">
                         <div nz-menu>
-                        <div nz-menu-item class="dropdown-content-heading">
-                            <span class="text-left">2 New Messages</span>
-                            <!-- <a href="email.html"><i class="ti-pencil-alt pull-right"></i></a> -->
-                        </div>
+                            <div nz-menu-item class="dropdown-content-heading">
+                                <span class="text-left">2 New Messages</span>
+                                <!-- <a href="email.html"><i class="ti-pencil-alt pull-right"></i></a> -->
+                            </div>
 
-                        <div class="dropdown-content-body">
-                            <ul nz-menu>
-                                <li nz-menu-item class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/1.jpg"
-                                            alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item class="notification-unread">
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg"
-                                            alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img"
-                                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg" alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li nz-menu-item>
-                                    <a href="#">
-                                        <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg"
-                                            alt="" />
-                                        <div class="notification-content">
-                                            <small class="notification-timestamp pull-right">02:34 PM</small>
-                                            <div class="notification-heading">Admin</div>
-                                            <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="text-center">
-                                    <a href="#" class="more-link">See All</a>
-                                </li>
-                            </ul>
+                            <div class="dropdown-content-body">
+                                <ul nz-menu>
+                                    <li nz-menu-item class="notification-unread">
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/1.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item class="notification-unread">
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img"
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/481px-Cat03.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li nz-menu-item>
+                                        <a href="#">
+                                            <img class="pull-left m-r-10 avatar-img" src="assets/images/avatar/2.jpg"
+                                                alt="" />
+                                            <div class="notification-content">
+                                                <small class="notification-timestamp pull-right">02:34 PM</small>
+                                                <div class="notification-heading">Admin</div>
+                                                <div class="notification-text">Hi Teddy, Just wanted to let you ...
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="text-center">
+                                        <a href="#" class="more-link">See All</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     </nz-dropdown-menu>
 
                 </div>
 
             </li>
             <li nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" class="header-icon dib"><img class="avatar-img"
-                    src="../../../assets/img/User_icon-cp.svg.png" alt="" /> <span class="user-avatar">{{userInfo.FullName}} <i
-                        class="ti-angle-down f-s-10"></i></span>
+                    src="../../../assets/img/User_icon-cp.svg.png" alt="" /> <span
+                    class="user-avatar">{{userInfo.FullName}} <i class="ti-angle-down f-s-10"></i></span>
                 <div class="drop-down dropdown-profile">
                     <div class="dropdown-content-heading">
                         <span class="text-left">Upgrade Now</span>
@@ -161,12 +175,15 @@
                     <nz-dropdown-menu #menu="nzDropdownMenu">
                         <div class="dropdown-content-body">
                             <ul nz-menu>
-                                <li nz-menu-item [routerLink]="['/pages/userinfo']"><a><i class="ti-user"></i> <span class="avatar-item">Hồ
+                                <li nz-menu-item [routerLink]="['/pages/userinfo']"><a><i class="ti-user"></i> <span
+                                            class="avatar-item">Hồ
                                             sơ</span></a></li>
 
 
-                                <li nz-menu-item [routerLink]="['/pages/changePassword']"><a><i class="ti-lock"></i> <span class="avatar-item">Cập nhật mật khẩu</span></a></li>
-                                <li nz-menu-item (click)="logout()"><a><i class="ti-power-off"></i> <span class="avatar-item">Đăng
+                                <li nz-menu-item [routerLink]="['/pages/changePassword']"><a><i class="ti-lock"></i>
+                                        <span class="avatar-item">Cập nhật mật khẩu</span></a></li>
+                                <li nz-menu-item (click)="logout()"><a><i class="ti-power-off"></i> <span
+                                            class="avatar-item">Đăng
                                             xuất</span></a></li>
                             </ul>
                         </div>

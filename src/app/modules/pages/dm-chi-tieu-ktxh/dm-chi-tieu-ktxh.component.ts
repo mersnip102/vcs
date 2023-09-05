@@ -6,9 +6,14 @@ import * as moment from 'moment';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Client } from 'src/app/services/proxies/proxies.service';
+import { X1Service } from 'src/app/services/x1/x1.service';
+import { Y1Service } from 'src/app/services/y1/y1.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
 import { NotifyService } from 'src/app/shared/utils/notify';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+
+import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 interface ItemData {
   idhuongDanLq: number;
   idvanBanChinh: number;
@@ -52,6 +57,8 @@ export class DmChiTieuKTXHComponent implements OnInit {
     private nzImageService: NzImageService,
     private http: HttpClient,
     private api: Client,
+    private x1Api: X1Service,
+    private y1Api: Y1Service,
    
     private route: ActivatedRoute,
    
@@ -98,6 +105,8 @@ export class DmChiTieuKTXHComponent implements OnInit {
   listCapBanHanh: any[] = [];
   isVisible2 = false
   isVisible3 = false
+
+  
   async onSubmit(): Promise<void> {
     await this.uploadForm.get('ngayHetHieuLuc')?.setValue(moment(this.uploadForm.value.ngayHetHieuLuc).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
     await this.uploadForm.get('ngayHieuLuc')?.setValue(moment(this.uploadForm.value.ngayHieuLuc).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
@@ -396,8 +405,17 @@ export class DmChiTieuKTXHComponent implements OnInit {
   //   // })
   // }
 
+  userInfo: any;
+  
+
   async ngOnInit(): Promise<void> {
+    await this.authService.userInfo$.subscribe((userInfo: any) => {
+      this.userInfo = userInfo
+      console.log(this.userInfo)
+    });
     await this.getListHuongDanLienQuan();
+
+    
 
 
     // await this.getListVanBanChinh()
@@ -409,6 +427,200 @@ export class DmChiTieuKTXHComponent implements OnInit {
 
     // }));
   }
+
+  listLoaiSoLieu?: any[] = []
+  async Dm500() {
+
+    this.loading = true;
+
+    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+  listGiaiDoan?: any[] = []
+  async Dm07() {
+
+    this.loading = true;
+
+    await this.x1Api.dMGiaiDoan_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listGiaiDoan = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+
+  listChiTieuBaoCaoTongHop?: any[] = []
+  async DM501() {
+    
+
+    this.loading = true;
+
+    await this.x1Api.dMGiaiDoan_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listGiaiDoan = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+  listOfControl: Array<{ id: number; controlInstance: string }> = [];
+  addField(e?: MouseEvent): void {
+    if (e) {
+      e.preventDefault();
+    }
+    const id = this.listOfControl.length > 0 ? this.listOfControl[this.listOfControl.length - 1].id + 1 : 0;
+
+    const control = {
+      id,
+      controlInstance: `passenger${id}`
+    };
+    const index = this.listOfControl.push(control);
+    console.log(this.listOfControl[this.listOfControl.length - 1]);
+    // this.validateForm.addControl(
+    //   this.listOfControl[index - 1].controlInstance,
+    //   new UntypedFormControl(null, Validators.required)
+    // );
+  }
+
+  removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
+    e.preventDefault();
+    if (this.listOfControl.length > 1) {
+      const index = this.listOfControl.indexOf(i);
+      this.listOfControl.splice(index, 1);
+      console.log(this.listOfControl);
+      // this.validateForm.removeControl(i.controlInstance);
+    }
+  }
+
+  // submitForm(): void {
+  //   if (this.validateForm.valid) {
+  //     console.log('submit', this.validateForm.value);
+  //   } else {
+  //     Object.values(this.validateForm.controls).forEach(control => {
+  //       if (control.invalid) {
+  //         control.markAsDirty();
+  //         control.updateValueAndValidity({ onlySelf: true });
+  //       }
+  //     });
+  //   }
+  // }
+  async createDMChiTieuKTXH(formData: any) {
+
+    this.loading = true;
+
+    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+
+  async updateDMChiTieuKTXHById(formData: any) {
+
+    this.loading = true;
+
+    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+  async deleteDMChiTieuKTXH(formData: any) {
+
+    this.loading = true;
+
+    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+  async getAllDMChiTieuKTXH(formData: any) {
+
+    this.loading = true;
+
+    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    .toPromise().then(
+      (response: any) => {
+        console.log(response)
+        this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
+        this.loading = false; // Tắt biểu thị loading
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
+  // getAllChiTieuKTXH() {
+
+  //   // this.isSpinning = true;
+  //   this.y1Api.cNChiTieuKinhTeXaHoiCapXaChiTietCap_Post().toPromise().then((res) => {
+  //     console.log(res);
+  //     this.listHuongDanLienQuan = res;
+  //     this.isSpinning = false;
+  //   }).catch((error) => {
+  //     this.notifyService.errorMessage(error.error.title);
+  //     console.log(error);
+  //   })
+  //   this.api.getListHuongDanLienQuan().subscribe((res: any) => {
+
+
+  //   }, error => {
+
+  //   }
+
+  //   );
+  // }
 
   addClick(): void {
     const data = "van-ban-chinh";
@@ -431,25 +643,28 @@ export class DmChiTieuKTXHComponent implements OnInit {
   isVisible = false;
   isOkLoading = false;
   vanBanChinh?: any
-  async showModal(id?: any): Promise<void> {
+  async showModal(id?: any) {
     this.id = id
     this.isVisible = true;
+
+    await this.Dm500();
+    await this.Dm07();
   
 
-    if (this.id != '' && this.id != undefined && this.id != null) {
-      // await this.getInputInfo().then(async (res) => {
-      //   this.loading = false;
-      // })
-      await this.getHuongDanLienQuanById(this.id)
+    // if (this.id != '' && this.id != undefined && this.id != null) {
+    //   // await this.getInputInfo().then(async (res) => {
+    //   //   this.loading = false;
+    //   // })
+    //   await this.getHuongDanLienQuanById(this.id)
 
-    } else {
+    // } else {
 
-      // await this.getInputInfo().then(async (res) => {
-      //   this.loading = false;
+    //   // await this.getInputInfo().then(async (res) => {
+    //   //   this.loading = false;
 
-      // })
-      this.uploadForm.reset()
-    }
+    //   // })
+    //   this.uploadForm.reset()
+    // }
   }
   async showModalDetail(id?: any): Promise<void> {
     this.id = id

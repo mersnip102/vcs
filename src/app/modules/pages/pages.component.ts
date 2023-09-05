@@ -9,7 +9,8 @@ import { listMenu } from 'src/app/shared/router';
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent implements OnInit, OnDestroy {
+export class PagesComponent implements OnInit {
+  //OnDestroy
   messages: string[] = [];
   inputMessage: string = '';
   isChatbotOpen: boolean = false;
@@ -45,25 +46,28 @@ sendMessage(option: string) {
     // );
     
   }
-  ngOnDestroy(): void {
-    localStorage.removeItem('stoken')
-    localStorage.clear();
-  }
-  @HostListener('window:beforeunload')
-  onBeforeUnload() {
-    localStorage.removeItem('stoken')
-    localStorage.clear();
-  }
+  // ngOnDestroy(): void {
+  //   localStorage.removeItem('stoken')
+  //   localStorage.clear();
+  // }
+  // @HostListener('window:beforeunload')
+  // onBeforeUnload() {
+  //   localStorage.removeItem('stoken')
+  //   localStorage.clear();
+  // }
 
   userInfo: any;
-  getUserInfo(): void {
+  async getUserInfo(): Promise<void> {
     // Gọi API để lấy thông tin người dùng
-    this.api.getUserInfo().subscribe((response: any) => {
+    await this.api.getUserInfo().subscribe(async (response: any) => {
     
       this.userInfo = response;
+     
       console.log(response)
+      
       this.authService.setUserInfo(this.userInfo.body.result);
     });
+    
   }
   ngOnInit(): void {
     this.getUserInfo();
