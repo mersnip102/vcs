@@ -170,7 +170,7 @@ export class NotifyService {
   confirmAdd(text: any): Promise<boolean> {
     return Swal.fire({
       title: text,
-      text: 'This action cannot be undone.',
+      text: 'Đây là hành động không thể trở lại!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

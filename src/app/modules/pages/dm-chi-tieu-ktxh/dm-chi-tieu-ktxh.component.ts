@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Client } from 'src/app/services/proxies/proxies.service';
-import { X1Service } from 'src/app/services/x1/x1.service';
+import { ChiTieuKinhTeXaHoiDTO, X1Service } from 'src/app/services/x1/x1.service';
 import { Y1Service } from 'src/app/services/y1/y1.service';
 import { DataService } from 'src/app/shared/data.service';
 import { LocalStorageService } from 'src/app/shared/local-storage/local-storage.service';
@@ -14,6 +14,9 @@ import { NotifyService } from 'src/app/shared/utils/notify';
 import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { DanhMucService } from 'src/app/services/danhMuc/danh-muc.service';
+
+import { v4 as uuidv4 } from 'uuid';
 interface ItemData {
   idhuongDanLq: number;
   idvanBanChinh: number;
@@ -58,6 +61,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
     private http: HttpClient,
     private api: Client,
     private x1Api: X1Service,
+    private x1DanhMuc: DanhMucService,
     private y1Api: Y1Service,
    
     private route: ActivatedRoute,
@@ -69,54 +73,97 @@ export class DmChiTieuKTXHComponent implements OnInit {
 
   ) { }
 
-  uploadForm = this.formBuilder.group({
-    idhuongDanLq: new FormControl(),
-    idvanBanChinh: new FormControl(),
-    idhinhThucVb: new FormControl(),
-    idloaiVanBan: new FormControl(),
-    maSoVb: new FormControl(),
-    tenVb: new FormControl(''),
-    idcapBanHanh: new FormControl(),
-    ngayVb: new FormControl(''),
-    coQuanBanHanh: new FormControl(''),
-    ngayHieuLuc: new FormControl(''),
-    ngaySuaDoiBoSung: new FormControl(''),
-    ngayHetHieuLuc: new FormControl(''),
-    kyHienVanBan: new FormControl(''),
-    chuong: new FormControl(''),
-    muc: new FormControl(''),
-    tieuMuc: new FormControl(''),
-    dieu: new FormControl(''),
-    khoan: new FormControl(''),
-    diem: new FormControl(''),
-    tiet: new FormControl(''),
-    noiDung: new FormControl(''),
+  dMChiTieuKTXHForm = this.formBuilder.group({
+    oid: new FormControl(),
+    // idDonViSuDungChuongTrinh: new FormControl(),
+    loaiSoLieu: new FormControl(),
+    kyBaoCao: new FormControl(),
+    idGiaiDoan: new FormControl(),
+    nam: new FormControl(),
+    thoiDiemBaoCao: new FormControl(),
+   
 
 
 
   });
-  displayThuoc = false;
-  listLoaiVanBanhChinh: any[] = [];
-  listLoaiCtda: any[] = [];
-  listChuongTrinhChinh: any[] = [];
-  listVanBanChinh: any[] = [];
-  listHinhThucVb: any[] = [];
-  listLoaiVanBan: any[] = [];
-  listCapBanHanh: any[] = [];
+ 
   isVisible2 = false
   isVisible3 = false
 
+
+
+  async getDm500ById(id: string): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      this.loading = true;
+      await this.x1Api.dMLoaiSoLieu_GetById(id).subscribe((response: any) => {
+        resolve(response.result.ten);
+        console.log(response)
+       
+        this.loading = false; // Tắt biểu thị loading
+      }, error => {
+        reject(error);
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      });
+    });
+
+  }
+
+  async getDm07ById(id: string): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      this.loading = true;
+      await this.x1Api.dMGiaiDoan_GetById(id).subscribe((response: any) => {
+        resolve(response);
+        console.log(response)
+       
+        this.loading = false; // Tắt biểu thị loading
+      }, error => {
+        reject(error);
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      });
+    });
+
+  }
   
-  async onSubmit(): Promise<void> {
-    await this.uploadForm.get('ngayHetHieuLuc')?.setValue(moment(this.uploadForm.value.ngayHetHieuLuc).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
-    await this.uploadForm.get('ngayHieuLuc')?.setValue(moment(this.uploadForm.value.ngayHieuLuc).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
-    await this.uploadForm.get('ngayVb')?.setValue(moment(this.uploadForm.value.ngayVb).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
-    await this.uploadForm.get('ngaySuaDoiBoSung')?.setValue(moment(this.uploadForm.value.ngaySuaDoiBoSung).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
+  
+ 
+  
+  async onSubmit(data: any): Promise<void> {
+    // await this.dMChiTieuKTXHForm.va
+    // await this.dMChiTieuKTXHForm.get('ngayHieuLuc')?.setValue(moment(this.uploadForm.value.ngayHieuLuc).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
+    // await this.dMChiTieuKTXHForm.get('ngayVb')?.setValue(moment(this.uploadForm.value.ngayVb).format('YYYY-MM-DDTHH:mm:ss.SSSZ'));
+    // await this.dMChiTieuKTXHForm.get('ngaySuaDoiBoSung')?.setValue();
     // this.isOkLoading = true;
     if(this.id != '' && this.id != undefined && this.id != null) {
-      this.notifyService.confirmAdd('Bạn có chắc chắn muốn sửa hướng dẫn liên quan này?').then((result)=>{
-     
+      this.notifyService.confirmAdd('Bạn có chắc chắn muốn thêm mới danh mục chỉ tiêu KTXH?').then(async (result)=>{
+       
+        // const a = await this.getDm500ById(data.value.)
+        // const b = await this.getDm500ById()
         if(result){
+          let dataChiTieuKinhTeXaHoi: ChiTieuKinhTeXaHoiDTO[] = [new ChiTieuKinhTeXaHoiDTO(
+            {
+            oid: uuidv4(),
+            idDonViSuDungChuongTrinh: this.userInfo.ServiceWebCustomerID,
+            loaiSoLieu: data.loaiSoLieu,
+            kyBaoCao: data.kyBaoCao,
+            idGiaiDoan: data.idGiaiDoan,
+            nam: new Date(data.nam).getFullYear(),
+            thoiDiemBaoCao: new Date(this.dMChiTieuKTXHForm.value.thoiDiemBaoCao) }
+            )]
+
+            console.log(dataChiTieuKinhTeXaHoi)
+          
+          this.x1Api.dMChiTieuKinhTeXaHoi_Post(dataChiTieuKinhTeXaHoi).subscribe((res)=> {
+            console.log(res)
+            this.getAllDMChiTieuKTXH();
+               this.isVisible = false
+                this.dMChiTieuKTXHForm.reset()
+                this.notifyService.successMessage("Thêm mới danh mục chỉ tiêu KTXH thành công")
+          }, (err)=> {
+            console.log(err)
+            this.notifyService.errorMessage("Thêm mới danh mục chỉ tiêu KTXH gặp lỗi")
+          })
           
             // this.api.updateHuongDanLienQuan(
             //   {
@@ -159,7 +206,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
         }
       })
     } else {
-      this.notifyService.confirmAdd('Bạn có chắc chắn muốn thêm mới một loại văn bản chính?').then((result)=>{
+      this.notifyService.confirmAdd('Bạn có chắc chắn muốn thêm mới danh mục chỉ tiêu KTXH?').then((result)=>{
      
         if(result){
         
@@ -332,7 +379,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
   handleChange(selectedValue: string) {
     // Xử lý logic khi giá trị được chọn thay đổi
     console.log('Selected value:', selectedValue);
-    console.log('Selected value:', this.uploadForm.value.idloaiVanBan);
+    
     // Gọi hàm change() hoặc các hàm khác bạn muốn thực thi
    
   }
@@ -413,7 +460,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
       this.userInfo = userInfo
       console.log(this.userInfo)
     });
-    await this.getListHuongDanLienQuan();
+    await this.getListDanhMucChiTieuKTXH();
 
     
 
@@ -428,12 +475,39 @@ export class DmChiTieuKTXHComponent implements OnInit {
     // }));
   }
 
+  listDanhMucChiTieuKTXH: any[] = []
+  async getListDanhMucChiTieuKTXH() {
+
+    this.loading = true;
+    this.listDanhMucChiTieuKTXH = []
+    await this.x1Api.dMChiTieuKinhTeXaHoi_GetAll(true)
+    .toPromise().then(
+      (response: any) => {
+        
+        this.listDanhMucChiTieuKTXH = response.result; // Gán dữ liệu trả về vào biến options
+       
+        this.listDanhMucChiTieuKTXH.forEach(async (item: any)=> {
+          item.tenLoaiSoLieu = await this.getDm500ById(item.loaiSoLieu)
+          
+        })
+       
+        this.loading = false; // Tắt biểu thị loading
+
+        
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false; // Tắt biểu thị loading nếu có lỗi
+      }
+    );
+  }
+
   listLoaiSoLieu?: any[] = []
   async Dm500() {
 
     this.loading = true;
 
-    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    await this.x1Api.dMLoaiSoLieu_GetAllPrim(true)
     .toPromise().then(
       (response: any) => {
         console.log(response)
@@ -470,8 +544,16 @@ export class DmChiTieuKTXHComponent implements OnInit {
   listChiTieuBaoCaoTongHop?: any[] = []
   async DM501() {
     
-
     this.loading = true;
+
+    // const a = await this.x1DanhMuc.getAllD502().then((response)=>{
+
+    // }).catch(
+    //   (error)=>{
+
+    //   }
+      
+    // )
 
     await this.x1Api.dMGiaiDoan_GetAllPrim(true)
     .toPromise().then(
@@ -565,7 +647,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
     );
   }
 
-  async deleteDMChiTieuKTXH(formData: any) {
+  async deleteDMChiTieuKTXH() {
 
     this.loading = true;
 
@@ -583,14 +665,14 @@ export class DmChiTieuKTXHComponent implements OnInit {
     );
   }
 
-  async getAllDMChiTieuKTXH(formData: any) {
+  async getAllDMChiTieuKTXH() {
 
     this.loading = true;
 
-    await this.x1Api.dMChiTieuBaoCaoTongHop_GetAllPrim(true)
+    await this.x1Api.dMChiTieuKinhTeXaHoi_GetAll(true)
     .toPromise().then(
       (response: any) => {
-        console.log(response)
+        
         this.listLoaiSoLieu = response.result; // Gán dữ liệu trả về vào biến options
         this.loading = false; // Tắt biểu thị loading
       },
@@ -861,7 +943,7 @@ export class DmChiTieuKTXHComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
-    this.uploadForm.reset()
+    this.dMChiTieuKTXHForm.reset()
   }
 
   handleCancelModel3(): void {

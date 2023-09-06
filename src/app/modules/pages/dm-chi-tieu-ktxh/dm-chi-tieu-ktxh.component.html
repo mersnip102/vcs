@@ -47,102 +47,73 @@
             </div>
         </div> -->
     </div>
+
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-warning">DANH SÁCH DANH MỤC CHỈ TIÊU KTXH</h4>
-                    <button (click)="showModal(1)" class="btn btn-info waves-effect waves-light pull-right"><i
-                            class="ti-plus me-2"></i>Thêm
-                        mới</button>
-                    <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
+                    <nz-spin nzTip="Loading..." [nzSpinning]="loading">
+                        <h4 class="card-title text-warning">DANH SÁCH DANH MỤC CHỈ TIÊU KTXH</h4>
+                        <button (click)="showModal(1)" class="btn btn-info waves-effect waves-light pull-right"><i
+                                class="ti-plus me-2"></i>Thêm
+                            mới</button>
+                        <!-- <p class="card-subtitle mb-4">Điền thông tin văn bản Hướng dẫn vào form bên dưới</p> -->
 
-                    <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listHuongDanLienQuan"
-                        (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
-                        <thead>
-                            <tr>
-                                <!-- <th class="text-center" [nzSelections]="listOfSelection" [(nzChecked)]="checked"
+                        <nz-table #rowSelectionTable nzShowSizeChanger [nzData]="listDanhMucChiTieuKTXH"
+                            (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+                            <thead>
+                                <tr>
+                                    <!-- <th class="text-center" [nzSelections]="listOfSelection" [(nzChecked)]="checked"
                                     [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"><button *ngIf="checked || indeterminate" nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button" class="btn btn-danger waves-effect waves-light ml-4"><i
                                         class="far fa-trash-alt"></i></button></th> -->
-                                <th class="text-center">STT</th>
+                                    <th class="text-center">STT</th>
 
-                                <th class="text-center">Loại số liệu</th>
-                                <th class="text-center">Kỳ báo cáo</th>
-                                <th class="text-center">Giai đoạn</th>
-                                <th class="text-center">Năm</th>
-                                <th class="text-center">Thời điểm báo cáo</th>
-                                <th class="text-center">Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
+                                    <th class="text-center">Loại số liệu</th>
+                                    <th class="text-center">Kỳ báo cáo</th>
+                                    <th class="text-center">Giai đoạn</th>
+                                    <th class="text-center">Năm</th>
+                                    <th class="text-center">Thời điểm báo cáo</th>
+                                    <th class="text-center">Hành động</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr *ngFor="let data of listDanhMucChiTieuKTXH; let i = index">
+                                    <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
                                     (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
-                                <td class="text-center">1</td>
+                                    <td class="text-center">{{ i + 1 }}</td>
+                                    <td class="text-center">{{ data.tenLoaiSoLieu }}</td>
+                                    <td class="text-center">{{ data.tenVb }}</td>
+                                    <td class="text-center">{{ data.tenVb }}</td>
+                                    <td class="text-center">{{ data.tenVb }}</td>
+                                    <td class="text-center">{{ data.tenVb }}</td>
+                                    <td class="d-flex justify-content-center align-items-center">
+                                        <div class="btn-toolbar mb-0">
+                                            <div class="text-center">
 
-
-                                <td class="text-center">abced</td>
-                                <td class="text-center">ghjhgjhgj</td>
-                                <td class="text-center">ghjhgjhgj</td>
-                                <td class="text-center">ghjhgjhgj</td>
-                                <td class="text-center">ghjhgjhgj</td>
-
-                                <td class="d-flex justify-content-center align-items-center">
-                                    <div class="btn-toolbar mb-0">
-                                        <div class="text-center">
-
-                                            <button nzTooltipTitle="Tab chi tiết" nzTooltipPlacement="bottomRight"
-                                                nz-button nz-tooltip type="button"
-                                                class="btn btn-warning waves-effect waves-light"><i
-                                                    class="ti-eye"></i></button>
-                                            <button (click)="showModal(1)" nzTooltipTitle="Sửa"
-                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
-                                                class="btn btn-success waves-effect waves-light m-l-4"><i
-                                                    class="ti-pencil"></i></button>
-                                            <button (click)="deleteHuongDanLienQuan(1)" nzTooltipTitle="Xóa"
-                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
-                                                class="btn btn-danger waves-effect waves-light m-l-4"><i
-                                                    class="ti-trash"></i></button>
+                                                <button nzTooltipTitle="Tab chi tiết" nzTooltipPlacement="bottomRight"
+                                                    nz-button nz-tooltip type="button"
+                                                    class="btn btn-warning waves-effect waves-light"><i
+                                                        class="ti-eye"></i></button>
+                                                <button (click)="showModal(1)" nzTooltipTitle="Sửa"
+                                                    nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                    class="btn btn-success waves-effect waves-light m-l-4"><i
+                                                        class="ti-pencil"></i></button>
+                                                <button (click)="deleteHuongDanLienQuan(1)" nzTooltipTitle="Xóa"
+                                                    nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
+                                                    class="btn btn-danger waves-effect waves-light m-l-4"><i
+                                                        class="ti-trash"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <!-- <td>{{ data.age }}</td>
-              <td>{{ data.address }}</td> -->
-                            </tr>
-                            <tr *ngFor="let data of listHuongDanLienQuan; let i = index">
-                                <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
-                                    (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
-                                <td class="text-center">{{ i + 1 }}</td>
+                                    </td>
 
+                                </tr>
+                            </tbody>
 
-                                <td class="text-center">{{ data.idhuongDanLq }}</td>
-                                <td class="text-center">{{ data.tenVb }}</td>
-                                <td class="d-flex justify-content-center align-items-center">
-                                    <div class="btn-toolbar mb-0">
-                                        <div class="text-center">
+                        </nz-table>
 
-                                            <button nzTooltipTitle="Xem chi tiết" nzTooltipPlacement="bottomRight"
-                                                nz-button nz-tooltip type="button"
-                                                (click)="showModalDetail(data.idhuongDanLq)"
-                                                class="btn btn-warning waves-effect waves-light ml-2"><i
-                                                    class="far fa-eye"></i></button>
-                                            <button (click)="showModal(data.idhuongDanLq)" nzTooltipTitle="Sửa"
-                                                nzTooltipPlacement="bottomRight" nz-button nz-tooltip type="button"
-                                                class="btn btn-success waves-effect waves-light ml-2"><i
-                                                    class="far fa-edit"></i></button>
-                                            <button (click)="deleteHuongDanLienQuan(data.idhuongDanLq)"
-                                                nzTooltipTitle="Xóa" nzTooltipPlacement="bottomRight" nz-button
-                                                nz-tooltip type="button"
-                                                class="btn btn-danger waves-effect waves-light ml-2"><i
-                                                    class="far fa-trash-alt"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <!-- <td>{{ data.age }}</td>
-              <td>{{ data.address }}</td> -->
-                            </tr>
-                        </tbody>
-                    </nz-table>
+                    </nz-spin>
                 </div>
                 <!-- end card-body-->
             </div>
@@ -270,8 +241,8 @@
 
                         <div class="card-body">
 
-                            <div class="horizontal-form needs-validation" validate [formGroup]="uploadForm"
-                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+                            <div class="horizontal-form needs-validation" validate [formGroup]="dMChiTieuKTXHForm"
+                                enctype="multipart/form-data" (ngSubmit)="onSubmit(dMChiTieuKTXHForm.value)">
                                 <form class="form-horizontal">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label">Chỉ tiêu báo cáo</label>
@@ -478,9 +449,9 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    
 
-                                     
+
+
                                     <tr *ngFor="let data of listHuongDanLienQuan; let i = index">
                                         <!-- <td class="text-center" [nzChecked]="setOfCheckedId.has(data.id)"
                                         (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
@@ -515,11 +486,12 @@
                                         <!-- <td>{{ data.age }}</td>
                   <td>{{ data.address }}</td> -->
                                     </tr>
-                                    
+
                                 </tbody>
-                               
+
                             </nz-table>
-                            <button (click)="addField($event)" data-toggle="modal" data-target="#add-category" class="btn btn-md btn-success waves-effect waves-light m-t-10 pull-right">
+                            <button (click)="addField($event)" data-toggle="modal" data-target="#add-category"
+                                class="btn btn-md btn-success waves-effect waves-light m-t-10 pull-right">
                                 <i class="fa fa-plus"></i> Thêm trường
                             </button>
                         </div>
@@ -547,10 +519,10 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <div class="horizontal-form needs-validation" validate [formGroup]="uploadForm"
-                                enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+                            <div class="horizontal-form needs-validation">
                                 <nz-spin nzTip="Loading..." [nzSpinning]="loading">
-                                    <form class="form-horizontal">
+                                    <form class="form-horizontal" validate [formGroup]="dMChiTieuKTXHForm"
+                                        enctype="multipart/form-data" (ngSubmit)="onSubmit(dMChiTieuKTXHForm.value)">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Đơn vị sử dụng chương trình</label>
                                             <div class="col-sm-9">
@@ -560,14 +532,11 @@
                                             </div>
                                         </div>
 
-
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Loại số liệu</label>
                                             <div class="col-sm-9">
 
-
-
-                                                <nz-select nzSize="default" ngModel="lucy">
+                                                <nz-select formControlName="loaiSoLieu" nzSize="default" ngModel="lucy">
                                                     <nz-option *ngFor="let item of listLoaiSoLieu" [nzValue]="item.oid"
                                                         [nzLabel]="item.ten"></nz-option>
 
@@ -583,7 +552,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Kỳ báo cáo</label>
                                             <div class="col-sm-9">
-                                                <nz-select nzSize="default" ngModel="lucy">
+                                                <nz-select formControlName="kyBaoCao" nzSize="default" ngModel="lucy">
                                                     <nz-option nzValue="Năm" nzLabel="Năm"></nz-option>
                                                     <nz-option nzValue="Giai đoạn" nzLabel="Giai đoạn"></nz-option>
 
@@ -596,12 +565,13 @@
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label">Giai đoạn</label>
                                             <div class="col-sm-9">
-                                                
 
-                                                <nz-select nzSize="default" ngModel="lucy">
-                                                    <nz-option [nzValue]="item.oid" [nzLabel]="item.ten" *ngFor="let item of listGiaiDoan"></nz-option>
-                                                    
-                                                    
+
+                                                <nz-select formControlName="idGiaiDoan" nzSize="default" ngModel="lucy">
+                                                    <nz-option [nzValue]="item.oid" [nzLabel]="item.ten"
+                                                        *ngFor="let item of listGiaiDoan"></nz-option>
+
+
                                                 </nz-select>
 
                                             </div>
@@ -611,7 +581,7 @@
                                             <label class="col-sm-3 control-label">Năm</label>
                                             <div class="col-sm-9">
 
-                                                <nz-date-picker nzMode="year"></nz-date-picker>
+                                                <nz-date-picker formControlName="nam" nzMode="year"></nz-date-picker>
                                             </div>
                                         </div>
 
@@ -620,7 +590,8 @@
 
                                             <label class="col-sm-3 control-label">Thời điểm báo cáo</label>
                                             <div class="col-sm-3">
-                                                <input nz-input nzSize="default" type="date" />
+                                                <input formControlName="thoiDiemBaoCao" nz-input nzSize="default"
+                                                    type="date" />
 
                                             </div>
 
